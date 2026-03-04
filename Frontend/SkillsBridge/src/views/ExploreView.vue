@@ -84,7 +84,7 @@ function getUniversityName(student) {
     <AppNavbar />
     <main class="mx-auto max-w-7xl px-4 py-8 sm:px-6 lg:px-8">
       <h1 class="text-2xl font-bold text-slate-900">Explore students</h1>
-      <p class="mt-1 text-slate-600">Browse public student portfolios by university and skills.</p>
+      <p class="mt-1 text-slate-800">Browse public student portfolios by university and skills.</p>
 
       <div class="mt-6 flex flex-col gap-4 sm:flex-row sm:items-center">
         <div class="flex-1 max-w-xs">

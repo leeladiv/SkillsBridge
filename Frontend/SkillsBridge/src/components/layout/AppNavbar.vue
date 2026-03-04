@@ -73,7 +73,6 @@ function goRegister() {
   router.push({ name: 'Register' })
   closeMenu()
 }
-
 // Focus first focusable in panel when menu opens; return focus to hamburger when closing (only if mobile)
 watch(menuOpen, (open) => {
   if (open) {
@@ -132,7 +131,7 @@ onUnmounted(() => {
         class="flex items-center gap-2 font-semibold text-academic-navy focus:outline-none focus:ring-2 focus:ring-primary-500 focus:ring-offset-2 rounded"
       >
         <span>
-          <img src="/public/SkillsBridge Logo.jpeg" class="h-14 w-14" alt="SkillsBridge logo"/>
+          <img src="/public/SkillsBridge Logo.jpeg" class="h-15 w-15" alt="SkillsBridge logo"/>
         </span>
       </router-link>
 
