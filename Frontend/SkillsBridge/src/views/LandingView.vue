@@ -11,7 +11,7 @@ import AppFooter from '../components/layout/AppFooter.vue'
 
     <main>
       <!-- Hero -->
-      <section class="relative overflow-hidden">
+      <section class="relative mt-1.5 overflow-hidden">
         <div class="absolute inset-0 bg-linear-to-br from-primary-50/80 via-white to-academic-navy/5" aria-hidden="true" />
         <div class="relative mx-auto max-w-7xl px-4 py-24 sm:px-6 sm:py-32 lg:px-8 lg:py-40">
           <div class="mx-auto max-w-3xl text-center">
