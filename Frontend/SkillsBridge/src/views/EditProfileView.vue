@@ -118,7 +118,7 @@ async function save() {
       <BaseCard padding="lg">
         <form class="space-y-4" @submit.prevent="save">
           <div class="flex flex-col sm:flex-row gap-4 items-start">
-            <div class="flex-shrink-0">
+            <div class="shrink-0">
               <div
                 class="h-24 w-24 rounded-full bg-slate-200 flex items-center justify-center text-3xl text-slate-500 overflow-hidden"
               >
