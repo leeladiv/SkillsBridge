@@ -23,13 +23,13 @@ import AppFooter from '../components/layout/AppFooter.vue'
         <h2 class="text-xl font-semibold text-slate-900">Our mission</h2>
         <p class="mt-4 text-lg leading-8 text-slate-700">
           {{ APP_NAME }} is built for the way hiring works today. We believe that every student deserves a clear,
-          professional way to showcase their work—and that recruiters deserve a better way to find talent by
-          university and skill.
+          professional way to showcase their work and that recruiters deserve a better way to find talent by
+          schools and skill.
         </p>
         <p class="mt-4 text-slate-700">
-          Whether you're a computer science major with side projects, a design student with a strong portfolio, or
+          Whether you're a computer science major with side projects, a design student with a strong portfolio, a high school student with unique skills, or
           any student with skills to show, {{ APP_NAME }} gives you one place to put it all. Your profile is
-          built around your university identity, so you're discoverable in a context that matters to employers.
+          built around your schools identity, so you're discoverable in a context that matters to employers.
         </p>
         <p class="mt-4 text-slate-700">
           For explorers, {{ APP_NAME }} is a focused talent pool: filter by institution and skills, see only
@@ -67,7 +67,7 @@ import AppFooter from '../components/layout/AppFooter.vue'
       <section class="mx-auto mt-16 max-w-3xl border-t border-slate-200 pt-16">
         <h2 class="text-xl font-semibold text-slate-900">Get in touch</h2>
         <p class="mt-4 text-slate-600">
-          Questions about {{ APP_NAME }}? We'd love to hear from you. Reach out to your university's career office
+          Questions about {{ APP_NAME }}? We'd love to hear from you. Reach out to your school's career office
           or contact us through the platform.
         </p>
         <div class="mt-6 flex gap-4">
