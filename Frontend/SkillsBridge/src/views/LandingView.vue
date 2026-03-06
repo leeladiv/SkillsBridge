@@ -19,7 +19,7 @@ import AppFooter from '../components/layout/AppFooter.vue'
               Student Skills & Portfolio Platform
             </p>
             <h1 class="mt-4 text-4xl font-bold tracking-tight text-black sm:text-5xl lg:text-6xl">
-              Turn your degree into
+              Turn your Skills into
               <span class="bg-linear-to-r from-primary-600 text-blue-700 to-academic-navy bg-clip-text text-3x1">
                 opportunities
               </span>
@@ -27,21 +27,21 @@ import AppFooter from '../components/layout/AppFooter.vue'
             <p class="mt-6 text-lg leading-8 text-black">
               {{ APP_NAME }} connects talented students with recruiters. Build a professional portfolio,
               showcase your projects and skills, and get discovered by companies looking for your exact profile—all
-              within your university community.
+              within your Schools community.
             </p>
             <p class="mt-3 text-black">
               One profile. One place. Your next opportunity starts here.
             </p>
             <div class="mt-10 flex flex-wrap items-center justify-center text-black gap-4">
               <BaseButton size="lg" @click="$router.push({ name: 'Register' })">
-                Create your portfolio — It's free
+                Create your portfolio  It's free
               </BaseButton>
               <BaseButton variant="secondary" class=" text-black " size="lg" @click="$router.push({ name: 'Explore' })">
                 Explore student profiles
               </BaseButton>
             </div>
             <p class="mt-6 text-md text-black">
-              Join students from top universities. No credit card required.
+              Join students from top Schools. No Fees required.
             </p>
           </div>
         </div>
@@ -56,7 +56,7 @@ import AppFooter from '../components/layout/AppFooter.vue'
               <p class="mt-1 text-sm text-black">Projects and skills in one place, built for recruiters.</p>
             </div>
             <div>
-              <p class="text-2xl font-bold text-academic-navy sm:text-3xl">University-backed</p>
+              <p class="text-2xl font-bold text-academic-navy sm:text-3xl">Ministry of Education backed</p>
               <p class="mt-1 text-sm text-black">Represent your institution. Trusted by career offices.</p>
             </div>
             <div>
@@ -75,7 +75,7 @@ import AppFooter from '../components/layout/AppFooter.vue'
               How it works
             </h2>
             <p class="mx-auto mt-4 max-w-2xl text-lg text-black">
-              Get from signup to discoverable in three simple steps. No résumé uploads, no scattered links—just one
+              Get from signup to discoverable in three simple steps. No resume uploads, no scattered links, just one
               profile that does the work for you.
             </p>
           </div>
@@ -86,7 +86,7 @@ import AppFooter from '../components/layout/AppFooter.vue'
               </div>
               <h3 class="mt-5 text-lg font-semibold text-black">Create your profile</h3>
               <p class="mt-3 text-black">
-                Sign up with your university email, add your degree and institution, then list your skills and
+                Sign up with your personaal email, add your institution, then list your skills and
                 technologies. Link your best projects with descriptions and tech stacks so recruiters see what you
                 can do.
               </p>
