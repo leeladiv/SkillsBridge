@@ -19,7 +19,7 @@ import AppFooter from '../components/layout/AppFooter.vue'
               Student Skills & Portfolio Platform
             </p>
             <h1 class="mt-4 text-4xl font-bold tracking-tight text-black sm:text-5xl lg:text-6xl">
-              Turn your Skills into
+              Turn your Skills & Degree into
               <span class="bg-linear-to-r from-primary-600 text-blue-700 to-academic-navy bg-clip-text text-3x1">
                 opportunities
               </span>
