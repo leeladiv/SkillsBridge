@@ -21,7 +21,7 @@ defineProps({
       size === 'lg' && 'px-6 py-3 text-base',
       variant === 'primary' && 'bg-blue-600 text-white hover:bg-slate-500 focus:ring-slate-500',
       variant === 'secondary' && 'bg-blue-700 text-white hover:bg-slate-500 focus:ring-slate-400',
-      variant === 'ghost' && 'bg-blue-700 text-white hover:bg-slate-500 focus:ring-slate-300',
+      variant === 'ghost' && 'bg-blue-600 text-white hover:bg-slate-500 focus:ring-slate-300',
       variant === 'danger' && 'bg-blue-600 text-white hover:bg-slate-500 focus:ring-red-500',
       variant === 'inverse' && 'bg-blue-700 text-white hover:bg-slate-500 focus:ring-white',
     ]"
