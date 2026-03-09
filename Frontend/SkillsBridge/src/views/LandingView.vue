@@ -45,7 +45,46 @@ import AppFooter from '../components/layout/AppFooter.vue'
             </p>
           </div>
         </div>
-      </section>
+        </section>
+       <!-- RIGHT SIDE -->
+      <div class="grid grid-cols-2 gap-6">
+
+        <div class="bg-white shadow rounded-xl p-6">
+          <p class="text-green-600 text-sm">+12% this month</p>
+          <h2 class="text-3xl font-bold mt-2">3500+</h2>
+          <p class="text-gray-500">Active Colleges</p>
+          <div class="h-2 bg-gray-200 rounded mt-3">
+            <div class="h-2 bg-blue-600 rounded w-3/4"></div>
+          </div>
+        </div>
+
+        <div class="bg-white shadow rounded-xl p-6">
+          <p class="text-green-600 text-sm">+8% this week</p>
+          <h2 class="text-3xl font-bold mt-2">2M+</h2>
+          <p class="text-gray-500">Students Enrolled</p>
+          <div class="h-2 bg-gray-200 rounded mt-3">
+            <div class="h-2 bg-blue-600 rounded w-4/5"></div>
+          </div>
+        </div>
+
+        <div class="bg-white shadow rounded-xl p-6">
+          <p class="text-green-600 text-sm">+15% this month</p>
+          <h2 class="text-3xl font-bold mt-2">40K+</h2>
+          <p class="text-gray-500">Faculty Trained</p>
+          <div class="h-2 bg-gray-200 rounded mt-3">
+            <div class="h-2 bg-blue-600 rounded w-2/3"></div>
+          </div>
+        </div>
+
+        <div class="bg-white shadow rounded-xl p-6">
+          <p class="text-green-600 text-sm">+22% this quarter</p>
+          <h2 class="text-3xl font-bold mt-2">20K+</h2>
+          <p class="text-gray-500">Successful Placements</p>
+          <div class="h-2 bg-gray-200 rounded mt-3">
+            <div class="h-2 bg-blue-600 rounded w-4/5"></div>
+          </div>
+        </div>
+      </div>
 
       <!-- Social proof / value strip -->
       <section class="border-y border-slate-200/80 bg-white/25 py-8">
