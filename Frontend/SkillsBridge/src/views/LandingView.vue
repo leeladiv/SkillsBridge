@@ -85,7 +85,7 @@ function handleNewsletterSubmit() {
       <!-- Hero -->
       <section class="relative mt-0 overflow-hidden">
         <div class="absolute inset-0 bg-linear-to-br from-primary-50/80 via-white to-academic-navy/5" aria-hidden="true" />
-        <div class="relative mx-auto max-w-7xl px-4 py-16 sm:px-6 sm:py-20 lg:px-8 lg:py-24">
+        <div class="relative mx-auto max-w-7xl px-4 py-12 sm:px-6 sm:py-16 lg:px-8 lg:py-20">
           <div class="mx-auto max-w-3xl text-center">
             <p class="text-md font-semibold uppercase text-blue-500 tracking-wider text-primary-600 mt-0">
               Student Skills & Portfolio Platform
@@ -120,7 +120,7 @@ function handleNewsletterSubmit() {
         </section>
 
       <!-- Stats grid -->
-      <section class="mx-auto max-w-7xl px-4 py-12 sm:px-6 lg:px-8">
+      <section class="mx-auto max-w-7xl px-4 py-8 sm:py-10 sm:px-6 lg:px-8">
       <div class="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-4">
 
         <div class="bg-white shadow rounded-xl p-6">
@@ -162,7 +162,7 @@ function handleNewsletterSubmit() {
       </section>
 
       <!-- Partner logos grid -->
-      <section class="border-y border-slate-200/80 bg-white py-14 sm:py-16">
+      <section class="border-y border-slate-200/80 bg-white py-8 sm:py-10">
         <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <h2 class="text-center text-2xl font-bold tracking-tight text-slate-900 sm:text-3xl">
             Trusted by leading institutions
@@ -216,77 +216,80 @@ function handleNewsletterSubmit() {
           </div>
         </div>
       </section>
-
-      <!-- Social proof / value strip -->
-      <section class="border-y border-slate-200/80 bg-white/25 py-8">
-        <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-          <div class="grid gap-8 text-center sm:grid-cols-3">
-            <div>
-              <p class="text-2xl font-bold text-primary-600 sm:text-3xl">Portfolio-first</p>
-              <p class="mt-1 text-sm text-black">Projects and skills in one place, built for recruiters.</p>
-            </div>
-            <div>
-              <p class="text-2xl font-bold text-academic-navy sm:text-3xl">Ministry of Education backed</p>
-              <p class="mt-1 text-sm text-black">Represent your institution. Trusted by career offices.</p>
-            </div>
-            <div>
-              <p class="text-2xl font-bold text-primary-600 sm:text-3xl">You're in control</p>
-              <p class="mt-1 text-sm text-slate-600">Toggle visibility. Update anytime. Your data, your rules.</p>
-            </div>
-          </div>
-        </div>
-      </section>
-
       <!-- Feature highlights (alternating) -->
-      <section class="bg-slate-50 py-16 sm:py-20">
+      <section class="bg-slate-50 py-12 sm:py-16">
         <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <div class="grid items-center gap-12 lg:grid-cols-2 lg:gap-16">
             <div>
-              <h2 class="text-3xl font-bold tracking-tight text-slate-900 sm:text-4xl">Portfolio that works for you</h2>
+              <h2 class="text-3xl font-bold tracking-tight text-slate-900 sm:text-4xl">
+                A portfolio built for hiring teams
+              </h2>
               <p class="mt-4 text-lg text-slate-600">
-                Build a professional portfolio in minutes. Add projects, skills, and tech stacks—all in one place. 
-                Recruiters search by institution and skill, so your profile shows up when it matters.
+                Transform your academic work into a recruiting-ready profile. Showcase projects, tech stacks,
+                and impact in one place so hiring managers can quickly understand what you can do.
               </p>
               <ul class="mt-6 space-y-3 text-slate-700">
-                <li class="flex items-center gap-2">✓ Projects with descriptions & tech stacks</li>
-                <li class="flex items-center gap-2">✓ Skills tagging and verification</li>
-                <li class="flex items-center gap-2">✓ University-linked profiles</li>
+                <li class="flex items-center gap-2">
+                  ✓ Outcome-focused project cards with tech, role, and results
+                </li>
+                <li class="flex items-center gap-2">
+                  ✓ Skill tags that make you searchable by stack and domain
+                </li>
+                <li class="flex items-center gap-2">
+                  ✓ Profiles anchored to your university for added trust
+                </li>
               </ul>
             </div>
             <div class="aspect-video overflow-hidden rounded-2xl bg-slate-200 shadow-lg">
               <div class="flex h-full items-center justify-center text-slate-500">Portfolio preview</div>
             </div>
           </div>
-          <div class="mt-24 grid items-center gap-12 lg:grid-cols-2 lg:gap-16">
+          <div class="mt-10 lg:mt-14 grid items-center gap-10 lg:grid-cols-2 lg:gap-14">
             <div class="order-2 lg:order-1">
               <div class="aspect-video overflow-hidden rounded-2xl bg-slate-200 shadow-lg">
                 <div class="flex h-full items-center justify-center text-slate-500">Explore view</div>
               </div>
             </div>
             <div class="order-1 lg:order-2">
-              <h2 class="text-3xl font-bold tracking-tight text-slate-900 sm:text-4xl">Visibility you control</h2>
+              <h2 class="text-3xl font-bold tracking-tight text-slate-900 sm:text-4xl">
+                Control what recruiters see
+              </h2>
               <p class="mt-4 text-lg text-slate-600">
-                Turn your profile on when you're job hunting, off when you're not. You decide who sees your 
-                information—no spam, no unwanted outreach. Your data, your rules.
+                You decide when your profile is visible and what is shared. Turn discovery on when you’re exploring
+                roles, pause it when you’re not, without deleting your work or losing your network.
               </p>
               <ul class="mt-6 space-y-3 text-slate-700">
-                <li class="flex items-center gap-2">✓ Toggle visibility anytime</li>
-                <li class="flex items-center gap-2">✓ Institution-backed trust</li>
-                <li class="flex items-center gap-2">✓ No fees ever</li>
+                <li class="flex items-center gap-2">
+                  ✓ One-click visibility toggle for Explore and search
+                </li>
+                <li class="flex items-center gap-2">
+                  ✓ Institution-backed identity for credible profiles
+                </li>
+                <li class="flex items-center gap-2">
+                  ✓ No subscriptions or placement fees for students
+                </li>
               </ul>
             </div>
           </div>
-          <div class="mt-24 grid items-center gap-12 lg:grid-cols-2 lg:gap-16">
+          <div class="mt-10 lg:mt-14 grid items-center gap-10 lg:grid-cols-2 lg:gap-14">
             <div>
-              <h2 class="text-3xl font-bold tracking-tight text-slate-900 sm:text-4xl">Get discovered by recruiters</h2>
+              <h2 class="text-3xl font-bold tracking-tight text-slate-900 sm:text-4xl">
+                Be discoverable when it matters
+              </h2>
               <p class="mt-4 text-lg text-slate-600">
-                Hiring managers search by university and skill. When you match, you show up. Keep your portfolio 
-                updated and increase your chances for internships and full-time roles—all within your school's community.
+                Recruiters search by university, skills, and tech stack to find candidates like you. When your profile
+                matches their brief, you show up—with context that makes it easy to reach out.
               </p>
               <ul class="mt-6 space-y-3 text-slate-700">
-                <li class="flex items-center gap-2">✓ Search by institution & skill</li>
-                <li class="flex items-center gap-2">✓ Direct recruiter access</li>
-                <li class="flex items-center gap-2">✓ Career office support</li>
+                <li class="flex items-center gap-2">
+                  ✓ Recruiter search by institution, skills, and technology
+                </li>
+                <li class="flex items-center gap-2">
+                  ✓ Direct interest from hiring teams and partners
+                </li>
+                <li class="flex items-center gap-2">
+                  ✓ Integrated with career offices for warm introductions
+                </li>
               </ul>
             </div>
             <div class="aspect-video overflow-hidden rounded-2xl bg-slate-200 shadow-lg">
@@ -297,7 +300,7 @@ function handleNewsletterSubmit() {
       </section>
 
       <!-- Success stories (case studies) -->
-      <section class="border-t border-slate-200 bg-white py-16 sm:py-20">
+      <section class="border-t border-slate-200 bg-white py-14 sm:py-18">
         <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <div class="text-center">
             <h2 class="text-3xl font-bold tracking-tight text-slate-900 sm:text-4xl">Success stories</h2>
@@ -326,7 +329,7 @@ function handleNewsletterSubmit() {
       </section>
 
       <!-- Testimonials -->
-      <section class="bg-slate-50 py-16 sm:py-20">
+      <section class="bg-slate-50 py-14 sm:py-18">
         <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <div class="text-center">
             <h2 class="text-3xl font-bold tracking-tight text-slate-900 sm:text-4xl">What students & recruiters say</h2>
@@ -410,7 +413,7 @@ function handleNewsletterSubmit() {
       </section>
 
       <!-- Video showcase -->
-      <section class="border-t border-slate-200 bg-white py-20 sm:py-24">
+      <section class="border-t border-slate-200 bg-white py-16 sm:py-20">
         <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <div class="text-center">
             <h2 class="text-3xl font-bold tracking-tight text-slate-900 sm:text-4xl">See SkillsBridge in action</h2>
@@ -445,7 +448,7 @@ function handleNewsletterSubmit() {
       </section>
 
       <!-- Hiring companies logos -->
-      <section class="border-y border-slate-200/80 bg-slate-50 py-16 sm:py-20">
+      <section class="border-y border-slate-200/80 bg-slate-50 py-14 sm:py-18">
         <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <h2 class="text-center text-2xl font-bold tracking-tight text-slate-900 sm:text-3xl">
             Companies hiring from SkillsBridge
@@ -477,7 +480,7 @@ function handleNewsletterSubmit() {
       </section>
 
       <!-- How it works -->
-      <section id="how-it-works" class="py-20 sm:py-24 bg-white/25">
+      <section id="how-it-works" class="py-16 sm:py-20 bg-white/25">
         <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <div class="text-center">
             <h2 class="text-3xl font-bold tracking-tight text-blue-500 sm:text-4xl">
@@ -525,7 +528,7 @@ function handleNewsletterSubmit() {
       </section>
 
       <!-- Awards and recognition -->
-      <section class="border-t border-slate-200 bg-slate-50 py-16 sm:py-20">
+      <section class="border-t border-slate-200 bg-slate-50 py-14 sm:py-18">
         <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <div class="text-center">
             <h2 class="text-3xl font-bold tracking-tight text-slate-900 sm:text-4xl">Awards & recognition</h2>
@@ -555,7 +558,7 @@ function handleNewsletterSubmit() {
       </section>
 
       <!-- About teaser -->
-      <section class="border-t border-slate-200 bg-white py-16 sm:py-20">
+      <section class="border-t border-slate-200 bg-white py-14 sm:py-18">
         <div class="mx-auto max-w-7xl px-4 text-center sm:px-6 lg:px-8">
           <h2 class="text-3xl font-bold tracking-tight sm:text-4xl lg:text-5xl text-blue-600">
             About {{ APP_NAME }}
@@ -569,25 +572,8 @@ function handleNewsletterSubmit() {
           </BaseButton>
         </div>
       </section>
-
-      <!-- University branding CTA -->
-      <section class="py-20 sm:py-24">
-        <div class="mx-auto max-w-7xl px-4 text-center sm:px-6 lg:px-8">
-          <h2 class="text-3xl font-bold tracking-tight text-blue-600 sm:text-4xl lg:text-5xl">
-            University-based branding
-          </h2>
-          <p class="mx-auto mt-4 max-w-2xl text-lg text-slate-800">
-            Your profile is tied to your institution. Join your university's community on {{ APP_NAME }}, represent
-            your school, and help recruiters connect the dots between your degree and your skills.
-          </p>
-          <BaseButton class="mt-8" size="lg" @click="$router.push({ name: 'Register' })">
-            Sign up with your university email
-          </BaseButton>
-        </div>
-      </section>
-
       <!-- Newsletter signup -->
-      <section class="border-t border-slate-200 bg-white py-12 sm:py-16">
+      <section class="border-t border-slate-200 bg-white py-10 sm:py-12">
         <div class="mx-auto max-w-2xl px-4 text-center sm:px-6 lg:px-8">
           <h2 class="text-2xl font-bold tracking-tight text-slate-900 sm:text-3xl">Stay in the loop</h2>
           <p class="mt-3 text-slate-600">
@@ -606,7 +592,7 @@ function handleNewsletterSubmit() {
       </section>
 
       <!-- Final CTA -->
-      <section class="border-t border-slate-200 bg-primary-600 py-16 sm:py-20">
+      <section class="border-t border-slate-200 bg-primary-600 py-14 sm:py-18">
         <div class="mx-auto max-w-3xl px-4 text-center sm:px-6 lg:px-8">
           <h2 class="text-2xl font-bold sm:text-4xl lg:text-5xl text-blue-500">
             Ready to get discovered?
