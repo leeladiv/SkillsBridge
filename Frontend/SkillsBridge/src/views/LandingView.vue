@@ -325,13 +325,25 @@ function handleNewsletterSubmit() {
           <p class="mx-auto mt-3 max-w-2xl text-center text-slate-600">
             Organizations actively recruiting talent from our platform.
           </p>
-          <div class="mt-12 grid grid-cols-2 items-center justify-items-center gap-6 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6">
-            <div class="flex h-14 w-28 items-center justify-center rounded-lg bg-white px-3 py-2 text-sm font-semibold text-slate-600 shadow-sm">TechCorp</div>
-            <div class="flex h-14 w-28 items-center justify-center rounded-lg bg-white px-3 py-2 text-sm font-semibold text-slate-600 shadow-sm">FinanceCo</div>
-            <div class="flex h-14 w-28 items-center justify-center rounded-lg bg-white px-3 py-2 text-sm font-semibold text-slate-600 shadow-sm">HealthPlus</div>
-            <div class="flex h-14 w-28 items-center justify-center rounded-lg bg-white px-3 py-2 text-sm font-semibold text-slate-600 shadow-sm">EduTech</div>
-            <div class="flex h-14 w-28 items-center justify-center rounded-lg bg-white px-3 py-2 text-sm font-semibold text-slate-600 shadow-sm">GovLab</div>
-            <div class="flex h-14 w-28 items-center justify-center rounded-lg bg-white px-3 py-2 text-sm font-semibold text-slate-600 shadow-sm">StartUpX</div>
+          <div class="mt-12 grid grid-cols-2 items-center justify-items-center gap-8 sm:grid-cols-3 lg:grid-cols-6">
+            <div class="flex h-16 w-30 items-center justify-center rounded-lg bg-slate-100 font-semibol">
+              <img src="/public/AmeuLogo.PNG" class="h-16 w-100" alt="AmeuLogo" >
+            </div>
+            <div class="flex h-16 w-32 items-center justify-center rounded-lg bg-slate-100  font-semibold">
+              <img src="/public/BlueCrestLogo.PNG" class="h-16 w-100" alt="BlueCrestLogo">
+            </div>
+            <div class="flex h-16 w-32 items-center justify-center rounded-lg bg-slate-100 font-semibold">
+              <img src="/public/SmpuLogo.PNG" class="h-16 w-100" alt="SmpuLogo">
+            </div>
+            <div class="flex h-16 w-32 items-center justify-center rounded-lg bg-slate-100 font-semibold">
+              <img src="/public/StarzLogo.PNG" class="h-16 w-85" alt="StarzLogo">
+            </div>
+            <div class="flex h-16 w-32 items-center justify-center rounded-lg bg-slate-100 font-semibold">
+              <img src="/public/UL_Logo.PNG" class="h-16 w-100" alt="ULlogo">
+            </div>
+            <div class="flex h-16 w-32 items-center justify-center rounded-lg bg-slate-100 font-semibold">
+              <img src="/public/UmuLogo.PNG" class="h-16 w-100" alt="UmuLogo">
+            </div>
           </div>
         </div>
       </section>
