@@ -124,23 +124,26 @@ onUnmounted(() => {
 </script>
 
 <template>
-  <header class="sticky top-0 z-40 border-b border-slate-200 bg-white/5 backdrop-blur" role="banner">
-    <div class="mx-auto flex h-16 max-w-7xl items-center justify-between px-4 sm:px-6 lg:px-8">
+  <header
+    class="sticky top-0 z-40 border-b border-slate-200 bg-white/80 backdrop-blur"
+    role="banner"
+  >
+    <div class="mx-auto flex h-16 max-w-7xl items-center justify-between px-4 sm:px-6 lg:px-8 gap-6">
       <router-link
         to="/"
-        class="flex items-center gap-2 font-semibold text-academic-navy focus:outline-none focus:ring-2 focus:ring-primary-500 focus:ring-offset-2 rounded"
+        class="ml-2 sm:ml-4 flex items-center gap-3 font-semibold text-academic-navy focus:outline-none focus:ring-2 focus:ring-primary-500 focus:ring-offset-2 rounded"
       >
-        <span class="ml-30 gap-2 text-lg">
-      
-          
-          <img src="/public/SkillsBridge Logo.jpeg" class="h-15 w-15 " style="margin-left: 0%;" alt="SkillsBridge logo"/>
-        </span>
+        <img
+          src="/public/SkillsBridge Logo.jpeg"
+          class="h-9 w-9 rounded-md object-cover"
+          alt="SkillsBridge logo"
+        />
       </router-link>
 
       <!-- Desktop nav: visible from md (768px) up; hidden on small screens -->
       <nav
-            class="max-md:hidden flex mr-30 gap-4 mx-auto "
-            aria-label="Main navigation"
+        class="max-md:hidden flex-1 flex items-center justify-center gap-6 text-sm font-medium text-slate-600"
+        aria-label="Main navigation"
       >
         <button
           type="button"
@@ -163,7 +166,10 @@ onUnmounted(() => {
         >
           About
         </button>
+      </nav>
 
+      <!-- Desktop auth actions -->
+      <div class="max-md:hidden flex items-center gap-3">
         <template v-if="isAuthenticated">
           <button
             v-if="isAdmin"
@@ -181,8 +187,12 @@ onUnmounted(() => {
           >
             Dashboard
           </button>
-          <span class="text-sm text-slate-500 px-2">{{ user?.fullName || user?.email }}</span>
-          <BaseButton variant="ghost" size="sm" @click="handleLogout">Logout</BaseButton>
+          <span class="text-sm text-slate-500 px-1">
+            {{ user?.fullName || user?.email }}
+          </span>
+          <BaseButton variant="ghost" size="sm" @click="handleLogout">
+            Logout
+          </BaseButton>
         </template>
         <template v-else>
           <BaseButton variant="ghost" size="sm" @click="goLogin">
@@ -192,7 +202,7 @@ onUnmounted(() => {
             Sign up
           </BaseButton>
         </template>
-      </nav>
+      </div>
 
       <!-- Hamburger: visible only below md (768px) -->
       <button

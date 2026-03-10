@@ -6,6 +6,69 @@ import AppNavbar from '../components/layout/AppNavbar.vue'
 import AppFooter from '../components/layout/AppFooter.vue'
 
 const newsletterEmail = ref('')
+const activeTestimonialIndex = ref(0)
+const touchStartX = ref(0)
+
+const MAX_TESTIMONIAL_VIDEOS = 7
+
+const testimonialVideos = [
+  {
+    id: 1,
+    name: 'Sarah M.',
+    role: 'CS Student, State University',
+    label: 'Student story',
+    title: 'Landed an internship in two weeks',
+    description:
+      'See how Sarah used SkillsBridge to showcase her projects and get discovered by recruiters.',
+  },
+  {
+    id: 2,
+    name: 'James L.',
+    role: 'Tech Recruiter',
+    label: 'Recruiter perspective',
+    title: 'Finding verified student talent',
+    description:
+      'James shares how SkillsBridge helps him quickly identify strong student candidates.',
+  },
+  {
+    id: 3,
+    name: 'Dr. A. Patel',
+    role: 'Career Director',
+    label: 'University partner',
+    title: 'Supporting students at scale',
+    description:
+      'Dr. Patel explains how SkillsBridge fits into their university career support strategy.',
+  },
+].slice(0, MAX_TESTIMONIAL_VIDEOS)
+
+function nextTestimonial() {
+  activeTestimonialIndex.value =
+    (activeTestimonialIndex.value + 1) % testimonialVideos.length
+}
+
+function prevTestimonial() {
+  activeTestimonialIndex.value =
+    (activeTestimonialIndex.value - 1 + testimonialVideos.length) %
+    testimonialVideos.length
+}
+
+function onTouchStart(e) {
+  if (e.changedTouches?.length) {
+    touchStartX.value = e.changedTouches[0].clientX
+  }
+}
+
+function onTouchEnd(e) {
+  if (!e.changedTouches?.length) return
+  const deltaX = e.changedTouches[0].clientX - touchStartX.value
+  if (Math.abs(deltaX) < 40) return
+  if (deltaX < 0) {
+    nextTestimonial()
+  } else {
+    prevTestimonial()
+  }
+}
+
 function handleNewsletterSubmit() {
   // TODO: wire to backend or email service
   if (newsletterEmail.value) {
@@ -20,9 +83,9 @@ function handleNewsletterSubmit() {
 
     <main>
       <!-- Hero -->
-      <section class="relative mt-1.5  overflow-hidden">
+      <section class="relative mt-0 overflow-hidden">
         <div class="absolute inset-0 bg-linear-to-br from-primary-50/80 via-white to-academic-navy/5" aria-hidden="true" />
-        <div class="relative mx-auto max-w-7xl px-4 py-24 sm:px-6 sm:py-32 lg:px-8 lg:py-40 ">
+        <div class="relative mx-auto max-w-7xl px-4 py-16 sm:px-6 sm:py-20 lg:px-8 lg:py-24">
           <div class="mx-auto max-w-3xl text-center">
             <p class="text-md font-semibold uppercase text-blue-500 tracking-wider text-primary-600 mt-0">
               Student Skills & Portfolio Platform
@@ -99,7 +162,7 @@ function handleNewsletterSubmit() {
       </section>
 
       <!-- Partner logos grid -->
-      <section class="border-y border-slate-200/80 bg-white py-16 sm:py-20">
+      <section class="border-y border-slate-200/80 bg-white py-14 sm:py-16">
         <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <h2 class="text-center text-2xl font-bold tracking-tight text-slate-900 sm:text-3xl">
             Trusted by leading institutions
@@ -107,24 +170,48 @@ function handleNewsletterSubmit() {
           <p class="mx-auto mt-3 max-w-2xl text-center text-slate-600">
             Government agencies, universities, and corporate partners collaborate with {{ APP_NAME }} to connect talent with opportunity.
           </p>
-          <div class="mt-12 grid grid-cols-2 items-center justify-items-center gap-8 sm:grid-cols-3 lg:grid-cols-6">
-            <div class="flex h-16 w-30 items-center justify-center rounded-lg bg-slate-100 font-semibol">
-              <img src="/public/AmeuLogo.PNG" class="h-16 w-100" alt="AmeuLogo" >
-            </div>
-            <div class="flex h-16 w-32 items-center justify-center rounded-lg bg-slate-100  font-semibold">
-              <img src="/public/BlueCrestLogo.PNG" class="h-16 w-100" alt="BlueCrestLogo">
-            </div>
-            <div class="flex h-16 w-32 items-center justify-center rounded-lg bg-slate-100 font-semibold">
-              <img src="/public/SmpuLogo.PNG" class="h-16 w-100" alt="SmpuLogo">
-            </div>
-            <div class="flex h-16 w-32 items-center justify-center rounded-lg bg-slate-100 font-semibold">
-              <img src="/public/StarzLogo.PNG" class="h-16 w-85" alt="StarzLogo">
-            </div>
-            <div class="flex h-16 w-32 items-center justify-center rounded-lg bg-slate-100 font-semibold">
-              <img src="/public/UL_Logo.PNG" class="h-16 w-100" alt="ULlogo">
-            </div>
-            <div class="flex h-16 w-32 items-center justify-center rounded-lg bg-slate-100 font-semibold">
-              <img src="/public/UmuLogo.PNG" class="h-16 w-100" alt="UmuLogo">
+          <div class="mt-10 overflow-hidden">
+            <div class="logo-marquee">
+              <div class="logo-marquee-track">
+                <div class="logo-pill">
+                  <img src="/public/AmeuLogo.PNG" class="h-12 w-auto" alt="AmeuLogo" />
+                </div>
+                <div class="logo-pill">
+                  <img src="/public/BlueCrestLogo.PNG" class="h-12 w-auto" alt="BlueCrestLogo" />
+                </div>
+                <div class="logo-pill">
+                  <img src="/public/SmpuLogo.PNG" class="h-12 w-auto" alt="SmpuLogo" />
+                </div>
+                <div class="logo-pill">
+                  <img src="/public/StarzLogo.PNG" class="h-12 w-auto" alt="StarzLogo" />
+                </div>
+                <div class="logo-pill">
+                  <img src="/public/UL_Logo.PNG" class="h-12 w-auto" alt="ULlogo" />
+                </div>
+                <div class="logo-pill">
+                  <img src="/public/UmuLogo.PNG" class="h-12 w-auto" alt="UmuLogo" />
+                </div>
+              </div>
+              <div class="logo-marquee-track" aria-hidden="true">
+                <div class="logo-pill">
+                  <img src="/public/AmeuLogo.PNG" class="h-12 w-auto" alt="AmeuLogo" />
+                </div>
+                <div class="logo-pill">
+                  <img src="/public/BlueCrestLogo.PNG" class="h-12 w-auto" alt="BlueCrestLogo" />
+                </div>
+                <div class="logo-pill">
+                  <img src="/public/SmpuLogo.PNG" class="h-12 w-auto" alt="SmpuLogo" />
+                </div>
+                <div class="logo-pill">
+                  <img src="/public/StarzLogo.PNG" class="h-12 w-auto" alt="StarzLogo" />
+                </div>
+                <div class="logo-pill">
+                  <img src="/public/UL_Logo.PNG" class="h-12 w-auto" alt="ULlogo" />
+                </div>
+                <div class="logo-pill">
+                  <img src="/public/UmuLogo.PNG" class="h-12 w-auto" alt="UmuLogo" />
+                </div>
+              </div>
             </div>
           </div>
         </div>
@@ -150,12 +237,8 @@ function handleNewsletterSubmit() {
         </div>
       </section>
 
-<<<<<<< HEAD
-=======
-
->>>>>>> d0c13be80594c23c873fca76ecfc94efa453df6e
       <!-- Feature highlights (alternating) -->
-      <section class="bg-slate-50 py-20 sm:py-24">
+      <section class="bg-slate-50 py-16 sm:py-20">
         <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <div class="grid items-center gap-12 lg:grid-cols-2 lg:gap-16">
             <div>
@@ -214,7 +297,7 @@ function handleNewsletterSubmit() {
       </section>
 
       <!-- Success stories (case studies) -->
-      <section class="border-t border-slate-200 bg-white py-20 sm:py-24">
+      <section class="border-t border-slate-200 bg-white py-16 sm:py-20">
         <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <div class="text-center">
             <h2 class="text-3xl font-bold tracking-tight text-slate-900 sm:text-4xl">Success stories</h2>
@@ -243,7 +326,7 @@ function handleNewsletterSubmit() {
       </section>
 
       <!-- Testimonials -->
-      <section class="bg-slate-50 py-20 sm:py-24">
+      <section class="bg-slate-50 py-16 sm:py-20">
         <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <div class="text-center">
             <h2 class="text-3xl font-bold tracking-tight text-slate-900 sm:text-4xl">What students & recruiters say</h2>
@@ -251,37 +334,77 @@ function handleNewsletterSubmit() {
               Real voices from our community.
             </p>
           </div>
-          <div class="mt-16 grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
-            <blockquote class="rounded-2xl bg-white p-8 shadow-sm ring-1 ring-slate-200/80">
-              <p class="text-slate-700">"I got my internship within two weeks of making my profile visible. Recruiters actually found me—no cold applying."</p>
-              <footer class="mt-4 flex items-center gap-3">
-                <div class="h-10 w-10 rounded-full bg-primary-100" />
-                <div>
-                  <cite class="font-semibold text-slate-900">Sarah M.</cite>
-                  <p class="text-sm text-slate-500">CS Student, State University</p>
+          <div
+            class="mt-10 flex flex-col items-center gap-6 sm:mt-12"
+            @touchstart="onTouchStart"
+            @touchend="onTouchEnd"
+          >
+            <div class="w-full max-w-3xl overflow-hidden rounded-2xl bg-slate-900 text-left shadow-xl">
+              <div class="relative aspect-video bg-slate-800">
+                <div class="absolute inset-0 flex items-center justify-center">
+                  <button
+                    type="button"
+                    class="flex h-16 w-16 items-center justify-center rounded-full bg-white/90 text-slate-900 shadow-lg hover:bg-white"
+                  >
+                    <span class="ml-0.5 text-xl font-semibold">▶</span>
+                  </button>
                 </div>
-              </footer>
-            </blockquote>
-            <blockquote class="rounded-2xl bg-white p-8 shadow-sm ring-1 ring-slate-200/80">
-              <p class="text-slate-700">"We hire from SkillsBridge because the portfolios are real and the university connection gives us confidence in the candidates."</p>
-              <footer class="mt-4 flex items-center gap-3">
-                <div class="h-10 w-10 rounded-full bg-primary-100" />
-                <div>
-                  <cite class="font-semibold text-slate-900">James L.</cite>
-                  <p class="text-sm text-slate-500">Tech Recruiter</p>
+                <div class="absolute inset-0 bg-linear-to-t from-slate-950/80 via-slate-900/40 to-transparent" />
+                <div class="absolute bottom-4 left-4 right-4 space-y-1">
+                  <p class="text-xs font-semibold uppercase tracking-[0.16em] text-primary-200">
+                    {{ testimonialVideos[activeTestimonialIndex].label }}
+                  </p>
+                  <p class="text-lg font-semibold text-white">
+                    {{ testimonialVideos[activeTestimonialIndex].title }}
+                  </p>
+                  <p class="text-xs text-slate-200">
+                    {{ testimonialVideos[activeTestimonialIndex].description }}
+                  </p>
                 </div>
-              </footer>
-            </blockquote>
-            <blockquote class="rounded-2xl bg-white p-8 shadow-sm ring-1 ring-slate-200/80">
-              <p class="text-slate-700">"Our career office loves it. Students get discovered, recruiters get quality talent—everyone wins. Ministry backing made adoption easy."</p>
-              <footer class="mt-4 flex items-center gap-3">
-                <div class="h-10 w-10 rounded-full bg-primary-100" />
-                <div>
-                  <cite class="font-semibold text-slate-900">Dr. A. Patel</cite>
-                  <p class="text-sm text-slate-500">Career Director</p>
+              </div>
+              <div class="flex items-center justify-between gap-4 border-t border-slate-800 bg-slate-900 px-4 py-3">
+                <div class="flex items-center gap-3">
+                  <div class="flex h-9 w-9 items-center justify-center rounded-full bg-primary-500/20 text-xs font-semibold text-primary-100">
+                    {{ testimonialVideos[activeTestimonialIndex].name.charAt(0) }}
+                  </div>
+                  <div>
+                    <p class="text-sm font-semibold text-white">
+                      {{ testimonialVideos[activeTestimonialIndex].name }}
+                    </p>
+                    <p class="text-xs text-slate-300">
+                      {{ testimonialVideos[activeTestimonialIndex].role }}
+                    </p>
+                  </div>
                 </div>
-              </footer>
-            </blockquote>
+                <div class="flex items-center gap-2">
+                  <button
+                    type="button"
+                    class="flex h-8 w-8 items-center justify-center rounded-full border border-slate-700 text-slate-200 hover:bg-slate-800"
+                    @click="prevTestimonial"
+                  >
+                    ‹
+                  </button>
+                  <button
+                    type="button"
+                    class="flex h-8 w-8 items-center justify-center rounded-full border border-slate-700 text-slate-200 hover:bg-slate-800"
+                    @click="nextTestimonial"
+                  >
+                    ›
+                  </button>
+                </div>
+              </div>
+            </div>
+            <div class="flex items-center justify-center gap-2">
+              <button
+                v-for="(video, index) in testimonialVideos"
+                :key="video.id"
+                type="button"
+                class="h-2.5 rounded-full transition-all"
+                :class="index === activeTestimonialIndex ? 'w-6 bg-primary-500' : 'w-2.5 bg-slate-300'"
+                @click="activeTestimonialIndex = index"
+                :aria-label="`Go to testimonial ${index + 1}`"
+              />
+            </div>
           </div>
         </div>
       </section>
@@ -330,13 +453,25 @@ function handleNewsletterSubmit() {
           <p class="mx-auto mt-3 max-w-2xl text-center text-slate-600">
             Organizations actively recruiting talent from our platform.
           </p>
-          <div class="mt-12 grid grid-cols-2 items-center justify-items-center gap-6 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6">
-            <div class="flex h-14 w-28 items-center justify-center rounded-lg bg-white px-3 py-2 text-sm font-semibold text-slate-600 shadow-sm">TechCorp</div>
-            <div class="flex h-14 w-28 items-center justify-center rounded-lg bg-white px-3 py-2 text-sm font-semibold text-slate-600 shadow-sm">FinanceCo</div>
-            <div class="flex h-14 w-28 items-center justify-center rounded-lg bg-white px-3 py-2 text-sm font-semibold text-slate-600 shadow-sm">HealthPlus</div>
-            <div class="flex h-14 w-28 items-center justify-center rounded-lg bg-white px-3 py-2 text-sm font-semibold text-slate-600 shadow-sm">EduTech</div>
-            <div class="flex h-14 w-28 items-center justify-center rounded-lg bg-white px-3 py-2 text-sm font-semibold text-slate-600 shadow-sm">GovLab</div>
-            <div class="flex h-14 w-28 items-center justify-center rounded-lg bg-white px-3 py-2 text-sm font-semibold text-slate-600 shadow-sm">StartUpX</div>
+          <div class="mt-10 overflow-hidden">
+            <div class="logo-marquee slow">
+              <div class="logo-marquee-track">
+                <div class="company-pill">TechCorp</div>
+                <div class="company-pill">FinanceCo</div>
+                <div class="company-pill">HealthPlus</div>
+                <div class="company-pill">EduTech</div>
+                <div class="company-pill">GovLab</div>
+                <div class="company-pill">StartUpX</div>
+              </div>
+              <div class="logo-marquee-track" aria-hidden="true">
+                <div class="company-pill">TechCorp</div>
+                <div class="company-pill">FinanceCo</div>
+                <div class="company-pill">HealthPlus</div>
+                <div class="company-pill">EduTech</div>
+                <div class="company-pill">GovLab</div>
+                <div class="company-pill">StartUpX</div>
+              </div>
+            </div>
           </div>
         </div>
       </section>
@@ -495,3 +630,61 @@ function handleNewsletterSubmit() {
     <AppFooter />
   </div>
 </template>
+
+<style scoped>
+.logo-marquee {
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+  width: max-content;
+  animation: logo-marquee 24s linear infinite;
+}
+
+.logo-marquee.slow {
+  animation-duration: 32s;
+}
+
+.logo-marquee-track {
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+}
+
+.logo-pill {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.75rem 1.5rem;
+  border-radius: 999px;
+  background-color: #e5e7eb; /* slate-200 */
+}
+
+.company-pill {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 3rem;
+  min-width: 7rem;
+  padding: 0.5rem 1rem;
+  border-radius: 0.75rem;
+  background-color: #ffffff;
+  color: #475569; /* slate-600 */
+  font-size: 0.875rem;
+  font-weight: 600;
+  box-shadow: 0 1px 2px rgba(15, 23, 42, 0.08);
+}
+
+.logo-marquee:hover,
+.logo-marquee.slow:hover {
+  animation-play-state: paused;
+}
+
+@keyframes logo-marquee {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+</style>
