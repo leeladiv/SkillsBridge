@@ -130,15 +130,17 @@ onUnmounted(() => {
         to="/"
         class="flex items-center gap-2 font-semibold text-academic-navy focus:outline-none focus:ring-2 focus:ring-primary-500 focus:ring-offset-2 rounded"
       >
-        <span>
-          <img src="/public/SkillsBridge Logo.jpeg" class="h-15 w-15" alt="SkillsBridge logo"/>
+        <span class="ml-30 gap-2 text-lg">
+      
+          
+          <img src="/public/SkillsBridge Logo.jpeg" class="h-15 w-15 " style="margin-left: 0%;" alt="SkillsBridge logo"/>
         </span>
       </router-link>
 
       <!-- Desktop nav: visible from md (768px) up; hidden on small screens -->
       <nav
-        class="max-md:hidden flex items-center gap-4"
-        aria-label="Main navigation"
+            class="max-md:hidden flex mr-30 gap-4 mx-auto "
+            aria-label="Main navigation"
       >
         <button
           type="button"

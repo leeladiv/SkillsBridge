@@ -20,17 +20,17 @@ function handleNewsletterSubmit() {
 
     <main>
       <!-- Hero -->
-      <section class="relative mt-1.5 overflow-hidden">
+      <section class="relative mt-1.5  overflow-hidden">
         <div class="absolute inset-0 bg-linear-to-br from-primary-50/80 via-white to-academic-navy/5" aria-hidden="true" />
-        <div class="relative mx-auto max-w-7xl px-4 py-24 sm:px-6 sm:py-32 lg:px-8 lg:py-40">
+        <div class="relative mx-auto max-w-7xl px-4 py-24 sm:px-6 sm:py-32 lg:px-8 lg:py-40 ">
           <div class="mx-auto max-w-3xl text-center">
-            <p class="text-md font-semibold uppercase text-blue-500 tracking-wider text-primary-600">
+            <p class="text-md font-semibold uppercase text-blue-500 tracking-wider text-primary-600 mt-0">
               Student Skills & Portfolio Platform
             </p>
-            <h1 class="mt-4 text-4xl font-bold tracking-tight text-black sm:text-5xl lg:text-6xl">
-              Turn your Skills & Degree into
+            <h1 class="mt-4 text-4xl font-bold tracking-tight text-black sm:text-5xl lg:text-6xl ">
+              Turn your Skills & Degree into   opportunities
               <span class="bg-linear-to-r from-primary-600 text-blue-700 to-academic-navy bg-clip-text text-3xl">
-                opportunities
+               
               </span>
             </h1>
             <p class="mt-6 text-lg leading-8 text-black">
@@ -150,6 +150,10 @@ function handleNewsletterSubmit() {
         </div>
       </section>
 
+<<<<<<< HEAD
+=======
+
+>>>>>>> d0c13be80594c23c873fca76ecfc94efa453df6e
       <!-- Feature highlights (alternating) -->
       <section class="bg-slate-50 py-20 sm:py-24">
         <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
