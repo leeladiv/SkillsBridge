@@ -149,11 +149,6 @@ function handleNewsletterSubmit() {
           </div>
         </div>
       </section>
-
-<<<<<<< HEAD
-=======
-
->>>>>>> d0c13be80594c23c873fca76ecfc94efa453df6e
       <!-- Feature highlights (alternating) -->
       <section class="bg-slate-50 py-20 sm:py-24">
         <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
