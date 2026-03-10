@@ -108,12 +108,24 @@ function handleNewsletterSubmit() {
             Government agencies, universities, and corporate partners collaborate with {{ APP_NAME }} to connect talent with opportunity.
           </p>
           <div class="mt-12 grid grid-cols-2 items-center justify-items-center gap-8 sm:grid-cols-3 lg:grid-cols-6">
-            <div class="flex h-16 w-32 items-center justify-center rounded-lg bg-slate-100 px-4 py-3 font-semibold text-slate-600">Ministry of Ed</div>
-            <div class="flex h-16 w-32 items-center justify-center rounded-lg bg-slate-100 px-4 py-3 font-semibold text-slate-600">State Univ</div>
-            <div class="flex h-16 w-32 items-center justify-center rounded-lg bg-slate-100 px-4 py-3 font-semibold text-slate-600">Tech College</div>
-            <div class="flex h-16 w-32 items-center justify-center rounded-lg bg-slate-100 px-4 py-3 font-semibold text-slate-600">Polytechnic</div>
-            <div class="flex h-16 w-32 items-center justify-center rounded-lg bg-slate-100 px-4 py-3 font-semibold text-slate-600">Research Inst</div>
-            <div class="flex h-16 w-32 items-center justify-center rounded-lg bg-slate-100 px-4 py-3 font-semibold text-slate-600">Global Corp</div>
+            <div class="flex h-16 w-30 items-center justify-center rounded-lg bg-slate-100 font-semibol">
+              <img src="/public/AmeuLogo.PNG" class="h-16 w-100" alt="AmeuLogo" >
+            </div>
+            <div class="flex h-16 w-32 items-center justify-center rounded-lg bg-slate-100  font-semibold">
+              <img src="/public/BlueCrestLogo.PNG" class="h-16 w-100" alt="BlueCrestLogo">
+            </div>
+            <div class="flex h-16 w-32 items-center justify-center rounded-lg bg-slate-100 font-semibold">
+              <img src="/public/SmpuLogo.PNG" class="h-16 w-100" alt="SmpuLogo">
+            </div>
+            <div class="flex h-16 w-32 items-center justify-center rounded-lg bg-slate-100 font-semibold">
+              <img src="/public/StarzLogo.PNG" class="h-16 w-85" alt="StarzLogo">
+            </div>
+            <div class="flex h-16 w-32 items-center justify-center rounded-lg bg-slate-100 font-semibold">
+              <img src="/public/UL_Logo.PNG" class="h-16 w-100" alt="ULlogo">
+            </div>
+            <div class="flex h-16 w-32 items-center justify-center rounded-lg bg-slate-100 font-semibold">
+              <img src="/public/UmuLogo.PNG" class="h-16 w-100" alt="UmuLogo">
+            </div>
           </div>
         </div>
       </section>
@@ -138,8 +150,6 @@ function handleNewsletterSubmit() {
         </div>
       </section>
 
-<<<<<<< HEAD
-=======
       <!-- Feature highlights (alternating) -->
       <section class="bg-slate-50 py-20 sm:py-24">
         <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
@@ -326,7 +336,6 @@ function handleNewsletterSubmit() {
           </div>
         </div>
       </section>
->>>>>>> 4568a50c646c4eb6ff466bf3bfb15bf526700fda
 
       <!-- How it works -->
       <section id="how-it-works" class="py-20 sm:py-24 bg-white/25">
