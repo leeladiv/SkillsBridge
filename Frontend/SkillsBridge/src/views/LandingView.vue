@@ -170,49 +170,47 @@ function handleNewsletterSubmit() {
           <p class="mx-auto mt-3 max-w-2xl text-center text-slate-600">
             Government agencies, universities, and corporate partners collaborate with {{ APP_NAME }} to connect talent with opportunity.
           </p>
-          <div class="mt-10 overflow-hidden">
-            <div class="logo-marquee">
-              <div class="logo-marquee-track">
-                <div class="logo-pill">
-                  <img src="/public/AmeuLogo.PNG" class="h-12 w-auto" alt="AmeuLogo" />
-                </div>
-                <div class="logo-pill">
-                  <img src="/public/BlueCrestLogo.PNG" class="h-12 w-auto" alt="BlueCrestLogo" />
-                </div>
-                <div class="logo-pill">
-                  <img src="/public/SmpuLogo.PNG" class="h-12 w-auto" alt="SmpuLogo" />
-                </div>
-                <div class="logo-pill">
-                  <img src="/public/StarzLogo.PNG" class="h-12 w-auto" alt="StarzLogo" />
-                </div>
-                <div class="logo-pill">
-                  <img src="/public/UL_Logo.PNG" class="h-12 w-auto" alt="ULlogo" />
-                </div>
-                <div class="logo-pill">
-                  <img src="/public/UmuLogo.PNG" class="h-12 w-auto" alt="UmuLogo" />
-                </div>
-              </div>
-              <div class="logo-marquee-track" aria-hidden="true">
-                <div class="logo-pill">
-                  <img src="/public/AmeuLogo.PNG" class="h-12 w-auto" alt="AmeuLogo" />
-                </div>
-                <div class="logo-pill">
-                  <img src="/public/BlueCrestLogo.PNG" class="h-12 w-auto" alt="BlueCrestLogo" />
-                </div>
-                <div class="logo-pill">
-                  <img src="/public/SmpuLogo.PNG" class="h-12 w-auto" alt="SmpuLogo" />
-                </div>
-                <div class="logo-pill">
-                  <img src="/public/StarzLogo.PNG" class="h-12 w-auto" alt="StarzLogo" />
-                </div>
-                <div class="logo-pill">
-                  <img src="/public/UL_Logo.PNG" class="h-12 w-auto" alt="ULlogo" />
-                </div>
-                <div class="logo-pill">
-                  <img src="/public/UmuLogo.PNG" class="h-12 w-auto" alt="UmuLogo" />
-                </div>
-              </div>
-            </div>
+
+              <div class="mt-10 overflow-hidden logo-marquee slow logo-marquee-track">
+          <div aria-hidden="true" class="mt-12 logo-marquee-track grid grid-cols-2 items-center justify-items-center gap-8 sm:grid-cols-3 lg:grid-cols-6">
+             <div class="flex h-16 w-30 items-center justify-center rounded-lg bg-slate-100 font-semibol">
+              <img src="/public/AmeuLogo.PNG" class="h-16 w-100" alt="AmeuLogo" >
+             </div>
+             <div class="flex h-16 w-32 items-center justify-center rounded-lg bg-slate-100  font-semibold">
+              <img src="/public/BlueCrestLogo.PNG" class="h-16 w-100" alt="BlueCrestLogo">
+             </div>
+             <div class="flex h-16 w-32 items-center justify-center rounded-lg bg-slate-100 font-semibold">
+              <img src="/public/SmpuLogo.PNG" class="h-16 w-100" alt="SmpuLogo">
+             </div>
+             <div class="flex h-16 w-32 items-center justify-center rounded-lg bg-slate-100 font-semibold">
+              <img src="/public/StarzLogo.PNG" class="h-16 w-85" alt="StarzLogo">
+             </div>
+             <div class="flex h-16 w-32 items-center justify-center rounded-lg bg-slate-100 font-semibold">
+              <img src="/public/UL_Logo.PNG" class="h-16 w-100" alt="ULlogo">
+             </div>
+             <div class="flex h-16 w-32 items-center justify-center rounded-lg bg-slate-100 font-semibold">
+              <img src="/public/UmuLogo.PNG" class="h-16 w-100" alt="UmuLogo">
+             </div>
+
+             <div class="flex h-16 w-30 items-center justify-center rounded-lg bg-slate-100 font-semibol">
+              <img src="/public/AmeuLogo.PNG" class="h-16 w-100" alt="AmeuLogo" >
+             </div>
+             <div class="flex h-16 w-32 items-center justify-center rounded-lg bg-slate-100  font-semibold">
+              <img src="/public/BlueCrestLogo.PNG" class="h-16 w-100" alt="BlueCrestLogo">
+             </div>
+             <div class="flex h-16 w-32 items-center justify-center rounded-lg bg-slate-100 font-semibold">
+              <img src="/public/SmpuLogo.PNG" class="h-16 w-100" alt="SmpuLogo">
+             </div>
+             <div class="flex h-16 w-32 items-center justify-center rounded-lg bg-slate-100 font-semibold">
+              <img src="/public/StarzLogo.PNG" class="h-16 w-85" alt="StarzLogo">
+             </div>
+             <div class="flex h-16 w-32 items-center justify-center rounded-lg bg-slate-100 font-semibold">
+              <img src="/public/UL_Logo.PNG" class="h-16 w-100" alt="ULlogo">
+             </div>
+             <div class="flex h-16 w-32 items-center justify-center rounded-lg bg-slate-100 font-semibold">
+              <img src="/public/UmuLogo.PNG" class="h-16 w-100" alt="UmuLogo">
+             </div>
+             </div>
           </div>
         </div>
       </section>
@@ -456,25 +454,47 @@ function handleNewsletterSubmit() {
           <p class="mx-auto mt-3 max-w-2xl text-center text-slate-600">
             Organizations actively recruiting talent from our platform.
           </p>
-          <div class="mt-10 overflow-hidden">
-            <div class="logo-marquee slow">
-              <div class="logo-marquee-track">
-                <div class="company-pill">TechCorp</div>
-                <div class="company-pill">FinanceCo</div>
-                <div class="company-pill">HealthPlus</div>
-                <div class="company-pill">EduTech</div>
-                <div class="company-pill">GovLab</div>
-                <div class="company-pill">StartUpX</div>
-              </div>
-              <div class="logo-marquee-track" aria-hidden="true">
-                <div class="company-pill">TechCorp</div>
-                <div class="company-pill">FinanceCo</div>
-                <div class="company-pill">HealthPlus</div>
-                <div class="company-pill">EduTech</div>
-                <div class="company-pill">GovLab</div>
-                <div class="company-pill">StartUpX</div>
-              </div>
-            </div>
+
+        <div class="mt-10 overflow-hidden logo-marquee slow logo-marquee-track">
+          <div aria-hidden="true" class="mt-12 logo-marquee-track grid grid-cols-2 items-center justify-items-center gap-8 sm:grid-cols-3 lg:grid-cols-6">
+             <div class="flex h-16 w-30 items-center justify-center rounded-lg bg-slate-100 font-semibol">
+              <img src="/public/AmeuLogo.PNG" class="h-16 w-100" alt="AmeuLogo" >
+             </div>
+             <div class="flex h-16 w-32 items-center justify-center rounded-lg bg-slate-100  font-semibold">
+              <img src="/public/BlueCrestLogo.PNG" class="h-16 w-100" alt="BlueCrestLogo">
+             </div>
+             <div class="flex h-16 w-32 items-center justify-center rounded-lg bg-slate-100 font-semibold">
+              <img src="/public/SmpuLogo.PNG" class="h-16 w-100" alt="SmpuLogo">
+             </div>
+             <div class="flex h-16 w-32 items-center justify-center rounded-lg bg-slate-100 font-semibold">
+              <img src="/public/StarzLogo.PNG" class="h-16 w-85" alt="StarzLogo">
+             </div>
+             <div class="flex h-16 w-32 items-center justify-center rounded-lg bg-slate-100 font-semibold">
+              <img src="/public/UL_Logo.PNG" class="h-16 w-100" alt="ULlogo">
+             </div>
+             <div class="flex h-16 w-32 items-center justify-center rounded-lg bg-slate-100 font-semibold">
+              <img src="/public/UmuLogo.PNG" class="h-16 w-100" alt="UmuLogo">
+             </div>
+
+             <div class="flex h-16 w-30 items-center justify-center rounded-lg bg-slate-100 font-semibol">
+              <img src="/public/AmeuLogo.PNG" class="h-16 w-100" alt="AmeuLogo" >
+             </div>
+             <div class="flex h-16 w-32 items-center justify-center rounded-lg bg-slate-100  font-semibold">
+              <img src="/public/BlueCrestLogo.PNG" class="h-16 w-100" alt="BlueCrestLogo">
+             </div>
+             <div class="flex h-16 w-32 items-center justify-center rounded-lg bg-slate-100 font-semibold">
+              <img src="/public/SmpuLogo.PNG" class="h-16 w-100" alt="SmpuLogo">
+             </div>
+             <div class="flex h-16 w-32 items-center justify-center rounded-lg bg-slate-100 font-semibold">
+              <img src="/public/StarzLogo.PNG" class="h-16 w-85" alt="StarzLogo">
+             </div>
+             <div class="flex h-16 w-32 items-center justify-center rounded-lg bg-slate-100 font-semibold">
+              <img src="/public/UL_Logo.PNG" class="h-16 w-100" alt="ULlogo">
+             </div>
+             <div class="flex h-16 w-32 items-center justify-center rounded-lg bg-slate-100 font-semibold">
+              <img src="/public/UmuLogo.PNG" class="h-16 w-100" alt="UmuLogo">
+             </div>
+             </div>
           </div>
         </div>
       </section>
