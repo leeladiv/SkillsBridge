@@ -11,14 +11,9 @@
   },
   "dependencies": {
     "bcrypt": "^5.1.1",
-<<<<<<< HEAD
-    "cors": "^2.8.6",
-    "express": "^4.22.1",
-=======
     "cors": "^2.8.5",
     "dotenv": "^17.3.1",
     "express": "^4.21.0",
->>>>>>> 3629efab57717fb6353a00e602425ec26b2fd924
     "express-rate-limit": "^7.4.0",
     "helmet": "^7.1.0",
     "jsonwebtoken": "^9.0.2",
