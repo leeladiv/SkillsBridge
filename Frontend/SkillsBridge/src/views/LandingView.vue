@@ -171,8 +171,8 @@ function handleNewsletterSubmit() {
             Government agencies, universities, and corporate partners collaborate with {{ APP_NAME }} to connect talent with opportunity.
           </p>
 
-              <div class="mt-10 overflow-hidden logo-marquee slow logo-marquee-track">
-          <div aria-hidden="true" class="mt-12 logo-marquee-track grid grid-cols-2 items-center justify-items-center gap-8 sm:grid-cols-3 lg:grid-cols-6">
+        <div class="mt-10 overflow-hidden logo-marquee slow">
+          <div aria-hidden="true" class=" opacity-70 mt-12 logo-marquee-track grid grid-cols-2 items-center justify-items-center gap-8 md:grid-cols-3 lg:grid-cols-6">
              <div class="flex h-16 w-30 items-center justify-center rounded-lg bg-slate-100 font-semibol">
               <img src="/public/AmeuLogo.PNG" class="h-16 w-100" alt="AmeuLogo" >
              </div>
