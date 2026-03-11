@@ -69,7 +69,9 @@ export const useAuthStore = defineStore('auth', () => {
   async function register(payload) {
     try {
       const data = await authService.register(payload)
-      setAuth(data)
+      if (data.token) {
+        setAuth(data)
+      }
       return { success: true }
     } catch (err) {
       const message = err.response?.data?.message || err.message || 'Registration failed'

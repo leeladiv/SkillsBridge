@@ -4,6 +4,7 @@ import { useRouter, useRoute } from 'vue-router'
 import { useAuthStore } from '../stores/authStore'
 import { useFormValidation } from '../composables/useFormValidation'
 import { useToast } from '../composables/useToast'
+import * as authService from '../services/authService'
 import BaseButton from '../components/base/BaseButton.vue'
 import BaseInput from '../components/base/BaseInput.vue'
 import BasePasswordInput from '../components/base/BasePasswordInput.vue'
@@ -19,7 +20,9 @@ const { required, email } = useFormValidation()
 const form = ref({ email: '', password: '' })
 const errors = ref({})
 const loading = ref(false)
+const resending = ref(false)
 const alertError = ref('')
+const showResendLink = ref(false)
 
 const redirectTo = computed(() => route.query.redirect || '/dashboard')
 
@@ -34,6 +37,7 @@ function validate() {
 
 async function onSubmit() {
   alertError.value = ''
+  showResendLink.value = false
   if (!validate()) return
   loading.value = true
   try {
@@ -51,9 +55,27 @@ async function onSubmit() {
       }
     } else {
       alertError.value = result.error || 'Login failed'
+      showResendLink.value = result.error?.toLowerCase().includes('verify your email')
     }
   } finally {
     loading.value = false
+  }
+}
+
+async function resendVerification() {
+  if (!form.value.email) {
+    toast.error('Enter your email above first')
+    return
+  }
+  resending.value = true
+  try {
+    await authService.resendVerification(form.value.email)
+    toast.success('Verification email sent. Check your inbox.')
+    showResendLink.value = false
+  } catch (err) {
+    toast.error(err.response?.data?.message || 'Failed to resend verification email')
+  } finally {
+    resending.value = false
   }
 }
 </script>
@@ -63,11 +85,11 @@ async function onSubmit() {
     <AppNavbar />
 
     <main
-      class="mx-auto flex max-w-6xl flex-row overflow-x-auto overflow-y-hidden rounded-3xl bg-white shadow-xl sm:mt-10"
+      class="mx-auto flex max-w-6xl flex-col overflow-hidden rounded-3xl bg-white shadow-xl sm:mt-10 sm:flex-row"
     >
       <!-- Left panel (same structure as signup) -->
       <section
-        class="relative flex w-[40%] min-w-[320px] flex-col justify-between bg-blue-600 px-8 py-10 text-white sm:px-12 md:max-w-md"
+        class="relative flex w-full flex-col justify-between bg-blue-600 px-8 py-10 text-white sm:w-[40%] sm:min-w-[320px] sm:px-12 md:max-w-md"
       >
         <div>
           <!-- Logo placeholder -->
@@ -100,8 +122,8 @@ async function onSubmit() {
       </section>
 
       <!-- Right form panel -->
-      <section class="flex min-w-[360px] flex-1 items-stretch bg-slate-50 px-6 py-8 sm:px-10 sm:py-10">
-        <div class="w-full max-w-xl">
+      <section class="flex w-full min-w-0 flex-1 items-stretch bg-slate-50 px-6 py-8 sm:px-10 sm:py-10">
+        <div class="w-full min-w-0 max-w-xl">
           <!-- Step indicator (single active dot to echo signup) -->
           <div class="mb-8 flex items-center gap-3">
             <span class="h-2 w-2 rounded-full bg-primary-600"></span>
@@ -120,6 +142,15 @@ async function onSubmit() {
 
           <BaseAlert v-if="alertError" variant="error" class="mt-4" @dismiss="alertError = ''">
             {{ alertError }}
+            <button
+              v-if="showResendLink"
+              type="button"
+              class="mt-2 block text-sm font-semibold underline hover:no-underline"
+              :disabled="resending"
+              @click="resendVerification"
+            >
+              {{ resending ? 'Sending...' : 'Resend verification email' }}
+            </button>
           </BaseAlert>
 
           <div class="mt-6 rounded-2xl bg-white p-6 shadow-sm sm:p-7">

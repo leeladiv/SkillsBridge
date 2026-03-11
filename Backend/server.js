@@ -1,3 +1,4 @@
+import 'dotenv/config'
 import express from 'express'
 import cors from 'cors'
 import helmet from 'helmet'
@@ -8,14 +9,16 @@ import { init as initDb } from './src/db/index.js'
 import { fileURLToPath } from 'url'
 import { dirname, join } from 'path'
 
-import authRoutes from './src/routes/auth.js'
-import studentsRoutes from './src/routes/students.js'
-import projectsRoutes from './src/routes/projects.js'
-import exploreRoutes from './src/routes/explore.js'
-import * as exploreCtrl from './src/controllers/exploreController.js'
-import universitiesRoutes from './src/routes/universities.js'
-import adminRoutes from './src/routes/admin.js'
-import statsRoutes from './src/routes/stats.js'
+import authRoutes from './routes/auth.js'
+import studentsRoutes from './routes/students.js'
+import projectsRoutes from './routes/projects.js'
+import exploreRoutes from './routes/explore.js'
+import * as exploreCtrl from './controllers/exploreController.js'
+import universitiesRoutes from './routes/universities.js'
+import adminRoutes from './routes/admin.js'
+import statsRoutes from "./routes/statsRoutes.js"
+import { isEmailConfigured, verifyEmailTransport } from './utils/email.js'
+
 const app = express()
 const __dirname = dirname(fileURLToPath(import.meta.url))
 
@@ -28,7 +31,6 @@ app.use('/uploads', express.static(join(__dirname, '..', 'uploads')))
 const authLimiter = rateLimit(config.rateLimitAuth)
 app.use('/api/auth/login', authLimiter)
 app.use('/api/auth/register', authLimiter)
-
 app.use("/api/stats", statsRoutes)
 app.use('/api/auth', authRoutes)
 app.use('/api/students', studentsRoutes)
@@ -67,6 +69,10 @@ async function start() {
   await initDb()
   app.listen(config.port, () => {
     console.log(`SkillsBridge API listening on port ${config.port}`)
+    console.log(`Email configured: ${isEmailConfigured() ? 'yes' : 'no'}`)
+    verifyEmailTransport()
+      .then(() => console.log('Email transport: verified'))
+      .catch((e) => console.error('Email transport: failed to verify:', e?.message || e))
   })
 }
 start().catch((err) => {

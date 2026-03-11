@@ -12,6 +12,16 @@ export async function register(payload) {
   return data
 }
 
+export async function verifyEmail(token) {
+  const { data } = await api.get(`${AUTH_PREFIX}/verify-email`, { params: { token } })
+  return data
+}
+
+export async function resendVerification(email) {
+  const { data } = await api.post(`${AUTH_PREFIX}/resend-verification`, { email })
+  return data
+}
+
 export async function logout() {
   try {
     await api.post(`${AUTH_PREFIX}/logout`)

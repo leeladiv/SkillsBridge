@@ -1,12 +1,15 @@
-import crypto from 'crypto'
 import bcrypt from 'bcrypt'
 import jwt from 'jsonwebtoken'
 import { config } from '../config/index.js'
 import * as db from '../db/index.js'
 import { success, error } from '../utils/response.js'
-import { sendVerificationEmail, isEmailConfigured } from '../utils/email.js'
-
-const VERIFICATION_EXPIRES_HOURS = 24
+import {
+  sendVerificationEmail,
+  isEmailConfigured,
+  generateVerificationToken,
+  verificationExpiresAt,
+  buildVerifyUrl,
+} from '../modules/emailVerification/index.js'
 
 function signToken(userId, role) {
   return jwt.sign(
@@ -24,16 +27,6 @@ function toUserResponse(user) {
     role: user.role,
     universityId: user.universityId,
   }
-}
-
-function generateVerificationToken() {
-  return crypto.randomBytes(32).toString('hex')
-}
-
-function verificationExpiresAt() {
-  const d = new Date()
-  d.setHours(d.getHours() + VERIFICATION_EXPIRES_HOURS)
-  return d.toISOString()
 }
 
 export async function register(req, res, next) {
@@ -62,13 +55,12 @@ export async function register(req, res, next) {
       verificationTokenExpires,
     })
 
-    const baseUrl = process.env.FRONTEND_URL || 'http://localhost:5173'
-    const verifyUrl = `${baseUrl}/verify-email?token=${verificationToken}`
+    const verifyUrl = buildVerifyUrl(verificationToken)
 
     if (isEmailConfigured()) {
-      sendVerificationEmail(email, fullName, verifyUrl).catch((err) =>
-        console.error('Failed to send verification email:', err.message)
-      )
+      sendVerificationEmail(email, fullName, verifyUrl)
+        .then((info) => console.log('Verification email sent:', info?.messageId || '(no messageId)'))
+        .catch((err) => console.error('Failed to send verification email:', err.message))
     }
 
     return success(res, {
@@ -138,13 +130,12 @@ export async function resendVerification(req, res, next) {
     const verificationTokenExpires = verificationExpiresAt()
     await db.updateUser(user.id, { verificationToken, verificationTokenExpires })
 
-    const baseUrl = process.env.FRONTEND_URL || 'http://localhost:5173'
-    const verifyUrl = `${baseUrl}/verify-email?token=${verificationToken}`
+    const verifyUrl = buildVerifyUrl(verificationToken)
 
     if (isEmailConfigured()) {
-      sendVerificationEmail(email, user.fullName, verifyUrl).catch((err) =>
-        console.error('Failed to resend verification email:', err.message)
-      )
+      sendVerificationEmail(email, user.fullName, verifyUrl)
+        .then((info) => console.log('Verification email resent:', info?.messageId || '(no messageId)'))
+        .catch((err) => console.error('Failed to resend verification email:', err.message))
     }
 
     return success(res, {

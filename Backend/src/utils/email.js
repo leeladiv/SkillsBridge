@@ -19,22 +19,30 @@ export function isEmailConfigured() {
   return !!(process.env.SMTP_HOST && process.env.SMTP_USER && process.env.SMTP_PASS)
 }
 
+export async function verifyEmailTransport() {
+  if (!isEmailConfigured() || !transporter) return { ok: false, reason: 'not_configured' }
+  await transporter.verify()
+  return { ok: true }
+}
+
 export async function sendVerificationEmail(to, fullName, verifyUrl) {
   if (!isEmailConfigured() || !transporter) return { sent: false }
 
-  await transporter.sendMail({
+  const info = await transporter.sendMail({
     from: process.env.SMTP_FROM || process.env.SMTP_USER,
     to,
     subject: 'Verify your SkillsBridge email',
     html: `
       <p>Hi ${fullName},</p>
-      <p>Thanks for signing up for SkillsBridge. Click the link below to verify your email:</p>
+      <p>Thanks for signing up for SkillsBridge.</p>
+      <p>Please click the link below to verify your email address:</p>
       <p><a href="${verifyUrl}" style="color:#6d28d9">Verify my email</a></p>
-      <p>Or copy this URL: ${verifyUrl}</p>
+      <p>Or copy and paste this URL into your browser: ${verifyUrl}</p>
       <p>This link expires in 24 hours.</p>
+      <p>If you did not create an account, you can safely ignore this email.</p>
       <p>— SkillsBridge</p>
     `,
-    text: `Hi ${fullName}, verify your email: ${verifyUrl} (expires in 24h)`,
+    text: `Hi ${fullName}, please verify your email by clicking: ${verifyUrl} (expires in 24h). If you did not sign up, you can ignore this email.`,
   })
-  return { sent: true }
+  return { sent: true, messageId: info?.messageId }
 }
