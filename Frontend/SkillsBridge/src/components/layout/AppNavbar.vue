@@ -135,7 +135,7 @@ onUnmounted(() => {
       >
         <img
           src="/public/SkillsBridge Logo.jpeg"
-          class="h-9 w-9 rounded-md object-cover"
+          class="h-12 w-12 rounded-md"
           alt="SkillsBridge logo"
         />
       </router-link>
