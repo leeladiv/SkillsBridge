@@ -65,8 +65,8 @@ async function onSubmit() {
       universityId: form.value.universityId || undefined,
     })
     if (result.success) {
-      toast.success('Account created successfully!')
-      router.push({ name: 'Dashboard' })
+      toast.success('Check your email to verify your account.')
+      router.push({ name: 'Login' })
     } else {
       alertError.value = result.error || 'Registration failed'
       toast.error(result.error || 'Registration failed')

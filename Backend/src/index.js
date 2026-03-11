@@ -1,3 +1,4 @@
+import 'dotenv/config'
 import express from 'express'
 import cors from 'cors'
 import helmet from 'helmet'
@@ -15,6 +16,7 @@ import exploreRoutes from './routes/explore.js'
 import * as exploreCtrl from './controllers/exploreController.js'
 import universitiesRoutes from './routes/universities.js'
 import adminRoutes from './routes/admin.js'
+import { isEmailConfigured, verifyEmailTransport } from './utils/email.js'
 
 const app = express()
 const __dirname = dirname(fileURLToPath(import.meta.url))
@@ -64,6 +66,10 @@ async function start() {
   await initDb()
   app.listen(config.port, () => {
     console.log(`SkillsBridge API listening on port ${config.port}`)
+    console.log(`Email configured: ${isEmailConfigured() ? 'yes' : 'no'}`)
+    verifyEmailTransport()
+      .then(() => console.log('Email transport: verified'))
+      .catch((e) => console.error('Email transport: failed to verify:', e?.message || e))
   })
 }
 start().catch((err) => {

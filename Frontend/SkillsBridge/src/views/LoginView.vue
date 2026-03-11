@@ -4,6 +4,7 @@ import { useRouter, useRoute } from 'vue-router'
 import { useAuthStore } from '../stores/authStore'
 import { useFormValidation } from '../composables/useFormValidation'
 import { useToast } from '../composables/useToast'
+import * as authService from '../services/authService'
 import BaseButton from '../components/base/BaseButton.vue'
 import BaseInput from '../components/base/BaseInput.vue'
 import BasePasswordInput from '../components/base/BasePasswordInput.vue'
@@ -19,7 +20,9 @@ const { required, email } = useFormValidation()
 const form = ref({ email: '', password: '' })
 const errors = ref({})
 const loading = ref(false)
+const resending = ref(false)
 const alertError = ref('')
+const showResendLink = ref(false)
 
 const redirectTo = computed(() => route.query.redirect || '/dashboard')
 
@@ -34,6 +37,7 @@ function validate() {
 
 async function onSubmit() {
   alertError.value = ''
+  showResendLink.value = false
   if (!validate()) return
   loading.value = true
   try {
@@ -51,9 +55,27 @@ async function onSubmit() {
       }
     } else {
       alertError.value = result.error || 'Login failed'
+      showResendLink.value = result.error?.toLowerCase().includes('verify your email')
     }
   } finally {
     loading.value = false
+  }
+}
+
+async function resendVerification() {
+  if (!form.value.email) {
+    toast.error('Enter your email above first')
+    return
+  }
+  resending.value = true
+  try {
+    await authService.resendVerification(form.value.email)
+    toast.success('Verification email sent. Check your inbox.')
+    showResendLink.value = false
+  } catch (err) {
+    toast.error(err.response?.data?.message || 'Failed to resend verification email')
+  } finally {
+    resending.value = false
   }
 }
 </script>
@@ -120,6 +142,15 @@ async function onSubmit() {
 
           <BaseAlert v-if="alertError" variant="error" class="mt-4" @dismiss="alertError = ''">
             {{ alertError }}
+            <button
+              v-if="showResendLink"
+              type="button"
+              class="mt-2 block text-sm font-semibold underline hover:no-underline"
+              :disabled="resending"
+              @click="resendVerification"
+            >
+              {{ resending ? 'Sending...' : 'Resend verification email' }}
+            </button>
           </BaseAlert>
 
           <div class="mt-6 rounded-2xl bg-white p-6 shadow-sm sm:p-7">

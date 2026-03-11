@@ -25,6 +25,12 @@ const routes = [
     meta: { public: true },
   },
   {
+    path: '/verify-email',
+    name: 'VerifyEmail',
+    component: () => import('../views/VerifyEmailView.vue'),
+    meta: { public: true },
+  },
+  {
     path: '/about',
     name: 'About',
     component: () => import('../views/AboutView.vue'),
