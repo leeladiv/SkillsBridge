@@ -102,11 +102,11 @@ async function submitUniversityRequest() {
     <AppNavbar />
 
     <main
-      class="mx-auto flex max-w-6xl flex-row overflow-x-auto overflow-y-hidden rounded-3xl bg-white shadow-xl sm:mt-10"
+      class="mx-auto flex max-w-6xl flex-col overflow-hidden rounded-3xl bg-white shadow-xl sm:mt-10 sm:flex-row"
     >
       <!-- Left marketing panel -->
       <section
-        class="relative flex w-[40%] min-w-[320px] flex-col justify-between bg-blue-600 px-8 py-10 text-white sm:px-12 md:max-w-md"
+        class="relative flex w-full flex-col justify-between bg-blue-600 px-8 py-10 text-white sm:w-[40%] sm:min-w-[320px] sm:px-12 md:max-w-md"
       >
         <div>
           <!-- Logo placeholder (replace with your logo image) -->
@@ -139,8 +139,8 @@ async function submitUniversityRequest() {
       </section>
 
       <!-- Right form panel -->
-      <section class="flex min-w-[360px] flex-1 items-stretch bg-slate-50 px-6 py-8 sm:px-10 sm:py-10">
-        <div class="w-full max-w-xl">
+      <section class="flex w-full min-w-0 flex-1 items-stretch bg-slate-50 px-6 py-8 sm:px-10 sm:py-10">
+        <div class="w-full min-w-0 max-w-xl">
           <!-- Step indicator (dots) -->
           <div class="mb-8 flex items-center gap-3">
             <span class="h-2 w-2 rounded-full bg-primary-600"></span>

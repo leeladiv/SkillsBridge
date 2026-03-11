@@ -1,1 +1,22 @@
 @import "tailwindcss";
+
+/* Prevent accidental horizontal overflow from wide children (e.g. min-width, long strings). */
+html,
+body {
+  overflow-x: hidden;
+  max-width: 100%;
+}
+
+/* Vue root wrapper should never exceed the viewport width. */
+#app {
+  max-width: 100%;
+  overflow-x: hidden;
+}
+
+/* Keep media from exceeding their containers. */
+img,
+video,
+canvas,
+svg {
+  max-width: 100%;
+}

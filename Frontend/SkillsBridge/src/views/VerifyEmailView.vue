@@ -42,10 +42,10 @@ function goToLogin() {
     <AppNavbar />
 
     <main
-      class="mx-auto flex max-w-6xl flex-row overflow-x-auto overflow-y-hidden rounded-3xl bg-white shadow-xl sm:mt-10"
+      class="mx-auto flex max-w-6xl flex-col overflow-hidden rounded-3xl bg-white shadow-xl sm:mt-10 sm:flex-row"
     >
       <section
-        class="relative flex w-[40%] min-w-[320px] flex-col justify-center bg-blue-600 px-8 py-10 text-white sm:px-12 md:max-w-md"
+        class="relative flex w-full flex-col justify-center bg-blue-600 px-8 py-10 text-white sm:w-[40%] sm:min-w-[320px] sm:px-12 md:max-w-md"
       >
         <h1 class="text-2xl font-semibold sm:text-3xl">
           Email verification
@@ -55,8 +55,8 @@ function goToLogin() {
         </p>
       </section>
 
-      <section class="flex min-w-[360px] flex-1 flex-col justify-center px-6 py-10 sm:px-10">
-        <div class="w-full max-w-md">
+      <section class="flex w-full min-w-0 flex-1 flex-col justify-center px-6 py-10 sm:px-10">
+        <div class="w-full min-w-0 max-w-md">
           <div v-if="loading" class="text-center">
             <div class="inline-block h-8 w-8 animate-spin rounded-full border-4 border-primary-600 border-t-transparent" />
             <p class="mt-4 text-slate-600">Verifying your email...</p>
