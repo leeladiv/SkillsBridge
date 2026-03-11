@@ -454,8 +454,9 @@ function handleNewsletterSubmit() {
           <p class="mx-auto mt-3 max-w-2xl text-center text-slate-600">
             Organizations actively recruiting talent from our platform.
           </p>
-
-        <div class="mt-10 overflow-hidden logo-marquee slow logo-marquee-track">
+    
+        <!-- carousel-->
+        <div class="mt-10 overflow-hidden max-auto container flex mx-auto space-x-8 p-4 scroll-animation logo-marquee slow logo-marquee-track">
           <div aria-hidden="true" class="mt-12 logo-marquee-track grid grid-cols-2 items-center justify-items-center gap-8 sm:grid-cols-3 lg:grid-cols-6">
              <div class="flex h-16 w-30 items-center justify-center rounded-lg bg-slate-100 font-semibol">
               <img src="/public/AmeuLogo.PNG" class="h-16 w-100" alt="AmeuLogo" >
@@ -476,7 +477,7 @@ function handleNewsletterSubmit() {
               <img src="/public/UmuLogo.PNG" class="h-16 w-100" alt="UmuLogo">
              </div>
 
-             <div class="flex h-16 w-30 items-center justify-center rounded-lg bg-slate-100 font-semibol">
+        <div class="flex h-16 w-30 items-center justify-center rounded-lg bg-slate-100 font-semibol">
               <img src="/public/AmeuLogo.PNG" class="h-16 w-100" alt="AmeuLogo" >
              </div>
              <div class="flex h-16 w-32 items-center justify-center rounded-lg bg-slate-100  font-semibold">
@@ -493,11 +494,11 @@ function handleNewsletterSubmit() {
              </div>
              <div class="flex h-16 w-32 items-center justify-center rounded-lg bg-slate-100 font-semibold">
               <img src="/public/UmuLogo.PNG" class="h-16 w-100" alt="UmuLogo">
-             </div>
-             </div>
-          </div>
+             </div> 
+            </div>
+          </div> 
         </div>
-      </section>
+      </section> 
 
       <!-- How it works -->
       <section id="how-it-works" class="py-16 sm:py-20 bg-white/25">
