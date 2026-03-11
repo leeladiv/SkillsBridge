@@ -40,5 +40,5 @@ __screenshots__/
 *.timestamp-*-*.mjs
 
 # Environment files (keep secrets out of Git)
-.env
-.env.*.local
+*.env
+*.env.*.local
