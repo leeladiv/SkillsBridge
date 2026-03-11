@@ -9,15 +9,15 @@ import { init as initDb } from './src/db/index.js'
 import { fileURLToPath } from 'url'
 import { dirname, join } from 'path'
 
-import authRoutes from './routes/auth.js'
-import studentsRoutes from './routes/students.js'
-import projectsRoutes from './routes/projects.js'
-import exploreRoutes from './routes/explore.js'
-import * as exploreCtrl from './controllers/exploreController.js'
-import universitiesRoutes from './routes/universities.js'
-import adminRoutes from './routes/admin.js'
-import statsRoutes from "./routes/statsRoutes.js"
-import { isEmailConfigured, verifyEmailTransport } from './utils/email.js'
+import authRoutes from './src/routes/auth.js'
+import studentsRoutes from './src/routes/students.js'
+import projectsRoutes from './src/routes/projects.js'
+import exploreRoutes from './src/routes/explore.js'
+import * as exploreCtrl from './src/controllers/exploreController.js'
+import universitiesRoutes from './src/routes/universities.js'
+import adminRoutes from './src/routes/admin.js'
+import statsRoutes from './src/routes/stats.js'
+import { isEmailConfigured, verifyEmailTransport } from './src/utils/email.js'
 
 const app = express()
 const __dirname = dirname(fileURLToPath(import.meta.url))
