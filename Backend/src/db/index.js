@@ -177,7 +177,7 @@ export async function createUser(data) {
 }
 
 export async function updateUser(id, data) {
-  const allowed = ['fullName', 'bio', 'image', 'contactInfo', 'isPublic', 'isSuspended', 'emailVerified', 'verificationToken', 'verificationTokenExpires']
+  const allowed = ['fullName', 'bio', 'image', 'contactInfo', 'isPublic', 'isSuspended', 'emailVerified', 'verificationToken', 'verificationTokenExpires', 'role']
   const updates = []
   const values = []
   for (const key of allowed) {

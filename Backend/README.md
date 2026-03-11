@@ -13,11 +13,12 @@ Production-structured REST API for the SkillsBridge Student Skills Portfolio Pla
 ## Setup
 
 ```bash
-cd backend
+cd Backend
 npm install
 cp .env.example .env
 # Edit .env: set JWT_SECRET (required in production)
-npm run db:seed   # optional: creates sample universities + admin@skillsbridge.dev / student@test.com (password: password123)
+# Set ADMIN_EMAIL and ADMIN_PASSWORD to create the admin user (never commit real values)
+npm run db:seed   # creates universities, admin (from env), and test student
 ```
 
 The SQLite database is created automatically on first run at `data/dev.db`. Schema is in `src/db/schema.sql`.
