@@ -10,6 +10,28 @@ const projectDir = join(uploadRoot, 'projects')
 if (!existsSync(uploadRoot)) mkdirSync(uploadRoot, { recursive: true })
 if (!existsSync(projectDir)) mkdirSync(projectDir, { recursive: true })
 
+const ALLOWED_MIMES = [
+  'image/jpeg',
+  'image/png',
+  'image/gif',
+  'image/webp',
+  'application/pdf',
+]
+const ALLOWED_EXTENSIONS = ['.jpg', '.jpeg', '.png', '.gif', '.webp', '.pdf']
+
+function fileFilter(req, file, cb) {
+  const mimeOk = ALLOWED_MIMES.includes(file.mimetype)
+  const ext = file.originalname && file.originalname.toLowerCase().slice(file.originalname.lastIndexOf('.'))
+  const extOk = ext && ALLOWED_EXTENSIONS.includes(ext)
+  if (mimeOk && extOk) {
+    cb(null, true)
+  } else {
+    const err = new Error('Invalid file type. Allowed: images (JPEG, PNG, GIF, WebP) and PDF.')
+    err.statusCode = 400
+    cb(err, false)
+  }
+}
+
 const storage = multer.diskStorage({
   destination: (_req, _file, cb) => {
     cb(null, projectDir)
@@ -25,5 +47,6 @@ const storage = multer.diskStorage({
 export const projectUpload = multer({
   storage,
   limits: { fileSize: 20 * 1024 * 1024 }, // 20MB
+  fileFilter,
 })
 

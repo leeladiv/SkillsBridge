@@ -124,13 +124,6 @@ async function resendVerification() {
       <!-- Right form panel -->
       <section class="flex w-full min-w-0 flex-1 items-stretch bg-slate-50 px-6 py-8 sm:px-10 sm:py-10">
         <div class="w-full min-w-0 max-w-xl">
-          <!-- Step indicator (single active dot to echo signup) -->
-          <div class="mb-8 flex items-center gap-3">
-            <span class="h-2 w-2 rounded-full bg-primary-600"></span>
-            <span class="h-2 w-2 rounded-full bg-slate-300"></span>
-            <span class="h-2 w-2 rounded-full bg-slate-300"></span>
-          </div>
-
           <header>
             <h2 class="text-2xl font-semibold tracking-tight text-slate-900 sm:text-3xl">
               Log in

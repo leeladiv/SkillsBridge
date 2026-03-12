@@ -37,6 +37,8 @@ function dbAll(sql, params = []) {
   })
 }
 
+// Wrapper for potential future use; db.exec used inline in init()
+// eslint-disable-next-line no-unused-vars -- keep for API consistency
 function dbExec(sql) {
   return new Promise((resolve, reject) => {
     db.exec(sql, (err) => {
@@ -77,7 +79,7 @@ export async function init() {
         if (e) return reject(e)
         try {
           await runMigration()
-        } catch (migrationErr) {
+        } catch {
           // Ignore migration errors (e.g. column already exists)
         }
         resolve()

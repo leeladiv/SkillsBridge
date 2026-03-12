@@ -98,7 +98,7 @@ function handleNewsletterSubmit() {
             </h1>
             <p class="mt-6 text-lg leading-8 text-black">
               {{ APP_NAME }} connects talented students with recruiters. Build a professional portfolio,
-              showcase your projects and skills, and get discovered by companies looking for your exact profile—all
+              showcase your projects and skills, and get discovered by companies looking for your exact profile all
               within your Schools community.
             </p>
             <p class="mt-3 text-black">
@@ -112,9 +112,6 @@ function handleNewsletterSubmit() {
                 Explore student profiles
               </BaseButton>
             </div>
-            <p class="mt-6 text-md text-black">
-              Join students from top Schools. No Fees required.
-            </p>
           </div>
         </div>
         </section>
@@ -125,7 +122,7 @@ function handleNewsletterSubmit() {
 
         <div class="bg-white shadow rounded-xl p-6">
           <p class="text-green-600 text-sm">+12% this month</p>
-          <h2 class="text-3xl font-bold mt-2">3500+</h2>
+          <h2 class="text-3xl font-bold mt-2">25+</h2>
           <p class="text-gray-500">Active Colleges</p>
           <div class="h-2 bg-gray-200 rounded mt-3">
             <div class="h-2 bg-blue-600 rounded w-3/4"></div>
@@ -134,7 +131,7 @@ function handleNewsletterSubmit() {
 
         <div class="bg-white shadow rounded-xl p-6">
           <p class="text-green-600 text-sm">+8% this week</p>
-          <h2 class="text-3xl font-bold mt-2">2M+</h2>
+          <h2 class="text-3xl font-bold mt-2">120+</h2>
           <p class="text-gray-500">Students Enrolled</p>
           <div class="h-2 bg-gray-200 rounded mt-3">
             <div class="h-2 bg-blue-600 rounded w-4/5"></div>
@@ -239,13 +236,17 @@ function handleNewsletterSubmit() {
               </ul>
             </div>
             <div class="aspect-video overflow-hidden rounded-2xl bg-slate-200 shadow-lg">
-              <div class="flex h-full items-center justify-center text-slate-500">Portfolio preview</div>
+            <video class="w-full h-full object-contain" controls autoplay muted loop>
+              <source src="/public/skills bridge video.mp4" type="video/mp4">
+              Your browser does not support the video tag.</video>
             </div>
           </div>
           <div class="mt-10 lg:mt-14 grid items-center gap-10 lg:grid-cols-2 lg:gap-14">
             <div class="order-2 lg:order-1">
               <div class="aspect-video overflow-hidden rounded-2xl bg-slate-200 shadow-lg">
-                <div class="flex h-full items-center justify-center text-slate-500">Explore view</div>
+            <video class="w-full h-full object-contain" controls autoplay muted loop>
+              <source src="/public/skills bridge video.mp4" type="video/mp4">
+              Your browser does not support the video tag.</video>
               </div>
             </div>
             <div class="order-1 lg:order-2">
@@ -291,7 +292,9 @@ function handleNewsletterSubmit() {
               </ul>
             </div>
             <div class="aspect-video overflow-hidden rounded-2xl bg-slate-200 shadow-lg">
-              <div class="flex h-full items-center justify-center text-slate-500">Search results</div>
+          <video class="w-full h-full object-contain" controls autoplay muted loop>
+              <source src="/public/skills bridge video.mp4" type="video/mp4">
+              Your browser does not support the video tag.</video>
             </div>
           </div>
         </div>
@@ -422,7 +425,9 @@ function handleNewsletterSubmit() {
           <div class="mt-12 grid gap-8 lg:grid-cols-2">
             <div class="overflow-hidden rounded-2xl bg-slate-200 shadow-lg">
               <div class="aspect-video flex items-center justify-center text-slate-500">
-                <span class="text-center">Video: Platform overview</span>
+               <video class="w-full h-full object-contain" controls autoplay muted loop>
+              <source src="/public/skills bridge video.mp4" type="video/mp4">
+              Your browser does not support the video tag.</video>
               </div>
               <div class="bg-white p-4">
                 <p class="font-semibold text-slate-900">How SkillsBridge works</p>
@@ -431,7 +436,9 @@ function handleNewsletterSubmit() {
             </div>
             <div class="overflow-hidden rounded-2xl bg-slate-200 shadow-lg">
               <div class="aspect-video flex items-center justify-center text-slate-500">
-                <span class="text-center">Video: Student experiences</span>
+                <video class="w-full h-full object-contain" controls autoplay muted loop>
+              <source src="/public/skills bridge video.mp4" type="video/mp4">
+              Your browser does not support the video tag.</video>
               </div>
               <div class="bg-white p-4">
                 <p class="font-semibold text-slate-900">Student success stories</p>
@@ -439,9 +446,6 @@ function handleNewsletterSubmit() {
               </div>
             </div>
           </div>
-          <p class="mt-6 text-center text-sm text-slate-500">
-            Add your YouTube or Vimeo embed URLs when ready
-          </p>
         </div>
       </section>
 

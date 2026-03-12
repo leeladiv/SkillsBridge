@@ -7,7 +7,7 @@ import { config } from './src/config/index.js'
 import { globalErrorHandler } from './src/middleware/errorHandler.js'
 import { init as initDb } from './src/db/index.js'
 import { fileURLToPath } from 'url'
-import { dirname, join } from 'path'
+import { dirname, join, resolve } from 'path'
 
 import authRoutes from './src/routes/auth.js'
 import studentsRoutes from './src/routes/students.js'
@@ -65,6 +65,8 @@ app.use((req, res) => {
 })
 app.use(globalErrorHandler)
 
+export { app }
+
 async function start() {
   await initDb()
   app.listen(config.port, () => {
@@ -75,7 +77,12 @@ async function start() {
       .catch((e) => console.error('Email transport: failed to verify:', e?.message || e))
   })
 }
-start().catch((err) => {
-  console.error(err)
-  process.exit(1)
-})
+
+const entryPath = process.argv[1] ? resolve(process.argv[1]) : ''
+const isRunDirect = entryPath && fileURLToPath(import.meta.url) === entryPath
+if (isRunDirect) {
+  start().catch((err) => {
+    console.error(err)
+    process.exit(1)
+  })
+}

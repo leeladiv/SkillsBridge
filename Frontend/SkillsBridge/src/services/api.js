@@ -40,7 +40,7 @@ api.interceptors.response.use(
       localStorage.removeItem('skillsbridge_user')
       localStorage.removeItem('skillsbridge_role')
       // Redirect to login only if we're not already on a public page
-      const publicPaths = ['/', '/login', '/register', '/explore', '/profile']
+      const publicPaths = ['/', '/login', '/register', '/verify-email', '/explore', '/profile']
       const isPublic = publicPaths.some((p) => {
         const path = window.location.pathname
         if (p === '/profile') return path.startsWith('/profile/')
