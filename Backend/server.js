@@ -67,16 +67,19 @@ app.use(globalErrorHandler)
 
 export { app }
 
-async function start() {
-  await initDb()
-  app.listen(config.port, () => {
-    console.log(`SkillsBridge API listening on port ${config.port}`)
-    console.log(`Email configured: ${isEmailConfigured() ? 'yes' : 'no'}`)
-    verifyEmailTransport()
-      .then(() => console.log('Email transport: verified'))
-      .catch((e) => console.error('Email transport: failed to verify:', e?.message || e))
-  })
-}
+import express from "express"
+
+const app = express()
+
+await initDb()
+
+console.log(`Email configured: ${isEmailConfigured() ? 'yes' : 'no'}`)
+
+verifyEmailTransport()
+  .then(() => console.log('Email transport: verified'))
+  .catch((e) => console.error('Email transport: failed to verify:', e?.message || e))
+
+export default app
 
 const entryPath = process.argv[1] ? resolve(process.argv[1]) : ''
 const isRunDirect = entryPath && fileURLToPath(import.meta.url) === entryPath
