@@ -173,7 +173,7 @@ function handleNewsletterSubmit() {
               </ul>
             </div>
             <div class="aspect-video overflow-hidden rounded-2xl bg-slate-200 shadow-lg">
-            <video width="600" height="400" decoding="async" data-nimg="1" class="w-full h-full object-contain" controls autoplay muted loop>
+            <video class="w-full h-full object-cover" controls autoplay muted loop>
               <source src="/public/skills bridge video.mp4" type="video/mp4">
               Your browser does not support the video tag.</video>
             </div>
@@ -181,20 +181,20 @@ function handleNewsletterSubmit() {
           <div class="mt-10 lg:mt-14 grid items-center gap-10 lg:grid-cols-2 lg:gap-14">
             <div class="order-2 lg:order-1">
               <div class="aspect-video overflow-hidden rounded-2xl bg-slate-200 shadow-lg">
-            <video class="w-full h-full object-contain" controls autoplay muted loop>
+            <video class="w-full h-full object-cover" controls autoplay muted loop>
               <source src="/public/skills bridge video.mp4" type="video/mp4">
               Your browser does not support the video tag.</video>
               </div>
             </div>
             <div class="order-1 lg:order-2">
-              <h2 class="text-3xl font-bold tracking-tight text-slate-900 sm:text-4xl">
+              <h2 class="text-3xl font-bold tracking-tight text-black sm:text-4xl">
                 Control what recruiters see
               </h2>
-              <p class="mt-4 text-lg text-slate-600">
+              <p class="mt-4 text-lg text-black">
                 You decide when your profile is visible and what is shared. Turn discovery on when you’re exploring
                 roles, pause it when you’re not, without deleting your work or losing your network.
               </p>
-              <ul class="mt-6 space-y-3 text-slate-700">
+              <ul class="mt-6 space-y-3 text-black">
                 <li class="flex items-center gap-2">
                   ✓ One-click visibility toggle for Explore and search
                 </li>
@@ -212,11 +212,11 @@ function handleNewsletterSubmit() {
               <h2 class="text-3xl font-bold tracking-tight text-slate-900 sm:text-4xl">
                 Be discoverable when it matters
               </h2>
-              <p class="mt-4 text-lg text-slate-600">
+              <p class="mt-4 text-lg text-black">
                 Recruiters search by university, skills, and tech stack to find candidates like you. When your profile
                 matches their brief, you show up—with context that makes it easy to reach out.
               </p>
-              <ul class="mt-6 space-y-3 text-slate-700">
+              <ul class="mt-6 space-y-3 text-black">
                 <li class="flex items-center gap-2">
                   ✓ Recruiter search by institution, skills, and technology
                 </li>
@@ -243,7 +243,7 @@ function handleNewsletterSubmit() {
         <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <div class="text-center">
             <h2 class="text-3xl font-bold tracking-tight text-slate-900 sm:text-4xl">What students & recruiters say</h2>
-            <p class="mx-auto mt-4 max-w-2xl text-lg text-slate-600">
+            <p class="mx-auto mt-4 max-w-2xl text-lg text-black">
               Real voices from our community.
             </p>
           </div>
@@ -320,7 +320,7 @@ function handleNewsletterSubmit() {
             </div>
             <div class="overflow-hidden rounded-2xl bg-slate-200 shadow-lg">
               <div class="aspect-video flex items-center justify-center text-slate-500">
-                <video class="max-w-full h-full object-contain" controls autoplay muted loop>
+                <video class="w-full h-full object-cover" controls autoplay muted loop>
               <source src="/public/skills bridge video.mp4" type="video/mp4">
               Your browser does not support the video tag.</video>
               </div>
@@ -343,20 +343,22 @@ function handleNewsletterSubmit() {
         <div class="overflow-hidden mt-10 logo-marquee">
           <div class="logo-track flex gap-8 items-center">
 
-           <img src="/public/AmeuLogo.PNG" class="h-16" />
-           <img src="/public/BlueCrestLogo.PNG" class="h-16" />
-           <img src="/public/SmpuLogo.PNG" class="h-16" />
-           <img src="/public/StarzLogo.PNG" class="h-16" />
-           <img src="/public/UL_Logo.PNG" class="h-16" />
-           <img src="/public/UmuLogo.PNG" class="h-16" />
+           <img src="/public/Orange.png" class="h-16" />
+           <img src="/public/Lonestar.png" class="h-16" />
+           <img src="/public/lprc.png" class="h-20" />
+           <img src="/public/Nocal.png" class="h-16" />
+           <img src="/public/lta.png" class="h-16" />
+           <img src="/public/mfdp logo.jpg" class="h-16" />
+           <img src="/public/fire stone.jpg" class="h-16" />
 
           <!-- duplicate logos for infinite loop -->
-           <img src="/public/AmeuLogo.PNG" class="h-16" />
-           <img src="/public/BlueCrestLogo.PNG" class="h-16" />
-           <img src="/public/SmpuLogo.PNG" class="h-16" />
-           <img src="/public/StarzLogo.PNG" class="h-16" />
-           <img src="/public/UL_Logo.PNG" class="h-16" />
-           <img src="/public/UmuLogo.PNG" class="h-16" />
+          <img src="/public/Orange.png" class="h-16" />
+          <img src="/public/Lonestar.png" class="h-16"/>
+          <img src="/public/lprc.png" class="h-20" />
+          <img src="/public/Nocal.png" class="h-16" />
+          <img src="/public/lta.png" class="h-16" />
+          <img src="/public/mfdp logo.jpg" class="h-16" />
+          <img src="/public/fire stone.jpg" class="h-16" />
 
      </div>
         </div>
