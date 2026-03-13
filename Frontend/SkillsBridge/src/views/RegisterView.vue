@@ -12,6 +12,7 @@ import BaseSelect from '../components/base/BaseSelect.vue'
 import BaseAlert from '../components/base/BaseAlert.vue'
 import BaseModal from '../components/base/BaseModal.vue'
 import AppNavbar from '../components/layout/AppNavbar.vue'
+import AppFooter from '@/components/layout/AppFooter.vue'
 
 const router = useRouter()
 const authStore = useAuthStore()
@@ -111,7 +112,7 @@ async function submitUniversityRequest() {
         <div>
           <!-- Logo placeholder (replace with your logo image) -->
           <div class="flex items-center gap-3">
-            <img src="/public/SkillsBridge Logo.jpeg" alt="skillsbridgelogo" class="h-10 w-auto object-contain" />
+            <img src="/public/SkillsBridge Logo1.png" alt="skillsbridgelogo" class="h-10 w-auto object-contain" />
           </div>
 
           <h1 class="mt-10 text-3xl font-semibold leading-tight sm:text-4xl">
@@ -258,5 +259,6 @@ async function submitUniversityRequest() {
         </div>
       </BaseModal>
     </main>
+    <AppFooter />
   </div>
 </template>
