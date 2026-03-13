@@ -129,17 +129,17 @@ function handleNewsletterSubmit() {
         <div class="overflow-hidden mt-10 logo-marquee">
           <div class="logo-track flex gap-8 items-center">
 
-           <img src="/public/AmeuLogo.PNG" class="h-16" />
+           <img src="/public/AMEU copy.png" class="h-16" />
            <img src="/public/BlueCrestLogo.PNG" class="h-16" />
-           <img src="/public/SMPU copy.PNG" class="h-16" />
+           <img src="/public/SMPU1 copy.PNG" class="h-16" />
            <img src="/public/StarzLogo.PNG" class="h-16" />
            <img src="/public/UL_Logo.PNG" class="h-16" />
            <img src="/public/UMU copy.PNG" class="h-16" />
 
           <!-- duplicate logos for infinite loop -->
-           <img src="/public/AmeuLogo.PNG" class="h-16" />
+           <img src="/public/AMEU copy.png" class="h-16" />
            <img src="/public/BlueCrestLogo.PNG" class="h-16" />
-           <img src="/public/SMPU copy.PNG" class="h-16" />
+           <img src="/public/SMPU1 copy.PNG" class="h-16" />
            <img src="/public/StarzLogo.PNG" class="h-16" />
            <img src="/public/UL_Logo.PNG" class="h-16" />
            <img src="/public/UMU copy.PNG" class="h-16" />
