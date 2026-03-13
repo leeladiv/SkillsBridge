@@ -470,7 +470,7 @@ function handleNewsletterSubmit() {
       <!-- Feature 1 -->
       <div class="rounded-2xl bg-white p-8 shadow-lg ring-1 ring-slate-200/80 transition hover:-translate-y-1 hover:shadow-xl">
         <div class="flex h-12 w-12 items-center justify-center rounded-xl bg-blue-100 font-bold text-blue-600">
-          🎓
+          1
         </div>
         <h3 class="mt-5 text-lg font-semibold text-slate-900">
           Showcase your skills
@@ -485,7 +485,7 @@ function handleNewsletterSubmit() {
       <!-- Feature 2 -->
       <div class="rounded-2xl bg-white p-8 shadow-lg ring-1 ring-slate-200/80 transition hover:-translate-y-1 hover:shadow-xl">
         <div class="flex h-12 w-12 items-center justify-center rounded-xl bg-blue-100 font-bold text-blue-600">
-          🔎
+          2
         </div>
         <h3 class="mt-5 text-lg font-semibold text-slate-900">
           Be discovered
@@ -500,7 +500,7 @@ function handleNewsletterSubmit() {
       <!-- Feature 3 -->
       <div class="rounded-2xl bg-white p-8 shadow-lg ring-1 ring-slate-200/80 transition hover:-translate-y-1 hover:shadow-xl">
         <div class="flex h-12 w-12 items-center justify-center rounded-xl bg-blue-100 font-bold text-blue-600">
-          🚀
+          3
         </div>
         <h3 class="mt-5 text-lg font-semibold text-slate-900">
           Unlock opportunities
