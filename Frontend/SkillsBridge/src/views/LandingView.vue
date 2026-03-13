@@ -168,47 +168,26 @@ function handleNewsletterSubmit() {
             Government agencies, universities, and corporate partners collaborate with {{ APP_NAME }} to connect talent with opportunity.
           </p>
 
-        <div class="mt-10 overflow-hidden logo-marquee slow">
-          <div aria-hidden="true" class=" opacity-70 mt-12 logo-marquee-track grid grid-cols-2 items-center justify-items-center gap-8 md:grid-cols-3 lg:grid-cols-6">
-             <div class="flex h-16 w-30 items-center justify-center rounded-lg bg-slate-100 font-semibol">
-              <img src="/public/AmeuLogo.PNG" class="h-16 w-100" alt="AmeuLogo" >
-             </div>
-             <div class="flex h-16 w-32 items-center justify-center rounded-lg bg-slate-100  font-semibold">
-              <img src="/public/BlueCrestLogo.PNG" class="h-16 w-100" alt="BlueCrestLogo">
-             </div>
-             <div class="flex h-16 w-32 items-center justify-center rounded-lg bg-slate-100 font-semibold">
-              <img src="/public/SmpuLogo.PNG" class="h-16 w-100" alt="SmpuLogo">
-             </div>
-             <div class="flex h-16 w-32 items-center justify-center rounded-lg bg-slate-100 font-semibold">
-              <img src="/public/StarzLogo.PNG" class="h-16 w-85" alt="StarzLogo">
-             </div>
-             <div class="flex h-16 w-32 items-center justify-center rounded-lg bg-slate-100 font-semibold">
-              <img src="/public/UL_Logo.PNG" class="h-16 w-100" alt="ULlogo">
-             </div>
-             <div class="flex h-16 w-32 items-center justify-center rounded-lg bg-slate-100 font-semibold">
-              <img src="/public/UmuLogo.PNG" class="h-16 w-100" alt="UmuLogo">
-             </div>
+        <div class="overflow-hidden mt-10 logo-marquee">
+          <div class="logo-track flex gap-8 items-center">
 
-             <div class="flex h-16 w-30 items-center justify-center rounded-lg bg-slate-100 font-semibol">
-              <img src="/public/AmeuLogo.PNG" class="h-16 w-100" alt="AmeuLogo" >
-             </div>
-             <div class="flex h-16 w-32 items-center justify-center rounded-lg bg-slate-100  font-semibold">
-              <img src="/public/BlueCrestLogo.PNG" class="h-16 w-100" alt="BlueCrestLogo">
-             </div>
-             <div class="flex h-16 w-32 items-center justify-center rounded-lg bg-slate-100 font-semibold">
-              <img src="/public/SmpuLogo.PNG" class="h-16 w-100" alt="SmpuLogo">
-             </div>
-             <div class="flex h-16 w-32 items-center justify-center rounded-lg bg-slate-100 font-semibold">
-              <img src="/public/StarzLogo.PNG" class="h-16 w-85" alt="StarzLogo">
-             </div>
-             <div class="flex h-16 w-32 items-center justify-center rounded-lg bg-slate-100 font-semibold">
-              <img src="/public/UL_Logo.PNG" class="h-16 w-100" alt="ULlogo">
-             </div>
-             <div class="flex h-16 w-32 items-center justify-center rounded-lg bg-slate-100 font-semibold">
-              <img src="/public/UmuLogo.PNG" class="h-16 w-100" alt="UmuLogo">
-             </div>
-             </div>
-          </div>
+           <img src="/public/AmeuLogo.PNG" class="h-16" />
+           <img src="/public/BlueCrestLogo.PNG" class="h-16" />
+           <img src="/public/SmpuLogo.PNG" class="h-16" />
+           <img src="/public/StarzLogo.PNG" class="h-16" />
+           <img src="/public/UL_Logo.PNG" class="h-16" />
+           <img src="/public/UmuLogo.PNG" class="h-16" />
+
+          <!-- duplicate logos for infinite loop -->
+           <img src="/public/AmeuLogo.PNG" class="h-16" />
+           <img src="/public/BlueCrestLogo.PNG" class="h-16" />
+           <img src="/public/SmpuLogo.PNG" class="h-16" />
+           <img src="/public/StarzLogo.PNG" class="h-16" />
+           <img src="/public/UL_Logo.PNG" class="h-16" />
+           <img src="/public/UmuLogo.PNG" class="h-16" />
+
+     </div>
+        </div>
         </div>
       </section>
       <!-- Feature highlights (alternating) -->
@@ -236,7 +215,7 @@ function handleNewsletterSubmit() {
               </ul>
             </div>
             <div class="aspect-video overflow-hidden rounded-2xl bg-slate-200 shadow-lg">
-            <video class="w-full h-full object-contain" controls autoplay muted loop>
+            <video width="600" height="400" decoding="async" data-nimg="1" class="w-full h-full object-contain" controls autoplay muted loop>
               <source src="/public/skills bridge video.mp4" type="video/mp4">
               Your browser does not support the video tag.</video>
             </div>
@@ -436,7 +415,7 @@ function handleNewsletterSubmit() {
             </div>
             <div class="overflow-hidden rounded-2xl bg-slate-200 shadow-lg">
               <div class="aspect-video flex items-center justify-center text-slate-500">
-                <video class="w-full h-full object-contain" controls autoplay muted loop>
+                <video class="max-w-full h-full object-contain" controls autoplay muted loop>
               <source src="/public/skills bridge video.mp4" type="video/mp4">
               Your browser does not support the video tag.</video>
               </div>
@@ -460,47 +439,26 @@ function handleNewsletterSubmit() {
           </p>
     
         <!-- carousel-->
-        <div class="mt-10 overflow-hidden max-auto container flex mx-auto space-x-8 p-4 scroll-animation logo-marquee slow logo-marquee-track">
-          <div aria-hidden="true" class="mt-12 logo-marquee-track grid grid-cols-2 items-center justify-items-center gap-8 sm:grid-cols-3 lg:grid-cols-6">
-             <div class="flex h-16 w-30 items-center justify-center rounded-lg bg-slate-100 font-semibol">
-              <img src="/public/AmeuLogo.PNG" class="h-16 w-100" alt="AmeuLogo" >
-             </div>
-             <div class="flex h-16 w-32 items-center justify-center rounded-lg bg-slate-100  font-semibold">
-              <img src="/public/BlueCrestLogo.PNG" class="h-16 w-100" alt="BlueCrestLogo">
-             </div>
-             <div class="flex h-16 w-32 items-center justify-center rounded-lg bg-slate-100 font-semibold">
-              <img src="/public/SmpuLogo.PNG" class="h-16 w-100" alt="SmpuLogo">
-             </div>
-             <div class="flex h-16 w-32 items-center justify-center rounded-lg bg-slate-100 font-semibold">
-              <img src="/public/StarzLogo.PNG" class="h-16 w-85" alt="StarzLogo">
-             </div>
-             <div class="flex h-16 w-32 items-center justify-center rounded-lg bg-slate-100 font-semibold">
-              <img src="/public/UL_Logo.PNG" class="h-16 w-100" alt="ULlogo">
-             </div>
-             <div class="flex h-16 w-32 items-center justify-center rounded-lg bg-slate-100 font-semibold">
-              <img src="/public/UmuLogo.PNG" class="h-16 w-100" alt="UmuLogo">
-             </div>
+        <div class="overflow-hidden mt-10 logo-marquee">
+          <div class="logo-track flex gap-8 items-center">
 
-        <div class="flex h-16 w-30 items-center justify-center rounded-lg bg-slate-100 font-semibol">
-              <img src="/public/AmeuLogo.PNG" class="h-16 w-100" alt="AmeuLogo" >
-             </div>
-             <div class="flex h-16 w-32 items-center justify-center rounded-lg bg-slate-100  font-semibold">
-              <img src="/public/BlueCrestLogo.PNG" class="h-16 w-100" alt="BlueCrestLogo">
-             </div>
-             <div class="flex h-16 w-32 items-center justify-center rounded-lg bg-slate-100 font-semibold">
-              <img src="/public/SmpuLogo.PNG" class="h-16 w-100" alt="SmpuLogo">
-             </div>
-             <div class="flex h-16 w-32 items-center justify-center rounded-lg bg-slate-100 font-semibold">
-              <img src="/public/StarzLogo.PNG" class="h-16 w-85" alt="StarzLogo">
-             </div>
-             <div class="flex h-16 w-32 items-center justify-center rounded-lg bg-slate-100 font-semibold">
-              <img src="/public/UL_Logo.PNG" class="h-16 w-100" alt="ULlogo">
-             </div>
-             <div class="flex h-16 w-32 items-center justify-center rounded-lg bg-slate-100 font-semibold">
-              <img src="/public/UmuLogo.PNG" class="h-16 w-100" alt="UmuLogo">
-             </div> 
-            </div>
-          </div> 
+           <img src="/public/AmeuLogo.PNG" class="h-16" />
+           <img src="/public/BlueCrestLogo.PNG" class="h-16" />
+           <img src="/public/SmpuLogo.PNG" class="h-16" />
+           <img src="/public/StarzLogo.PNG" class="h-16" />
+           <img src="/public/UL_Logo.PNG" class="h-16" />
+           <img src="/public/UmuLogo.PNG" class="h-16" />
+
+          <!-- duplicate logos for infinite loop -->
+           <img src="/public/AmeuLogo.PNG" class="h-16" />
+           <img src="/public/BlueCrestLogo.PNG" class="h-16" />
+           <img src="/public/SmpuLogo.PNG" class="h-16" />
+           <img src="/public/StarzLogo.PNG" class="h-16" />
+           <img src="/public/UL_Logo.PNG" class="h-16" />
+           <img src="/public/UmuLogo.PNG" class="h-16" />
+
+     </div>
+        </div>
         </div>
       </section> 
 
@@ -643,32 +601,6 @@ function handleNewsletterSubmit() {
 </template>
 
 <style scoped>
-.logo-marquee {
-  display: flex;
-  align-items: center;
-  gap: 2rem;
-  width: max-content;
-  animation: logo-marquee 24s linear infinite;
-}
-
-.logo-marquee.slow {
-  animation-duration: 32s;
-}
-
-.logo-marquee-track {
-  display: flex;
-  align-items: center;
-  gap: 2rem;
-}
-
-.logo-pill {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: 0.75rem 1.5rem;
-  border-radius: 999px;
-  background-color: #e5e7eb; /* slate-200 */
-}
 
 .company-pill {
   display: flex;
@@ -690,11 +622,24 @@ function handleNewsletterSubmit() {
   animation-play-state: paused;
 }
 
-@keyframes logo-marquee {
-  0% {
+
+
+
+.logo-marquee {
+  overflow: hidden;
+}
+
+.logo-track {
+  display: flex;
+  width: max-content;
+  animation: scroll 25s linear infinite;
+}
+
+@keyframes scroll {
+  from {
     transform: translateX(0);
   }
-  100% {
+  to {
     transform: translateX(-50%);
   }
 }
