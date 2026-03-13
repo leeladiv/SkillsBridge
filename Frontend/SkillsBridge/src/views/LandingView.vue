@@ -116,48 +116,6 @@ function handleNewsletterSubmit() {
         </div>
         </section>
 
-      <!-- Stats grid -->
-      <section class="mx-auto max-w-7xl px-4 py-8 sm:py-10 sm:px-6 lg:px-8">
-      <div class="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-4">
-
-        <div class="bg-white shadow rounded-xl p-6">
-          <p class="text-green-600 text-sm">+12% this month</p>
-          <h2 class="text-3xl font-bold mt-2">25+</h2>
-          <p class="text-gray-500">Active Colleges</p>
-          <div class="h-2 bg-gray-200 rounded mt-3">
-            <div class="h-2 bg-blue-600 rounded w-3/4"></div>
-          </div>
-        </div>
-
-        <div class="bg-white shadow rounded-xl p-6">
-          <p class="text-green-600 text-sm">+8% this week</p>
-          <h2 class="text-3xl font-bold mt-2">120+</h2>
-          <p class="text-gray-500">Students Enrolled</p>
-          <div class="h-2 bg-gray-200 rounded mt-3">
-            <div class="h-2 bg-blue-600 rounded w-4/5"></div>
-          </div>
-        </div>
-
-        <div class="bg-white shadow rounded-xl p-6">
-          <p class="text-green-600 text-sm">+15% this month</p>
-          <h2 class="text-3xl font-bold mt-2">40K+</h2>
-          <p class="text-gray-500">Faculty Trained</p>
-          <div class="h-2 bg-gray-200 rounded mt-3">
-            <div class="h-2 bg-blue-600 rounded w-2/3"></div>
-          </div>
-        </div>
-
-        <div class="bg-white shadow rounded-xl p-6">
-          <p class="text-green-600 text-sm">+22% this quarter</p>
-          <h2 class="text-3xl font-bold mt-2">20K+</h2>
-          <p class="text-gray-500">Successful Placements</p>
-          <div class="h-2 bg-gray-200 rounded mt-3">
-            <div class="h-2 bg-blue-600 rounded w-4/5"></div>
-          </div>
-        </div>
-      </div>
-      </section>
-
       <!-- Partner logos grid -->
       <section class="border-y border-slate-200/80 bg-white py-8 sm:py-10">
         <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
@@ -215,7 +173,7 @@ function handleNewsletterSubmit() {
               </ul>
             </div>
             <div class="aspect-video overflow-hidden rounded-2xl bg-slate-200 shadow-lg">
-            <video width="600" height="400" decoding="async" data-nimg="1" class="w-full h-full object-contain" controls autoplay muted loop>
+            <video class="w-full h-85 object-cover" controls autoplay muted loop>
               <source src="/public/skills bridge video.mp4" type="video/mp4">
               Your browser does not support the video tag.</video>
             </div>
@@ -223,7 +181,7 @@ function handleNewsletterSubmit() {
           <div class="mt-10 lg:mt-14 grid items-center gap-10 lg:grid-cols-2 lg:gap-14">
             <div class="order-2 lg:order-1">
               <div class="aspect-video overflow-hidden rounded-2xl bg-slate-200 shadow-lg">
-            <video class="w-full h-full object-contain" controls autoplay muted loop>
+            <video class="w-full h-full object-cover" controls autoplay muted loop>
               <source src="/public/skills bridge video.mp4" type="video/mp4">
               Your browser does not support the video tag.</video>
               </div>
@@ -271,7 +229,7 @@ function handleNewsletterSubmit() {
               </ul>
             </div>
             <div class="aspect-video overflow-hidden rounded-2xl bg-slate-200 shadow-lg">
-          <video class="w-full h-full object-contain" controls autoplay muted loop>
+          <video class="w-full h-full object-cover" controls autoplay muted loop>
               <source src="/public/skills bridge video.mp4" type="video/mp4">
               Your browser does not support the video tag.</video>
             </div>
@@ -279,34 +237,6 @@ function handleNewsletterSubmit() {
         </div>
       </section>
 
-      <!-- Success stories (case studies) -->
-      <section class="border-t border-slate-200 bg-white py-14 sm:py-18">
-        <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-          <div class="text-center">
-            <h2 class="text-3xl font-bold tracking-tight text-slate-900 sm:text-4xl">Success stories</h2>
-            <p class="mx-auto mt-4 max-w-2xl text-lg text-slate-600">
-              Real outcomes from our university partnerships and programs.
-            </p>
-          </div>
-          <div class="mt-16 grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
-            <div class="rounded-2xl border border-slate-200 bg-white p-8 shadow-sm transition hover:shadow-md">
-              <p class="text-4xl font-bold text-primary-600">40%</p>
-              <p class="mt-2 font-semibold text-slate-900">Faster placement at State University</p>
-              <p class="mt-3 text-slate-600">Career services saw a 40% increase in internship placements after adopting SkillsBridge for student portfolios.</p>
-            </div>
-            <div class="rounded-2xl border border-slate-200 bg-white p-8 shadow-sm transition hover:shadow-md">
-              <p class="text-4xl font-bold text-primary-600">20K+</p>
-              <p class="mt-2 font-semibold text-slate-900">Successful placements nationwide</p>
-              <p class="mt-3 text-slate-600">Students across 3,500+ institutions have secured roles through recruiter matches on the platform.</p>
-            </div>
-            <div class="rounded-2xl border border-slate-200 bg-white p-8 shadow-sm transition hover:shadow-md sm:col-span-2 lg:col-span-1">
-              <p class="text-4xl font-bold text-primary-600">85%</p>
-              <p class="mt-2 font-semibold text-slate-900">Recruiter satisfaction</p>
-              <p class="mt-3 text-slate-600">Hiring managers report higher quality candidates when searching by institution and verified skills.</p>
-            </div>
-          </div>
-        </div>
-      </section>
 
       <!-- Testimonials -->
       <section class="bg-slate-50 py-14 sm:py-18">
@@ -332,58 +262,33 @@ function handleNewsletterSubmit() {
                     <span class="ml-0.5 text-xl font-semibold">▶</span>
                   </button>
                 </div>
-                <div class="absolute inset-0 bg-linear-to-t from-slate-950/80 via-slate-900/40 to-transparent" />
-                <div class="absolute bottom-4 left-4 right-4 space-y-1">
-                  <p class="text-xs font-semibold uppercase tracking-[0.16em] text-primary-200">
-                    {{ testimonialVideos[activeTestimonialIndex].label }}
-                  </p>
-                  <p class="text-lg font-semibold text-white">
-                    {{ testimonialVideos[activeTestimonialIndex].title }}
-                  </p>
-                  <p class="text-xs text-slate-200">
-                    {{ testimonialVideos[activeTestimonialIndex].description }}
-                  </p>
-                </div>
-              </div>
-              <div class="flex items-center justify-between gap-4 border-t border-slate-800 bg-slate-900 px-4 py-3">
-                <div class="flex items-center gap-3">
-                  <div class="flex h-9 w-9 items-center justify-center rounded-full bg-primary-500/20 text-xs font-semibold text-primary-100">
-                    {{ testimonialVideos[activeTestimonialIndex].name.charAt(0) }}
-                  </div>
-                  <div>
-                    <p class="text-sm font-semibold text-white">
-                      {{ testimonialVideos[activeTestimonialIndex].name }}
-                    </p>
-                    <p class="text-xs text-slate-300">
-                      {{ testimonialVideos[activeTestimonialIndex].role }}
-                    </p>
-                  </div>
-                </div>
-                <div class="flex items-center gap-2">
+ 
+      <div class="aspect-video rounded-xl overflow-hidden">
+        <video id="videoPlayer" class="w-full h-full object-cover" controls autoplay muted>
+         <source src="/public/skills bridge video.mp4" type="video/mp4">
+        </video>
+      </div>
+         <div class="flex items-center gap-2">
+            <button
+               type="button"
+               class="flex h-8 w-8 items-center justify-center rounded-full border border-slate-700 text-slate-200 hover:bg-slate-800"
+               @click="prevTestimonial">
+            </button>
                   <button
                     type="button"
                     class="flex h-8 w-8 items-center justify-center rounded-full border border-slate-700 text-slate-200 hover:bg-slate-800"
-                    @click="prevTestimonial"
-                  >
-                    ‹
-                  </button>
-                  <button
-                    type="button"
-                    class="flex h-8 w-8 items-center justify-center rounded-full border border-slate-700 text-slate-200 hover:bg-slate-800"
-                    @click="nextTestimonial"
-                  >
-                    ›
+                    @click="nextTestimonial">
                   </button>
                 </div>
               </div>
-            </div>
+          </div>
             <div class="flex items-center justify-center gap-2">
               <button
                 v-for="(video, index) in testimonialVideos"
                 :key="video.id"
                 type="button"
                 class="h-2.5 rounded-full transition-all"
-                :class="index === activeTestimonialIndex ? 'w-6 bg-primary-500' : 'w-2.5 bg-slate-300'"
+                :class="index === activeTestimonialIndex ? 'w-6 bg-slate-500' : 'w-2.5 bg-slate-300'"
                 @click="activeTestimonialIndex = index"
                 :aria-label="`Go to testimonial ${index + 1}`"
               />
@@ -397,31 +302,31 @@ function handleNewsletterSubmit() {
         <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <div class="text-center">
             <h2 class="text-3xl font-bold tracking-tight text-slate-900 sm:text-4xl">See SkillsBridge in action</h2>
-            <p class="mx-auto mt-4 max-w-2xl text-lg text-slate-600">
+            <p class="mx-auto mt-4 max-w-2xl text-lg text-black">
               Learn how students build portfolios and get discovered by recruiters.
             </p>
           </div>
           <div class="mt-12 grid gap-8 lg:grid-cols-2">
             <div class="overflow-hidden rounded-2xl bg-slate-200 shadow-lg">
-              <div class="aspect-video flex items-center justify-center text-slate-500">
-               <video class="w-full h-full object-contain" controls autoplay muted loop>
+              <div class="aspect-video flex items-center justify-center text-black">
+               <video class="w-full h-full object-cover" controls autoplay muted loop>
               <source src="/public/skills bridge video.mp4" type="video/mp4">
               Your browser does not support the video tag.</video>
               </div>
               <div class="bg-white p-4">
-                <p class="font-semibold text-slate-900">How SkillsBridge works</p>
-                <p class="text-sm text-slate-600">A quick tour of the platform for students and recruiters</p>
+                <p class="font-semibold text-black">How SkillsBridge works</p>
+                <p class="text-sm text-black">A quick tour of the platform for students and recruiters</p>
               </div>
             </div>
             <div class="overflow-hidden rounded-2xl bg-slate-200 shadow-lg">
               <div class="aspect-video flex items-center justify-center text-slate-500">
-                <video class="max-w-full h-full object-contain" controls autoplay muted loop>
+                <video class="w-full h-full object-cover" controls autoplay muted loop>
               <source src="/public/skills bridge video.mp4" type="video/mp4">
               Your browser does not support the video tag.</video>
               </div>
               <div class="bg-white p-4">
                 <p class="font-semibold text-slate-900">Student success stories</p>
-                <p class="text-sm text-slate-600">Hear from students who landed roles through SkillsBridge</p>
+                <p class="text-sm text-black">Hear from students who landed roles through SkillsBridge</p>
               </div>
             </div>
           </div>
@@ -442,119 +347,175 @@ function handleNewsletterSubmit() {
         <div class="overflow-hidden mt-10 logo-marquee">
           <div class="logo-track flex gap-8 items-center">
 
-           <img src="/public/AmeuLogo.PNG" class="h-16" />
-           <img src="/public/BlueCrestLogo.PNG" class="h-16" />
-           <img src="/public/SmpuLogo.PNG" class="h-16" />
-           <img src="/public/StarzLogo.PNG" class="h-16" />
-           <img src="/public/UL_Logo.PNG" class="h-16" />
-           <img src="/public/UmuLogo.PNG" class="h-16" />
+           <img src="/public/Orange.png" class="h-16" />
+           <img src="/public/Lonestar.png" class="h-16" />
+           <img src="/public/lta.png" class="h-16" />
+           <img src="/public/Nocal.png" class="h-16" />
+           <img src="/public/lprc.png" class="h-20" />
 
           <!-- duplicate logos for infinite loop -->
-           <img src="/public/AmeuLogo.PNG" class="h-16" />
-           <img src="/public/BlueCrestLogo.PNG" class="h-16" />
-           <img src="/public/SmpuLogo.PNG" class="h-16" />
-           <img src="/public/StarzLogo.PNG" class="h-16" />
-           <img src="/public/UL_Logo.PNG" class="h-16" />
-           <img src="/public/UmuLogo.PNG" class="h-16" />
+           <img src="/public/Orange.png" class="h-16" />
+           <img src="/public/Lonestar.png" class="h-16" />
+           <img src="/public/lta.png" class="h-16" />
+           <img src="/public/Nocal.png" class="h-16" />
+           <img src="/public/lprc.png" class="h-20" />
 
-     </div>
+        </div>
         </div>
         </div>
       </section> 
 
       <!-- How it works -->
-      <section id="how-it-works" class="py-16 sm:py-20 bg-white/25">
-        <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-          <div class="text-center">
-            <h2 class="text-3xl font-bold tracking-tight text-blue-500 sm:text-4xl">
-              How it works
-            </h2>
-            <p class="mx-auto mt-4 max-w-2xl text-lg text-black">
-              Get from signup to discoverable in three simple steps. No resume uploads, no scattered links, just one
-              profile that does the work for you.
-            </p>
-          </div>
-          <div class="mt-16 grid gap-10 sm:grid-cols-3 lg:gap-12">
-            <div class="relative rounded-2xl bg-blue-500 p-8 shadow-lg ring-1 ring-slate-200/80 transition hover:shadow-xl">
-              <div class="flex h-12 w-12 items-center justify-center rounded-xl bg-primary-100 text-lg font-bold text-black">
-                1
-              </div>
-              <h3 class="mt-5 text-lg font-semibold text-black">Create your profile</h3>
-              <p class="mt-3 text-black">
-                Sign up with your personal email, add your institution, then list your skills and
-                technologies. Link your best projects with descriptions and tech stacks so recruiters see what you
-                can do.
-              </p>
-            </div>
-            <div class="relative rounded-2xl bg-blue-500 p-8 shadow-lg ring-1 ring-slate-200/80 transition hover:shadow-xl">
-              <div class="flex h-12 w-12 items-center justify-center rounded-xl bg-primary-100 text-lg font-bold text-primary-700">
-                2
-              </div>
-              <h3 class="mt-5 text-lg font-semibold  text-slate-900">Control visibility</h3>
-              <p class="mt-3 text-slate-900">
-                Decide when your profile is visible on Explore. Turn it on when you're job hunting, off when you're
-                not. You stay in charge of who sees your information and when.
-              </p>
-            </div>
-            <div class="relative rounded-2xl bg-blue-500 p-8 shadow-lg ring-1 ring-slate-200/80 transition hover:shadow-xl">
-              <div class="flex h-12 w-12 items-center justify-center rounded-xl bg-primary-100 text-lg font-bold text-primary-700">
-                3
-              </div>
-              <h3 class="mt-5 text-lg font-semibold text-slate-900">Get discovered</h3>
-              <p class="mt-3 text-slate-900">
-                Explorers and hiring managers search by university and skill. When your profile matches, you show up.
-                Keep your portfolio updated and increase your chances of being found for internships and full-time roles.
-              </p>
-            </div>
-          </div>
-        </div>
-      </section>
+    <section id="how-it-works" class="py-20 bg-blue-500">
+     <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
 
-      <!-- Awards and recognition -->
-      <section class="border-t border-slate-200 bg-slate-50 py-14 sm:py-18">
-        <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-          <div class="text-center">
-            <h2 class="text-3xl font-bold tracking-tight text-slate-900 sm:text-4xl">Awards & recognition</h2>
-            <p class="mx-auto mt-4 max-w-2xl text-lg text-slate-600">
-              Recognized for innovation in education and workforce development.
-            </p>
-          </div>
-          <div class="mt-12 flex flex-wrap items-center justify-center gap-6">
-            <div class="rounded-xl border border-slate-200 bg-white px-6 py-4 shadow-sm">
-              <p class="font-semibold text-slate-900">🏆 EdTech Excellence</p>
-              <p class="text-sm text-slate-600">2024</p>
-            </div>
-            <div class="rounded-xl border border-slate-200 bg-white px-6 py-4 shadow-sm">
-              <p class="font-semibold text-slate-900">✓ Ministry Certified</p>
-              <p class="text-sm text-slate-600">Education Partner</p>
-            </div>
-            <div class="rounded-xl border border-slate-200 bg-white px-6 py-4 shadow-sm">
-              <p class="font-semibold text-slate-900">⭐ Top Student Platform</p>
-              <p class="text-sm text-slate-600">Career Tech</p>
-            </div>
-            <div class="rounded-xl border border-slate-200 bg-white px-6 py-4 shadow-sm">
-              <p class="font-semibold text-slate-900">🔒 Privacy First</p>
-              <p class="text-sm text-slate-600">Student Data Certified</p>
-            </div>
-          </div>
-        </div>
-      </section>
+    <!-- Section Header -->
+    <div class="text-center max-w-3xl mx-auto">
+      <h2 class="text-3xl sm:text-4xl font-bold text-white tracking-tight">
+        How it works
+      </h2>
+      <p class="mt-4 text-lg text-blue-100">
+        Go from signup to being discovered in three simple steps. No scattered
+        links or bulky resumes — just one powerful profile that showcases your
+        skills and projects.
+      </p>
+    </div>
 
-      <!-- About teaser -->
-      <section class="border-t border-slate-200 bg-white py-14 sm:py-18">
-        <div class="mx-auto max-w-7xl px-4 text-center sm:px-6 lg:px-8">
-          <h2 class="text-3xl font-bold tracking-tight sm:text-4xl lg:text-5xl text-blue-600">
-            About {{ APP_NAME }}
-          </h2>
-          <p class="mx-auto mt-4 max-w-2xl text-lg text-slate-800">
-            We connect students with explorers through a single professional portfolio. Learn more about our
-            mission and who we serve.
-          </p>
-          <BaseButton class="mt-6" variant="secondary" @click="$router.push({ name: 'About' })">
-            Learn more
-          </BaseButton>
+    <!-- Steps -->
+    <div class="mt-16 grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
+
+      <!-- Step 1 -->
+      <div class="group relative rounded-2xl bg-white p-8 shadow-lg ring-1 ring-slate-200/80 transition-all duration-300 hover:-translate-y-1 hover:shadow-2xl">
+        
+        <div class="flex items-center gap-4">
+          <div class="flex h-12 w-12 items-center justify-center rounded-xl bg-blue-100 text-lg font-bold text-black">
+            1
+          </div>
+          <h3 class="text-lg font-semibold text-black">
+            Create your profile
+          </h3>
         </div>
-      </section>
+
+        <p class="mt-4 text-sm leading-relaxed text-slate-700">
+          Sign up with your personal email, add your institution, and list your
+          skills and technologies. Attach your best projects with descriptions
+          and tech stacks so recruiters can quickly see what you can build.
+        </p>
+
+      </div>
+
+      <!-- Step 2 -->
+      <div class="group relative rounded-2xl bg-white p-8 shadow-lg ring-1 ring-slate-200/80 transition-all duration-300 hover:-translate-y-1 hover:shadow-2xl">
+        
+        <div class="flex items-center gap-4">
+          <div class="flex h-12 w-12 items-center justify-center rounded-xl bg-blue-100 text-lg font-bold text-black">
+            2
+          </div>
+          <h3 class="text-lg font-semibold text-slate-900">
+            Control visibility
+          </h3>
+        </div>
+
+        <p class="mt-4 text-sm leading-relaxed text-slate-700">
+          Decide when your profile appears in Explore. Turn visibility on when
+          you're actively job hunting and switch it off when you're not. You
+          stay in control of your information at all times.
+        </p>
+
+      </div>
+
+      <!-- Step 3 -->
+      <div class="group relative rounded-2xl bg-white p-8 shadow-lg ring-1 ring-slate-200/80 transition-all duration-300 hover:-translate-y-1 hover:shadow-2xl">
+        
+        <div class="flex items-center gap-4">
+          <div class="flex h-12 w-12 items-center justify-center rounded-xl bg-blue-100 text-lg font-bold text-black">
+            3
+          </div>
+          <h3 class="text-lg font-semibold text-slate-900">
+            Get discovered
+          </h3>
+        </div>
+
+        <p class="mt-4 text-sm leading-relaxed text-slate-700">
+          Recruiters and explorers search by university, skills, and projects.
+          When your profile matches their search, you appear instantly.
+          Keeping your portfolio updated increases your chances of landing
+          internships and full-time roles.
+        </p>
+
+      </div>
+
+    </div>
+  </div>
+</section>
+
+ <section  class="py-20 bg-white">
+  <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+
+    <!-- Section Header -->
+    <div class="mx-auto max-w-3xl text-center">
+      <h2 class="text-3xl sm:text-4xl font-bold tracking-tight text-black">
+        From Skill to Opportunity
+      </h2>
+      <p class="mt-4 text-lg text-black">
+        SkillsBridge connects what you know with the opportunities that need it.
+        Turn your abilities, projects, and experiences into a profile that helps
+        explorers and organizations discover you.
+      </p>
+    </div>
+
+    <!-- Feature Grid -->
+    <div class="mt-16 grid gap-8 md:grid-cols-2 lg:grid-cols-3">
+
+      <!-- Feature 1 -->
+      <div class="rounded-2xl bg-white p-8 shadow-lg ring-1 ring-slate-200/80 transition hover:-translate-y-1 hover:shadow-xl">
+        <div class="flex h-12 w-12 items-center justify-center rounded-xl bg-blue-100 font-bold text-blue-600">
+          🎓
+        </div>
+        <h3 class="mt-5 text-lg font-semibold text-slate-900">
+          Showcase your skills
+        </h3>
+        <p class="mt-3 text-sm leading-relaxed text-slate-600">
+          Build a structured portfolio that highlights your skills,
+          technologies, and projects. Show what you can actually build
+          instead of relying only on a traditional resume.
+        </p>
+      </div>
+
+      <!-- Feature 2 -->
+      <div class="rounded-2xl bg-white p-8 shadow-lg ring-1 ring-slate-200/80 transition hover:-translate-y-1 hover:shadow-xl">
+        <div class="flex h-12 w-12 items-center justify-center rounded-xl bg-blue-100 font-bold text-blue-600">
+          🔎
+        </div>
+        <h3 class="mt-5 text-lg font-semibold text-slate-900">
+          Be discovered
+        </h3>
+        <p class="mt-3 text-sm leading-relaxed text-slate-600">
+          Recruiters and explorers search by university, skills, and
+          technology stacks. When your profile matches their needs,
+          you appear instantly in their results.
+        </p>
+      </div>
+
+      <!-- Feature 3 -->
+      <div class="rounded-2xl bg-white p-8 shadow-lg ring-1 ring-slate-200/80 transition hover:-translate-y-1 hover:shadow-xl">
+        <div class="flex h-12 w-12 items-center justify-center rounded-xl bg-blue-100 font-bold text-blue-600">
+          🚀
+        </div>
+        <h3 class="mt-5 text-lg font-semibold text-slate-900">
+          Unlock opportunities
+        </h3>
+        <p class="mt-3 text-sm leading-relaxed text-slate-600">
+          From internships to full-time roles, your profile becomes a
+          bridge between your skills and organizations searching for
+          talented students and graduates.
+        </p>
+      </div>
+
+    </div>
+
+  </div>
+</section>
       <!-- Newsletter signup -->
       <section class="border-t border-slate-200 bg-white py-10 sm:py-12">
         <div class="mx-auto max-w-2xl px-4 text-center sm:px-6 lg:px-8">
