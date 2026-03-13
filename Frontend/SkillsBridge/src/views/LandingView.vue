@@ -215,7 +215,7 @@ function handleNewsletterSubmit() {
               </ul>
             </div>
             <div class="aspect-video overflow-hidden rounded-2xl bg-slate-200 shadow-lg">
-            <video width="600" height="400" decoding="async" data-nimg="1" class="w-full h-full object-contain" controls autoplay muted loop>
+            <video width="600" height="400" decoding="async" data-nimg="1" class="w-full h-full object-contain" controls muted loop>
               <source src="/public/skills bridge video.mp4" type="video/mp4">
               Your browser does not support the video tag.</video>
             </div>
@@ -223,7 +223,7 @@ function handleNewsletterSubmit() {
           <div class="mt-10 lg:mt-14 grid items-center gap-10 lg:grid-cols-2 lg:gap-14">
             <div class="order-2 lg:order-1">
               <div class="aspect-video overflow-hidden rounded-2xl bg-slate-200 shadow-lg">
-            <video class="w-full h-full object-contain" controls autoplay muted loop>
+            <video class="w-full h-full object-contain" controls  muted loop>
               <source src="/public/skills bridge video.mp4" type="video/mp4">
               Your browser does not support the video tag.</video>
               </div>
@@ -415,7 +415,7 @@ function handleNewsletterSubmit() {
             </div>
             <div class="overflow-hidden rounded-2xl bg-slate-200 shadow-lg">
               <div class="aspect-video flex items-center justify-center text-slate-500">
-                <video class="max-w-full h-full object-contain" controls autoplay muted loop>
+                <video class="max-w-full h-full object-contain" controls muted loop>
               <source src="/public/skills bridge video.mp4" type="video/mp4">
               Your browser does not support the video tag.</video>
               </div>
@@ -432,33 +432,32 @@ function handleNewsletterSubmit() {
       <section class="border-y border-slate-200/80 bg-slate-50 py-14 sm:py-18">
         <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <h2 class="text-center text-2xl font-bold tracking-tight text-slate-900 sm:text-3xl">
-            Companies hiring from SkillsBridge
+            Companies in Collaboration with {{ APP_NAME }}
           </h2>
-          <p class="mx-auto mt-3 max-w-2xl text-center text-slate-600">
-            Organizations actively recruiting talent from our platform.
-          </p>
-    
         <!-- carousel-->
         <div class="overflow-hidden mt-10 logo-marquee">
           <div class="logo-track flex gap-8 items-center">
 
-           <img src="/public/AmeuLogo.PNG" class="h-16" />
-           <img src="/public/BlueCrestLogo.PNG" class="h-16" />
-           <img src="/public/SmpuLogo.PNG" class="h-16" />
-           <img src="/public/StarzLogo.PNG" class="h-16" />
-           <img src="/public/UL_Logo.PNG" class="h-16" />
-           <img src="/public/UmuLogo.PNG" class="h-16" />
+           <img src="/public/orange logo.PNG" class="h-16" />
+           <img src="/public/lonestar logo.PNG" class="h-16" />
+           <img src="/public/mfdp logo.jpg" class="h-16" />
+           <img src="/public/MME.jpg" class="h-16" />
+           <img src="/public/nocal logo.jpg" class="h-16" />
+           <img src="/public/lprc.png" class="h-16" />
+           <img src="/public/fire stone.jpg" class="h-16" />
+           <img src="/public/epa logo.jpg" class="h-16" />
 
           <!-- duplicate logos for infinite loop -->
-           <img src="/public/AmeuLogo.PNG" class="h-16" />
-           <img src="/public/BlueCrestLogo.PNG" class="h-16" />
-           <img src="/public/SmpuLogo.PNG" class="h-16" />
-           <img src="/public/StarzLogo.PNG" class="h-16" />
-           <img src="/public/UL_Logo.PNG" class="h-16" />
-           <img src="/public/UmuLogo.PNG" class="h-16" />
-
-     </div>
-        </div>
+          <img src="/public/orange logo.PNG" class="h-16" />
+           <img src="/public/lonestar logo.PNG" class="h-16" />
+           <img src="/public/mfdp logo.jpg" class="h-16" />
+           <img src="/public/MME.jpg" class="h-16" />
+           <img src="/public/nocal logo.jpg" class="h-16" />
+           <img src="/public/lprc.png" class="h-16" />
+            <img src="/public/fire stone.jpg" class="h-16" />
+            <img src="/public/epa logo.jpg" class="h-16" />
+            </div>
+          </div>
         </div>
       </section> 
 
