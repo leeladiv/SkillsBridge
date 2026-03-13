@@ -134,7 +134,7 @@ onUnmounted(() => {
         class="ml-2 sm:ml-4 flex items-center gap-3 font-semibold text-academic-navy focus:outline-none focus:ring-2 focus:ring-primary-500 focus:ring-offset-2 rounded"
       >
         <img
-          src="/public/SkillsBridge Logo.jpeg"
+          src="/public/SkillsBridge Logo1.png"
           class="h-12 w-12 rounded-md"
           alt="SkillsBridge logo"
         />
