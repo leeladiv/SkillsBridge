@@ -111,7 +111,7 @@ async function submitUniversityRequest() {
         <div>
           <!-- Logo placeholder (replace with your logo image) -->
           <div class="flex items-center gap-3">
-            <div class="h-10 w-32 rounded bg-white/10" />
+            <img src="/public/SkillsBridge Logo.jpeg" alt="skillsbridgelogo" class="h-10 w-auto object-contain" />
           </div>
 
           <h1 class="mt-10 text-3xl font-semibold leading-tight sm:text-4xl">
