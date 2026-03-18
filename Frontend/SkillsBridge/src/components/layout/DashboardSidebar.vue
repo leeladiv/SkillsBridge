@@ -29,13 +29,13 @@ function isActive(item) {
       <button
         type="button"
         class="flex w-full items-center justify-between gap-3 rounded-xl bg-slate-50 px-3 py-3 text-left shadow-sm ring-1 ring-slate-200 hover:bg-slate-100"
-        @click="router.push({ name: 'Dashboard', query: { newProject: '1' } })"
-      >
+        @click="router.push({ name: 'Dashboard', query: { newProject: '1' } })">
         <span class="text-sm font-semibold text-slate-800">Create new project</span>
         <span class="inline-flex h-9 w-9 items-center justify-center rounded-xl bg-indigo-600 text-white shadow-sm">
           +
         </span>
       </button>
+      </div>
 
       <div class="mt-4 flex flex-col gap-1">
       <button
@@ -50,6 +50,12 @@ function isActive(item) {
         {{ item.name }}
       </button>
     </div>
-    </div>
   </aside>
 </template>
+
+<script setup>
+function logout() {
+  localStorage.removeItem('token')
+  window.location.href = '/login'
+}
+</script>

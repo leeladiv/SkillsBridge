@@ -465,3 +465,4 @@ async function openMessage(message) {
     />
   </DashboardLayout>
 </template>
+

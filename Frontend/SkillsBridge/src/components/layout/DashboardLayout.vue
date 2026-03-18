@@ -21,6 +21,20 @@ onMounted(() => {
 
 <template>
   <div class="min-h-screen bg-slate-100">
+<<<<<<< HEAD
+    <LandingView />
+  <div class="flex">
+
+    <!-- Sidebar -->
+    <DashboardSidebar />
+
+    <!-- Main Content -->
+    <main class="flex-1 bg-gray-100 min-h-screen p-6">
+      <slot />
+    </main>
+
+  </div>
+=======
     <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
       <header class="flex h-16 items-center justify-between">
         <button type="button" class="flex items-center gap-2" @click="goHome">
@@ -83,5 +97,7 @@ onMounted(() => {
         </main>
       </div>
     </div>
+>>>>>>> 0b8a6cd402ce952413179094045f5cae50f1c2f6
   </div>
 </template>
+
