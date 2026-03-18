@@ -28,6 +28,27 @@ onMounted(() => {
           <span class="text-sm font-semibold text-slate-900">SkillsBridge</span>
         </button>
 
+        <nav
+        class="max-md:hidden flex-1 flex items-center justify-center gap-6 text-sm font-medium text-slate-600"
+        aria-label="Main navigation"
+      >
+        <button
+  type="button"
+  class="text-sm font-medium text-slate-600 rounded px-2 py-1
+         hover:text-white hover:bg-blue-600
+         cursor-pointer
+         transition-colors duration-300
+         focus:outline-none focus:ring-2 focus:ring-primary-500 focus:ring-offset-2"
+  @click="goHome"
+>
+  Home
+</button>
+
+<button></button>
+ </nav>
+
+      
+
         <div class="flex items-center gap-3">
           <button
             type="button"

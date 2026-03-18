@@ -249,88 +249,95 @@ async function handleNewsletterSubmit() {
 
       <!-- Explore top courses -->
       <section class="bg-slate-50 py-12 sm:py-16">
-        <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-          <div class="flex flex-col gap-4 sm:flex-row sm:items-end sm:justify-between">
-            <div>
-              <h2 class="text-3xl font-bold tracking-tight text-slate-900 sm:text-4xl">
-                Explore top students
-              </h2>
-              <p class="mt-2 text-slate-600">
-                Click a skill to instantly find students who are strong in that area.
-              </p>
+  <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+    
+    <!-- Header -->
+    <div class="mb-6">
+      <h2 class="text-3xl items-center justify-center font-bold tracking-tight text-slate-900 sm:text-4xl">
+        Explore Top Students
+      </h2>
+    </div>
+
+    <!-- Skill Buttons -->
+    <div class="flex flex-wrap gap-3 mb-8">
+      <button
+        v-for="skill in skillChips"
+        :key="skill"
+        type="button"
+        class="rounded-full px-4 py-2 text-xs font-semibold transition-all duration-300 transform hover:scale-105 cursor-pointer shadow-sm"
+        :class="activeSkill === skill 
+          ? 'border-blue-600 bg-blue-600 text-white hover:bg-blue-700' 
+          : 'border-slate-200 bg-white text-slate-700 hover:bg-slate-100'"
+        @click="selectSkill(skill)"
+      >
+        {{ skill }}
+      </button>
+    </div>
+
+    <!-- Students Grid -->
+    <div v-if="landingLoading" class="flex justify-center py-10">
+      <BaseSpinner size="lg" />
+    </div>
+    <p v-else-if="landingError" class="text-center text-sm text-slate-600">
+      {{ landingError }}
+    </p>
+    <div v-else class="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
+      <article
+        v-for="s in landingProfiles"
+        :key="s.id"
+        class="overflow-hidden rounded-2xl bg-white shadow-md ring-1 ring-slate-200/70 hover:shadow-lg transition-shadow duration-300"
+      >
+        <div class="p-4">
+          <div class="flex items-center gap-3">
+            <div class="h-12 w-12 rounded-full bg-slate-200 overflow-hidden flex items-center justify-center text-slate-600 font-bold">
+              <img v-if="s.image" :src="s.image" :alt="s.fullName" class="h-full w-full object-cover" />
+              <span v-else>{{ (s.fullName || '?')[0] }}</span>
             </div>
-            <div class="flex flex-wrap gap-2">
-              <button
-                v-for="skill in skillChips"
-                :key="skill"
-                type="button"
-                class="rounded-full border px-3 py-1 text-xs font-semibold transition-colors"
-                :class="activeSkill === skill ? 'border-blue-600 bg-blue-600 text-white' : 'border-slate-200 bg-white text-slate-700 hover:bg-slate-100'"
-                @click="selectSkill(skill)"
-              >
-                {{ skill }}
-              </button>
+            <div class="min-w-0">
+              <p class="truncate font-semibold text-slate-900">{{ s.fullName }}</p>
+              <p class="truncate text-sm text-slate-600">{{ s.university?.name || '' }}</p>
             </div>
           </div>
 
-          <div class="mt-8">
-            <div v-if="landingLoading" class="flex justify-center py-10">
-              <BaseSpinner size="lg" />
-            </div>
-            <p v-else-if="landingError" class="text-center text-sm text-slate-600">{{ landingError }}</p>
-            <div v-else class="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
-              <article
-                v-for="s in landingProfiles"
-                :key="s.id"
-                class="overflow-hidden rounded-2xl bg-white shadow-sm ring-1 ring-slate-200/70"
-              >
-                <div class="p-4">
-                  <div class="flex items-center gap-3">
-                    <div class="h-12 w-12 rounded-full bg-slate-200 overflow-hidden flex items-center justify-center text-slate-600 font-bold">
-                      <img v-if="s.image" :src="s.image" :alt="s.fullName" class="h-full w-full object-cover" />
-                      <span v-else>{{ (s.fullName || '?')[0] }}</span>
-                    </div>
-                    <div class="min-w-0">
-                      <p class="truncate font-semibold text-slate-900">{{ s.fullName }}</p>
-                      <p class="truncate text-sm text-slate-600">{{ s.university?.name || '' }}</p>
-                    </div>
-                  </div>
-                  <p v-if="s.bio" class="mt-3 text-sm text-slate-600 line-clamp-2">{{ s.bio }}</p>
-                  <div v-if="s.skills?.length" class="mt-3 flex flex-wrap gap-1">
-                    <span
-                      v-for="sk in (s.skills || []).slice(0, 4)"
-                      :key="sk"
-                      class="rounded-full bg-slate-100 px-2 py-0.5 text-xs font-semibold text-slate-700"
-                    >
-                      {{ sk }}
-                    </span>
-                  </div>
-                  <div class="mt-4 flex gap-2">
-                    <button
-                      type="button"
-                      class="flex-1 rounded-lg border border-slate-200 bg-white px-3 py-2 text-sm font-semibold text-slate-700 hover:bg-slate-50"
-                      @click="$router.push({ name: 'PublicProfile', params: { id: s.id } })"
-                    >
-                      View
-                    </button>
-                    <button
-                      type="button"
-                      class="flex-1 rounded-lg bg-blue-600 px-3 py-2 text-sm font-semibold text-white hover:bg-blue-700"
-                      @click="$router.push({ name: 'PublicProfile', params: { id: s.id }, hash: '#message' })"
-                    >
-                      Message
-                    </button>
-                  </div>
-                </div>
-              </article>
-              <div v-if="!landingProfiles.length" class="lg:col-span-4">
-                <p class="text-center text-sm text-slate-600">No public students found for this skill yet.</p>
-              </div>
-            </div>
+          <p v-if="s.bio" class="mt-3 text-sm text-slate-600 line-clamp-2">{{ s.bio }}</p>
+
+          <div v-if="s.skills?.length" class="mt-3 flex flex-wrap gap-1">
+            <span
+              v-for="sk in (s.skills || []).slice(0, 4)"
+              :key="sk"
+              class="rounded-full bg-slate-100 px-2 py-0.5 text-xs font-semibold text-slate-700"
+            >
+              {{ sk }}
+            </span>
+          </div>
+
+          <div class="mt-4 flex gap-2">
+            <button
+              type="button"
+              class="flex-1 rounded-lg border border-slate-200 bg-white px-3 py-2 text-sm font-semibold text-slate-700 hover:bg-slate-50 transition"
+              @click="$router.push({ name: 'PublicProfile', params: { id: s.id } })"
+            >
+              View
+            </button>
+            <button
+              type="button"
+              class="flex-1 rounded-lg bg-blue-600 px-3 py-2 text-sm font-semibold text-white hover:bg-blue-700 transition"
+              @click="$router.push({ name: 'PublicProfile', params: { id: s.id }, hash: '#message' })"
+            >
+              Message
+            </button>
           </div>
         </div>
-      </section>
-      <!-- Feature highlights (alternating) -->
+      </article>
+
+      <div v-if="!landingProfiles.length" class="lg:col-span-4">
+        <p class="text-center text-sm text-slate-600">No public students found for this skill yet.</p>
+      </div>
+    </div>
+
+  </div>
+</section>
+<!-- Feature highlights (alternating) -->
       <!-- (removed feature highlights per request) -->
 
 
