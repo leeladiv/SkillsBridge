@@ -246,8 +246,10 @@ async function handleNewsletterSubmit() {
         </div>
         </div>
       </section>
-      <!-- Feature highlights (alternating) -->
+
+      <!-- Explore top courses -->
       <section class="bg-slate-50 py-12 sm:py-16">
+<<<<<<< HEAD
   <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
     
     <!-- Header -->
@@ -337,60 +339,187 @@ async function handleNewsletterSubmit() {
   </div>
 </section>
 <!-- Feature highlights (alternating) -->
+=======
+        <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+          <div class="flex flex-col gap-4 sm:flex-row sm:items-end sm:justify-between">
+            <div>
+              <h2 class="text-3xl font-bold tracking-tight text-slate-900 sm:text-4xl">
+                Explore top students
+              </h2>
+              <p class="mt-2 text-slate-600">
+                Click a skill to instantly find students who are strong in that area.
+              </p>
+            </div>
+            <div class="flex flex-wrap gap-2">
+              <button
+                v-for="skill in skillChips"
+                :key="skill"
+                type="button"
+                class="rounded-full border px-3 py-1 text-xs font-semibold transition-colors"
+                :class="activeSkill === skill ? 'border-blue-600 bg-blue-600 text-white' : 'border-slate-200 bg-white text-slate-700 hover:bg-slate-100'"
+                @click="selectSkill(skill)"
+              >
+                {{ skill }}
+              </button>
+            </div>
+          </div>
+
+          <div class="mt-8">
+            <div v-if="landingLoading" class="flex justify-center py-10">
+              <BaseSpinner size="lg" />
+            </div>
+            <p v-else-if="landingError" class="text-center text-sm text-slate-600">{{ landingError }}</p>
+            <div v-else class="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+              <article
+                v-for="s in landingProfiles"
+                :key="s.id"
+                class="overflow-hidden rounded-2xl bg-white shadow-sm ring-1 ring-slate-200/70"
+              >
+                <div class="p-4">
+                  <div class="flex items-center gap-3">
+                    <div class="h-12 w-12 rounded-full bg-slate-200 overflow-hidden flex items-center justify-center text-slate-600 font-bold">
+                      <img v-if="s.image" :src="s.image" :alt="s.fullName" class="h-full w-full object-cover" />
+                      <span v-else>{{ (s.fullName || '?')[0] }}</span>
+                    </div>
+                    <div class="min-w-0">
+                      <p class="truncate font-semibold text-slate-900">{{ s.fullName }}</p>
+                      <p class="truncate text-sm text-slate-600">{{ s.university?.name || '' }}</p>
+                    </div>
+                  </div>
+                  <p v-if="s.bio" class="mt-3 text-sm text-slate-600 line-clamp-2">{{ s.bio }}</p>
+                  <div v-if="s.skills?.length" class="mt-3 flex flex-wrap gap-1">
+                    <span
+                      v-for="sk in (s.skills || []).slice(0, 4)"
+                      :key="sk"
+                      class="rounded-full bg-slate-100 px-2 py-0.5 text-xs font-semibold text-slate-700"
+                    >
+                      {{ sk }}
+                    </span>
+                  </div>
+                  <div class="mt-4 flex gap-2">
+                    <button
+                      type="button"
+                      class="flex-1 rounded-lg border border-slate-200 bg-white px-3 py-2 text-sm font-semibold text-slate-700 hover:bg-slate-50"
+                      @click="$router.push({ name: 'PublicProfile', params: { id: s.id } })"
+                    >
+                      View
+                    </button>
+                    <button
+                      type="button"
+                      class="flex-1 rounded-lg bg-blue-600 px-3 py-2 text-sm font-semibold text-white hover:bg-blue-700"
+                      @click="$router.push({ name: 'PublicProfile', params: { id: s.id }, hash: '#message' })"
+                    >
+                      Message
+                    </button>
+                  </div>
+                </div>
+              </article>
+              <div v-if="!landingProfiles.length" class="lg:col-span-4">
+                <p class="text-center text-sm text-slate-600">No public students found for this skill yet.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+      <!-- Feature highlights (alternating) -->
+>>>>>>> 371a9d8 (Layout: I made so,e changes on the layout)
       <!-- (removed feature highlights per request) -->
 
 
       <!-- Testimonials -->
-      <section class="bg-slate-50 py-14 sm:py-18">
+      <section class="bg-[#f3efe7] py-14 sm:py-18">
         <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <div class="text-center">
-            <h2 class="text-3xl font-bold tracking-tight text-slate-900 sm:text-4xl">What students & recruiters say</h2>
-            <p class="mx-auto mt-4 max-w-2xl text-lg text-black">
-              Real voices from our community.
+            <h2 class="text-3xl font-bold tracking-tight text-slate-900 sm:text-4xl">
+              Hear what other learners have to say
+            </h2>
+            <p class="mx-auto mt-4 max-w-2xl text-lg text-slate-700">
+              Real feedback from students, recruiters, and university partners using SkillsBridge.
             </p>
           </div>
+
           <div
-            class="mt-10 flex flex-col items-center gap-6 sm:mt-12"
+            class="mt-10"
             @touchstart="onTouchStart"
             @touchend="onTouchEnd"
           >
-            <div class="w-full max-w-3xl overflow-hidden rounded-2xl bg-slate-900 text-left shadow-xl">
-              <div class="relative aspect-video bg-slate-800">
-                <div class="absolute inset-0 flex items-center justify-center">
-                  <button
-                    type="button"
-                    class="flex h-16 w-16 items-center justify-center rounded-full bg-white/90 text-slate-900 shadow-lg hover:bg-white"
+            <div class="relative">
+              <div class="overflow-hidden">
+                <div
+                  class="flex transition-transform duration-500 ease-out"
+                  :style="{ transform: `translateX(-${activeTestimonialIndex * 100}%)` }"
+                >
+                  <div
+                    v-for="(slide, slideIdx) in testimonialSlides"
+                    :key="slideIdx"
+                    class="w-full shrink-0 px-1"
                   >
-                    <span class="ml-0.5 text-xl font-semibold">▶</span>
-                  </button>
-                </div>
- 
-      <div class="aspect-video rounded-xl overflow-hidden">
-        <video id="videoPlayer" class="w-full h-full object-cover" controls autoplay muted>
-         <source src="/public/skills bridge video.mp4" type="video/mp4">
-        </video>
-      </div>
-         <div class="flex items-center gap-2">
-            <button
-               type="button"
-               class="flex h-8 w-8 items-center justify-center rounded-full border border-slate-700 text-slate-200 hover:bg-slate-800"
-               @click="prevTestimonial">
-            </button>
-                  <button
-                    type="button"
-                    class="flex h-8 w-8 items-center justify-center rounded-full border border-slate-700 text-slate-200 hover:bg-slate-800"
-                    @click="nextTestimonial">
-                  </button>
+                    <div class="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+                      <article
+                        v-for="t in slide"
+                        :key="t.id"
+                        class="rounded-2xl bg-white shadow-sm ring-1 ring-slate-200/70"
+                      >
+                        <div class="p-6">
+                          <div class="text-2xl font-bold text-orange-500 leading-none">“</div>
+                          <p
+                            class="mt-3 text-sm leading-relaxed text-slate-700"
+                            :class="expandedTestimonials[t.id] ? '' : 'line-clamp-4'"
+                          >
+                            {{ t.quote }}
+                          </p>
+                          <button
+                            type="button"
+                            class="mt-4 text-sm font-semibold text-slate-700 underline underline-offset-4 hover:text-slate-900"
+                            @click="toggleTestimonial(t.id)"
+                          >
+                            <span v-if="expandedTestimonials[t.id]">Show Less</span>
+                            <span v-else>Show More</span>
+                          </button>
+                        </div>
+                        <div class="border-t border-slate-100 px-6 py-4">
+                          <div class="flex items-center gap-3">
+                            <div class="h-10 w-10 rounded-full bg-slate-200 ring-2 ring-white" />
+                            <div class="min-w-0">
+                              <p class="truncate text-sm font-semibold text-slate-900">{{ t.name }}</p>
+                              <p class="truncate text-xs text-slate-600">{{ t.location }}</p>
+                            </div>
+                          </div>
+                        </div>
+                      </article>
+                    </div>
+                  </div>
                 </div>
               </div>
-          </div>
-            <div class="flex items-center justify-center gap-2">
+
               <button
+<<<<<<< HEAD
+=======
+                type="button"
+                class="absolute left-0 top-1/2 hidden -translate-y-1/2 rounded-full bg-white/80 p-2 text-slate-700 shadow ring-1 ring-slate-200 hover:bg-white sm:inline-flex"
+                aria-label="Previous testimonials"
+                @click="prevTestimonial"
+              >
+                ‹
+              </button>
+              <button
+                type="button"
+                class="absolute right-0 top-1/2 hidden -translate-y-1/2 rounded-full bg-white/80 p-2 text-slate-700 shadow ring-1 ring-slate-200 hover:bg-white sm:inline-flex"
+                aria-label="Next testimonials"
+                @click="nextTestimonial"
+              >
+                ›
+              </button>
+            </div>
+
+            <div class="mt-6 flex items-center justify-center gap-2">
+              <button
+>>>>>>> 371a9d8 (Layout: I made so,e changes on the layout)
                 v-for="(s, index) in testimonialSlides"
                 :key="index"
                 type="button"
                 class="h-2.5 rounded-full transition-all"
-                :class="index === activeTestimonialIndex ? 'w-6 bg-slate-500' : 'w-2.5 bg-slate-300'"
+                :class="index === activeTestimonialIndex ? 'w-6 bg-orange-500' : 'w-2.5 bg-slate-300'"
                 @click="activeTestimonialIndex = index"
                 :aria-label="`Go to slide ${index + 1}`"
               />
@@ -408,7 +537,7 @@ async function handleNewsletterSubmit() {
               Learn how students build portfolios and get discovered by recruiters.
             </p>
           </div>
-          <div class="mt-12 grid gap-8 lg:grid-cols-2">
+          <div class="mt-12 grid gap-6 lg:grid-cols-3">
             <div class="overflow-hidden rounded-2xl bg-slate-200 shadow-lg">
               <div class="aspect-video flex items-center justify-center text-black">
                <video class="w-full h-full object-cover" controls autoplay muted loop>
@@ -429,6 +558,18 @@ async function handleNewsletterSubmit() {
               <div class="bg-white p-4">
                 <p class="font-semibold text-slate-900">Student success stories</p>
                 <p class="text-sm text-black">Hear from students who landed roles through SkillsBridge</p>
+              </div>
+            </div>
+            <div class="overflow-hidden rounded-2xl bg-slate-200 shadow-lg">
+              <div class="aspect-video flex items-center justify-center text-slate-500">
+                <video class="w-full h-full object-cover" controls autoplay muted loop>
+                  <source src="/public/skills bridge video.mp4" type="video/mp4">
+                  Your browser does not support the video tag.
+                </video>
+              </div>
+              <div class="bg-white p-4">
+                <p class="font-semibold text-slate-900">Publishing your profile</p>
+                <p class="text-sm text-black">Turn visibility on and share your portfolio link</p>
               </div>
             </div>
           </div>

@@ -50,6 +50,7 @@ function isActive(item) {
         {{ item.name }}
       </button>
     </div>
+    </div>
   </aside>
 </template>
 

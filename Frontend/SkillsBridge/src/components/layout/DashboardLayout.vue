@@ -21,7 +21,6 @@ onMounted(() => {
 
 <template>
   <div class="min-h-screen bg-slate-100">
-<<<<<<< HEAD
     <LandingView />
   <div class="flex">
 
@@ -34,14 +33,12 @@ onMounted(() => {
     </main>
 
   </div>
-=======
     <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
       <header class="flex h-16 items-center justify-between">
         <button type="button" class="flex items-center gap-2" @click="goHome">
           <img src="/public/SkillsBridge Logo1.png" alt="SkillsBridge" class="h-9 w-9 rounded-lg" />
           <span class="text-sm font-semibold text-slate-900">SkillsBridge</span>
         </button>
-
         <nav
         class="max-md:hidden flex-1 flex items-center justify-center gap-6 text-sm font-medium text-slate-600"
         aria-label="Main navigation"
@@ -97,7 +94,6 @@ onMounted(() => {
         </main>
       </div>
     </div>
->>>>>>> 0b8a6cd402ce952413179094045f5cae50f1c2f6
   </div>
 </template>
 
