@@ -5,14 +5,25 @@ import AppNavbar from '../components/layout/AppNavbar.vue'
 import BaseCard from '../components/base/BaseCard.vue'
 import BaseTag from '../components/base/BaseTag.vue'
 import BaseSpinner from '../components/base/BaseSpinner.vue'
+import BaseInput from '../components/base/BaseInput.vue'
+import BaseButton from '../components/base/BaseButton.vue'
+import BaseAlert from '../components/base/BaseAlert.vue'
 import * as exploreService from '../services/exploreService'
+import * as messageService from '../services/messageService'
 import { useToast } from '../composables/useToast'
+import { useFormValidation } from '../composables/useFormValidation'
 
 const route = useRoute()
 const toast = useToast()
+const { required, email } = useFormValidation()
 const profile = ref(null)
 const loading = ref(true)
 const notFound = ref(false)
+
+const messageForm = ref({ fromName: '', fromEmail: '', subject: '', body: '' })
+const messageErrors = ref({})
+const messageSending = ref(false)
+const messageSent = ref(false)
 
 const universityName = computed(() => {
   return profile.value?.university?.name || ''
@@ -23,6 +34,12 @@ onMounted(async () => {
   try {
     const data = await exploreService.fetchPublicProfile(id)
     profile.value = data
+    if (route.hash === '#message') {
+      requestAnimationFrame(() => {
+        const el = document.querySelector('#message')
+        el?.scrollIntoView?.({ behavior: 'smooth', block: 'start' })
+      })
+    }
   } catch (err) {
     notFound.value = true
     toast.error(err.response?.data?.message || 'Profile not found')
@@ -30,6 +47,40 @@ onMounted(async () => {
     loading.value = false
   }
 })
+
+function validateMessage() {
+  messageErrors.value = {}
+  const n = required(messageForm.value.fromName, 'Name')
+  if (n) messageErrors.value.fromName = n
+  const e = email(messageForm.value.fromEmail)
+  if (e) messageErrors.value.fromEmail = e
+  const b = required(messageForm.value.body, 'Message')
+  if (b) messageErrors.value.body = b
+  return Object.keys(messageErrors.value).length === 0
+}
+
+async function sendMessage() {
+  messageSent.value = false
+  if (!profile.value?.id) return
+  if (!validateMessage()) return
+  messageSending.value = true
+  try {
+    await messageService.sendMessage({
+      toUserId: profile.value.id,
+      fromName: messageForm.value.fromName,
+      fromEmail: messageForm.value.fromEmail,
+      subject: messageForm.value.subject || undefined,
+      body: messageForm.value.body,
+    })
+    messageSent.value = true
+    messageForm.value = { fromName: '', fromEmail: '', subject: '', body: '' }
+    toast.success('Message sent')
+  } catch (err) {
+    toast.error(err.response?.data?.message || 'Failed to send message')
+  } finally {
+    messageSending.value = false
+  }
+}
 </script>
 
 <template>
@@ -42,7 +93,7 @@ onMounted(async () => {
       <template v-else-if="profile && !notFound">
         <BaseCard padding="lg">
           <div class="flex flex-col sm:flex-row gap-6">
-            <div class="flex-shrink-0">
+            <div class="shrink-0">
               <div
                 class="h-24 w-24 rounded-full bg-slate-200 flex items-center justify-center text-3xl text-slate-500 overflow-hidden"
               >
@@ -66,6 +117,66 @@ onMounted(async () => {
             </div>
           </div>
         </BaseCard>
+
+        <div id="message" class="mt-8 scroll-mt-24">
+          <BaseCard>
+            <div class="flex flex-col gap-6 sm:flex-row sm:items-start sm:justify-between">
+              <div class="min-w-0">
+                <h2 class="text-lg font-semibold text-slate-900">Message this student</h2>
+                <p class="mt-1 text-sm text-slate-600">
+                  Recruiter or partner? Send a message and the student will receive it in their dashboard inbox.
+                </p>
+              </div>
+            </div>
+
+            <BaseAlert v-if="messageSent" class="mt-4">
+              Your message was sent successfully.
+            </BaseAlert>
+
+            <form class="mt-4 grid gap-4 sm:grid-cols-2" @submit.prevent="sendMessage">
+              <BaseInput
+                v-model="messageForm.fromName"
+                label="Your name"
+                name="fromName"
+                placeholder="Recruiter name"
+                :error="messageErrors.fromName"
+                required
+              />
+              <BaseInput
+                v-model="messageForm.fromEmail"
+                type="email"
+                label="Your email"
+                name="fromEmail"
+                placeholder="recruiter@company.com"
+                :error="messageErrors.fromEmail"
+                required
+              />
+              <div class="sm:col-span-2">
+                <BaseInput
+                  v-model="messageForm.subject"
+                  label="Subject (optional)"
+                  name="subject"
+                  placeholder="Internship opportunity"
+                />
+              </div>
+              <div class="sm:col-span-2">
+                <label class="mb-1 block text-sm font-medium text-slate-700">Message</label>
+                <textarea
+                  v-model="messageForm.body"
+                  rows="5"
+                  class="w-full rounded-lg border border-slate-300 bg-white px-3 py-2 text-slate-900 placeholder:text-slate-400 focus:border-primary-500 focus:outline-none focus:ring-1 focus:ring-primary-500"
+                  placeholder="Introduce yourself and share next steps…"
+                />
+                <p v-if="messageErrors.body" class="mt-1 text-sm text-red-600">{{ messageErrors.body }}</p>
+              </div>
+              <div class="sm:col-span-2 flex justify-end">
+                <BaseButton type="submit" :loading="messageSending">
+                  Send message
+                </BaseButton>
+              </div>
+            </form>
+          </BaseCard>
+        </div>
 
         <div v-if="profile.projects?.length" class="mt-8">
           <h2 class="text-lg font-semibold text-slate-900 mb-4">Projects</h2>

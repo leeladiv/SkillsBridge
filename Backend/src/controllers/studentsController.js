@@ -81,3 +81,12 @@ export async function getPublicProfile(req, res, next) {
     return success(res, sanitizePublicProfile(user))
   } catch (e) { next(e) }
 }
+
+export async function deleteMe(req, res, next) {
+  try {
+    await db.deleteUserById(req.user.id)
+    return success(res, { message: 'Account deleted' })
+  } catch (e) {
+    next(e)
+  }
+}

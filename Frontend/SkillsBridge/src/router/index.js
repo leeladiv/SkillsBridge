@@ -3,6 +3,7 @@
  */
 import { createRouter, createWebHistory } from 'vue-router'
 import { useAuthStore } from '../stores/authStore'
+import { useThemeStore } from '../stores/themeStore'
 import { ROLES } from '../types'
 
 const routes = [
@@ -22,6 +23,18 @@ const routes = [
     path: '/login',
     name: 'Login',
     component: () => import('../views/LoginView.vue'),
+    meta: { public: true },
+  },
+  {
+    path: '/forgot-password',
+    name: 'ForgotPassword',
+    component: () => import('../views/ForgotPasswordView.vue'),
+    meta: { public: true },
+  },
+  {
+    path: '/reset-password',
+    name: 'ResetPassword',
+    component: () => import('../views/ResetPasswordView.vue'),
     meta: { public: true },
   },
   {
@@ -56,9 +69,33 @@ const routes = [
     children: [],
   },
   {
+    path: '/projects',
+    name: 'Projects',
+    component: () => import('../views/ProjectsView.vue'),
+    meta: { role: ROLES.STUDENT },
+  },
+  {
+    path: '/messages',
+    name: 'Messages',
+    component: () => import('../views/MessagesView.vue'),
+    meta: { role: ROLES.STUDENT },
+  },
+  {
     path: '/edit-profile',
     name: 'EditProfile',
     component: () => import('../views/EditProfileView.vue'),
+    meta: { role: ROLES.STUDENT },
+  },
+  {
+    path: '/settings',
+    name: 'Settings',
+    component: () => import('../views/SettingsView.vue'),
+    meta: { role: ROLES.STUDENT },
+  },
+  {
+    path: '/preview',
+    name: 'Preview',
+    component: () => import('../views/PreviewView.vue'),
     meta: { role: ROLES.STUDENT },
   },
   {
@@ -89,6 +126,11 @@ const router = createRouter({
 router.beforeEach(async (to, _from, next) => {
   const authStore = useAuthStore()
   authStore.hydrate()
+
+  // Ensure theme is consistently applied across navigation/hot reload.
+  // This prevents the UI from being stuck in dark mode when it's turned off.
+  const themeStore = useThemeStore()
+  themeStore.hydrate()
 
   const isPublic = to.meta.public === true
   const requiredRole = to.meta.role

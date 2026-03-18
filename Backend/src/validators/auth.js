@@ -19,3 +19,12 @@ export const verifyEmailSchema = z.object({
 export const resendVerificationSchema = z.object({
   email: z.string().email('Invalid email'),
 })
+
+export const forgotPasswordSchema = z.object({
+  email: z.string().email('Invalid email'),
+})
+
+export const resetPasswordSchema = z.object({
+  token: z.string().min(1, 'Token required'),
+  password: z.string().min(8, 'Password must be at least 8 characters'),
+})

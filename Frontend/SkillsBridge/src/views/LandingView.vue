@@ -1,55 +1,115 @@
 <script setup>
-import { ref } from 'vue'
-import { APP_NAME, APP_TAGLINE } from '../utils/constants'
+import { ref, computed, onMounted } from 'vue'
+import { APP_NAME } from '../utils/constants'
 import BaseButton from '../components/base/BaseButton.vue'
+import BaseSpinner from '../components/base/BaseSpinner.vue'
 import AppNavbar from '../components/layout/AppNavbar.vue'
 import AppFooter from '../components/layout/AppFooter.vue'
+import * as exploreService from '../services/exploreService'
+import * as newsletterService from '../services/newsletterService'
+import { useToast } from '../composables/useToast'
 
 const newsletterEmail = ref('')
-const activeTestimonialIndex = ref(0)
+const newsletterLoading = ref(false)
+const newsletterSuccess = ref(false)
+const newsletterError = ref('')
+const activeTestimonialIndex = ref(0) // slide index (chunked)
 const touchStartX = ref(0)
+const expandedTestimonials = ref({})
 
-const MAX_TESTIMONIAL_VIDEOS = 7
+const activeSkill = ref('JavaScript')
+const landingProfiles = ref([])
+const landingLoading = ref(false)
+const landingError = ref('')
+const toast = useToast()
 
-const testimonialVideos = [
+const skillChips = [
+  'JavaScript',
+  'Vue.js',
+  'React',
+  'Node.js',
+  'Python',
+  'SQL',
+  'Data Analysis',
+  'Machine Learning',
+  'UI/UX',
+  'Cybersecurity',
+]
+
+// Note: navigation happens in template via $router.push.
+
+const testimonialCards = [
   {
     id: 1,
-    name: 'Sarah M.',
-    role: 'CS Student, State University',
-    label: 'Student story',
-    title: 'Landed an internship in two weeks',
-    description:
-      'See how Sarah used SkillsBridge to showcase her projects and get discovered by recruiters.',
+    quote:
+      "SkillsBridge made my projects look professional. Recruiters didn’t just see my degree — they saw what I can build.",
+    name: 'Kathleen B.',
+    meta: 'Computer Science Student',
+    location: 'New Hampshire',
   },
   {
     id: 2,
-    name: 'James L.',
-    role: 'Tech Recruiter',
-    label: 'Recruiter perspective',
-    title: 'Finding verified student talent',
-    description:
-      'James shares how SkillsBridge helps him quickly identify strong student candidates.',
+    quote:
+      "I can filter by skills and university, then review real projects. It’s the fastest way I’ve found strong student talent.",
+    name: 'Kyung B.',
+    meta: 'Technical Recruiter',
+    location: 'Maryland',
   },
   {
     id: 3,
-    name: 'Dr. A. Patel',
-    role: 'Career Director',
-    label: 'University partner',
-    title: 'Supporting students at scale',
-    description:
-      'Dr. Patel explains how SkillsBridge fits into their university career support strategy.',
+    quote:
+      "Students finally have one place to organize coursework, capstones, and projects — and it’s easy for employers to review.",
+    name: 'Francisco R.',
+    meta: 'Career Partner',
+    location: 'Spain',
   },
-].slice(0, MAX_TESTIMONIAL_VIDEOS)
+  {
+    id: 4,
+    quote:
+      'Publishing my profile helped me get inbound messages after I added two projects and updated my skills.',
+    name: 'Amina K.',
+    meta: 'Data Science Student',
+    location: 'Monrovia',
+  },
+  {
+    id: 5,
+    quote:
+      'The portfolio format is clean. I can evaluate impact and tech stack without opening five different links.',
+    name: 'Jordan P.',
+    meta: 'Hiring Manager',
+    location: 'Remote',
+  },
+]
+
+const testimonialSlides = computed(() => {
+  const chunkSize = 3
+  const slides = []
+  for (let i = 0; i < testimonialCards.length; i += chunkSize) {
+    slides.push(testimonialCards.slice(i, i + chunkSize))
+  }
+  return slides
+})
+
+onMounted(async () => {
+  await loadLandingProfiles()
+})
+
+function toggleTestimonial(id) {
+  expandedTestimonials.value = {
+    ...expandedTestimonials.value,
+    [id]: !expandedTestimonials.value[id],
+  }
+}
 
 function nextTestimonial() {
   activeTestimonialIndex.value =
-    (activeTestimonialIndex.value + 1) % testimonialVideos.length
+    (activeTestimonialIndex.value + 1) % testimonialSlides.value.length
 }
 
 function prevTestimonial() {
   activeTestimonialIndex.value =
-    (activeTestimonialIndex.value - 1 + testimonialVideos.length) %
-    testimonialVideos.length
+    (activeTestimonialIndex.value - 1 + testimonialSlides.value.length) %
+    testimonialSlides.value.length
 }
 
 function onTouchStart(e) {
@@ -69,13 +129,51 @@ function onTouchEnd(e) {
   }
 }
 
-function handleNewsletterSubmit() {
-  // TODO: wire to backend or email service
-  if (newsletterEmail.value) {
+async function loadLandingProfiles() {
+  landingError.value = ''
+  landingLoading.value = true
+  try {
+    const data = await exploreService.fetchPublicProfiles({ skill: activeSkill.value, limit: 4, page: 1, sort: 'newest' })
+    landingProfiles.value = data.students || []
+  } catch {
+    landingProfiles.value = []
+    landingError.value = 'Failed to load students'
+  } finally {
+    landingLoading.value = false
+  }
+}
+
+async function selectSkill(skill) {
+  activeSkill.value = skill
+  await loadLandingProfiles()
+}
+
+function isValidEmail(v) {
+  return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(String(v || '').trim())
+}
+
+async function handleNewsletterSubmit() {
+  newsletterSuccess.value = false
+  newsletterError.value = ''
+  const email = String(newsletterEmail.value || '').trim()
+  if (!isValidEmail(email)) {
+    newsletterError.value = 'Enter a valid email address'
+    return
+  }
+  newsletterLoading.value = true
+  try {
+    await newsletterService.subscribe(email)
+    newsletterSuccess.value = true
+    toast.success('Subscribed! Check your inbox for updates.')
     newsletterEmail.value = ''
+  } catch (err) {
+    newsletterError.value = err.response?.data?.message || 'Subscription failed'
+  } finally {
+    newsletterLoading.value = false
   }
 }
 </script>
+
 
 <template>
   <div class="min-h-screen bg-linear-to-b from-slate-50 via-white to-slate-50">
@@ -148,149 +246,187 @@ function handleNewsletterSubmit() {
         </div>
         </div>
       </section>
-      <!-- Feature highlights (alternating) -->
+
+      <!-- Explore top courses -->
       <section class="bg-slate-50 py-12 sm:py-16">
         <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-          <div class="grid items-center gap-12 lg:grid-cols-2 lg:gap-16">
+          <div class="flex flex-col gap-4 sm:flex-row sm:items-end sm:justify-between">
             <div>
               <h2 class="text-3xl font-bold tracking-tight text-slate-900 sm:text-4xl">
-                A portfolio built for hiring teams
+                Explore top students
               </h2>
-              <p class="mt-4 text-lg text-slate-600">
-                Transform your academic work into a recruiting-ready profile. Showcase projects, tech stacks,
-                and impact in one place so hiring managers can quickly understand what you can do.
+              <p class="mt-2 text-slate-600">
+                Click a skill to instantly find students who are strong in that area.
               </p>
-              <ul class="mt-6 space-y-3 text-slate-700">
-                <li class="flex items-center gap-2">
-                  ✓ Outcome-focused project cards with tech, role, and results
-                </li>
-                <li class="flex items-center gap-2">
-                  ✓ Skill tags that make you searchable by stack and domain
-                </li>
-                <li class="flex items-center gap-2">
-                  ✓ Profiles anchored to your university for added trust
-                </li>
-              </ul>
             </div>
-            <div class="aspect-video overflow-hidden rounded-2xl bg-slate-200 shadow-lg">
-            <video class="w-full h-full object-cover" controls autoplay muted loop>
-              <source src="/public/skills bridge video.mp4" type="video/mp4">
-              Your browser does not support the video tag.</video>
+            <div class="flex flex-wrap gap-2">
+              <button
+                v-for="skill in skillChips"
+                :key="skill"
+                type="button"
+                class="rounded-full border px-3 py-1 text-xs font-semibold transition-colors"
+                :class="activeSkill === skill ? 'border-blue-600 bg-blue-600 text-white' : 'border-slate-200 bg-white text-slate-700 hover:bg-slate-100'"
+                @click="selectSkill(skill)"
+              >
+                {{ skill }}
+              </button>
             </div>
           </div>
-          <div class="mt-10 lg:mt-14 grid items-center gap-10 lg:grid-cols-2 lg:gap-14">
-            <div class="order-2 lg:order-1">
-              <div class="aspect-video overflow-hidden rounded-2xl bg-slate-200 shadow-lg">
-            <video class="w-full h-full object-cover" controls autoplay muted loop>
-              <source src="/public/skills bridge video.mp4" type="video/mp4">
-              Your browser does not support the video tag.</video>
+
+          <div class="mt-8">
+            <div v-if="landingLoading" class="flex justify-center py-10">
+              <BaseSpinner size="lg" />
+            </div>
+            <p v-else-if="landingError" class="text-center text-sm text-slate-600">{{ landingError }}</p>
+            <div v-else class="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+              <article
+                v-for="s in landingProfiles"
+                :key="s.id"
+                class="overflow-hidden rounded-2xl bg-white shadow-sm ring-1 ring-slate-200/70"
+              >
+                <div class="p-4">
+                  <div class="flex items-center gap-3">
+                    <div class="h-12 w-12 rounded-full bg-slate-200 overflow-hidden flex items-center justify-center text-slate-600 font-bold">
+                      <img v-if="s.image" :src="s.image" :alt="s.fullName" class="h-full w-full object-cover" />
+                      <span v-else>{{ (s.fullName || '?')[0] }}</span>
+                    </div>
+                    <div class="min-w-0">
+                      <p class="truncate font-semibold text-slate-900">{{ s.fullName }}</p>
+                      <p class="truncate text-sm text-slate-600">{{ s.university?.name || '' }}</p>
+                    </div>
+                  </div>
+                  <p v-if="s.bio" class="mt-3 text-sm text-slate-600 line-clamp-2">{{ s.bio }}</p>
+                  <div v-if="s.skills?.length" class="mt-3 flex flex-wrap gap-1">
+                    <span
+                      v-for="sk in (s.skills || []).slice(0, 4)"
+                      :key="sk"
+                      class="rounded-full bg-slate-100 px-2 py-0.5 text-xs font-semibold text-slate-700"
+                    >
+                      {{ sk }}
+                    </span>
+                  </div>
+                  <div class="mt-4 flex gap-2">
+                    <button
+                      type="button"
+                      class="flex-1 rounded-lg border border-slate-200 bg-white px-3 py-2 text-sm font-semibold text-slate-700 hover:bg-slate-50"
+                      @click="$router.push({ name: 'PublicProfile', params: { id: s.id } })"
+                    >
+                      View
+                    </button>
+                    <button
+                      type="button"
+                      class="flex-1 rounded-lg bg-blue-600 px-3 py-2 text-sm font-semibold text-white hover:bg-blue-700"
+                      @click="$router.push({ name: 'PublicProfile', params: { id: s.id }, hash: '#message' })"
+                    >
+                      Message
+                    </button>
+                  </div>
+                </div>
+              </article>
+              <div v-if="!landingProfiles.length" class="lg:col-span-4">
+                <p class="text-center text-sm text-slate-600">No public students found for this skill yet.</p>
               </div>
-            </div>
-            <div class="order-1 lg:order-2">
-              <h2 class="text-3xl font-bold tracking-tight text-black sm:text-4xl">
-                Control what recruiters see
-              </h2>
-              <p class="mt-4 text-lg text-black">
-                You decide when your profile is visible and what is shared. Turn discovery on when you’re exploring
-                roles, pause it when you’re not, without deleting your work or losing your network.
-              </p>
-              <ul class="mt-6 space-y-3 text-black">
-                <li class="flex items-center gap-2">
-                  ✓ One-click visibility toggle for Explore and search
-                </li>
-                <li class="flex items-center gap-2">
-                  ✓ Institution-backed identity for credible profiles
-                </li>
-                <li class="flex items-center gap-2">
-                  ✓ No subscriptions or placement fees for students
-                </li>
-              </ul>
-            </div>
-          </div>
-          <div class="mt-10 lg:mt-14 grid items-center gap-10 lg:grid-cols-2 lg:gap-14">
-            <div>
-              <h2 class="text-3xl font-bold tracking-tight text-slate-900 sm:text-4xl">
-                Be discoverable when it matters
-              </h2>
-              <p class="mt-4 text-lg text-black">
-                Recruiters search by university, skills, and tech stack to find candidates like you. When your profile
-                matches their brief, you show up—with context that makes it easy to reach out.
-              </p>
-              <ul class="mt-6 space-y-3 text-black">
-                <li class="flex items-center gap-2">
-                  ✓ Recruiter search by institution, skills, and technology
-                </li>
-                <li class="flex items-center gap-2">
-                  ✓ Direct interest from hiring teams and partners
-                </li>
-                <li class="flex items-center gap-2">
-                  ✓ Integrated with career offices for warm introductions
-                </li>
-              </ul>
-            </div>
-            <div class="aspect-video overflow-hidden rounded-2xl bg-slate-200 shadow-lg">
-          <video class="w-full h-full object-cover" controls autoplay muted loop>
-              <source src="/public/skills bridge video.mp4" type="video/mp4">
-              Your browser does not support the video tag.</video>
             </div>
           </div>
         </div>
       </section>
+      <!-- Feature highlights (alternating) -->
+      <!-- (removed feature highlights per request) -->
 
 
       <!-- Testimonials -->
-      <section class="bg-slate-50 py-14 sm:py-18">
+      <section class="bg-[#f3efe7] py-14 sm:py-18">
         <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <div class="text-center">
-            <h2 class="text-3xl font-bold tracking-tight text-slate-900 sm:text-4xl">What students & recruiters say</h2>
-            <p class="mx-auto mt-4 max-w-2xl text-lg text-black">
-              Real voices from our community.
+            <h2 class="text-3xl font-bold tracking-tight text-slate-900 sm:text-4xl">
+              Hear what other learners have to say
+            </h2>
+            <p class="mx-auto mt-4 max-w-2xl text-lg text-slate-700">
+              Real feedback from students, recruiters, and university partners using SkillsBridge.
             </p>
           </div>
+
           <div
-            class="mt-10 flex flex-col items-center gap-6 sm:mt-12"
+            class="mt-10"
             @touchstart="onTouchStart"
             @touchend="onTouchEnd"
           >
-            <div class="w-full max-w-3xl overflow-hidden rounded-2xl bg-slate-900 text-left shadow-xl">
-              <div class="relative aspect-video bg-slate-800">
-                <div class="absolute inset-0 flex items-center justify-center">
-                  <button
-                    type="button"
-                    class="flex h-16 w-16 items-center justify-center rounded-full bg-white/90 text-slate-900 shadow-lg hover:bg-white"
+            <div class="relative">
+              <div class="overflow-hidden">
+                <div
+                  class="flex transition-transform duration-500 ease-out"
+                  :style="{ transform: `translateX(-${activeTestimonialIndex * 100}%)` }"
+                >
+                  <div
+                    v-for="(slide, slideIdx) in testimonialSlides"
+                    :key="slideIdx"
+                    class="w-full shrink-0 px-1"
                   >
-                    <span class="ml-0.5 text-xl font-semibold">▶</span>
-                  </button>
-                </div>
- 
-      <div class="aspect-video rounded-xl overflow-hidden">
-        <video id="videoPlayer" class="w-full h-full object-cover" controls autoplay muted>
-         <source src="/public/skills bridge video.mp4" type="video/mp4">
-        </video>
-      </div>
-         <div class="flex items-center gap-2">
-            <button
-               type="button"
-               class="flex h-8 w-8 items-center justify-center rounded-full border border-slate-700 text-slate-200 hover:bg-slate-800"
-               @click="prevTestimonial">
-            </button>
-                  <button
-                    type="button"
-                    class="flex h-8 w-8 items-center justify-center rounded-full border border-slate-700 text-slate-200 hover:bg-slate-800"
-                    @click="nextTestimonial">
-                  </button>
+                    <div class="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+                      <article
+                        v-for="t in slide"
+                        :key="t.id"
+                        class="rounded-2xl bg-white shadow-sm ring-1 ring-slate-200/70"
+                      >
+                        <div class="p-6">
+                          <div class="text-2xl font-bold text-orange-500 leading-none">“</div>
+                          <p
+                            class="mt-3 text-sm leading-relaxed text-slate-700"
+                            :class="expandedTestimonials[t.id] ? '' : 'line-clamp-4'"
+                          >
+                            {{ t.quote }}
+                          </p>
+                          <button
+                            type="button"
+                            class="mt-4 text-sm font-semibold text-slate-700 underline underline-offset-4 hover:text-slate-900"
+                            @click="toggleTestimonial(t.id)"
+                          >
+                            <span v-if="expandedTestimonials[t.id]">Show Less</span>
+                            <span v-else>Show More</span>
+                          </button>
+                        </div>
+                        <div class="border-t border-slate-100 px-6 py-4">
+                          <div class="flex items-center gap-3">
+                            <div class="h-10 w-10 rounded-full bg-slate-200 ring-2 ring-white" />
+                            <div class="min-w-0">
+                              <p class="truncate text-sm font-semibold text-slate-900">{{ t.name }}</p>
+                              <p class="truncate text-xs text-slate-600">{{ t.location }}</p>
+                            </div>
+                          </div>
+                        </div>
+                      </article>
+                    </div>
+                  </div>
                 </div>
               </div>
-          </div>
-            <div class="flex items-center justify-center gap-2">
+
               <button
-                v-for="(video, index) in testimonialVideos"
-                :key="video.id"
+                type="button"
+                class="absolute left-0 top-1/2 hidden -translate-y-1/2 rounded-full bg-white/80 p-2 text-slate-700 shadow ring-1 ring-slate-200 hover:bg-white sm:inline-flex"
+                aria-label="Previous testimonials"
+                @click="prevTestimonial"
+              >
+                ‹
+              </button>
+              <button
+                type="button"
+                class="absolute right-0 top-1/2 hidden -translate-y-1/2 rounded-full bg-white/80 p-2 text-slate-700 shadow ring-1 ring-slate-200 hover:bg-white sm:inline-flex"
+                aria-label="Next testimonials"
+                @click="nextTestimonial"
+              >
+                ›
+              </button>
+            </div>
+
+            <div class="mt-6 flex items-center justify-center gap-2">
+              <button
+                v-for="(s, index) in testimonialSlides"
+                :key="index"
                 type="button"
                 class="h-2.5 rounded-full transition-all"
-                :class="index === activeTestimonialIndex ? 'w-6 bg-slate-500' : 'w-2.5 bg-slate-300'"
+                :class="index === activeTestimonialIndex ? 'w-6 bg-orange-500' : 'w-2.5 bg-slate-300'"
                 @click="activeTestimonialIndex = index"
-                :aria-label="`Go to testimonial ${index + 1}`"
+                :aria-label="`Go to slide ${index + 1}`"
               />
             </div>
           </div>
@@ -306,7 +442,7 @@ function handleNewsletterSubmit() {
               Learn how students build portfolios and get discovered by recruiters.
             </p>
           </div>
-          <div class="mt-12 grid gap-8 lg:grid-cols-2">
+          <div class="mt-12 grid gap-6 lg:grid-cols-3">
             <div class="overflow-hidden rounded-2xl bg-slate-200 shadow-lg">
               <div class="aspect-video flex items-center justify-center text-black">
                <video class="w-full h-full object-cover" controls autoplay muted loop>
@@ -327,6 +463,18 @@ function handleNewsletterSubmit() {
               <div class="bg-white p-4">
                 <p class="font-semibold text-slate-900">Student success stories</p>
                 <p class="text-sm text-black">Hear from students who landed roles through SkillsBridge</p>
+              </div>
+            </div>
+            <div class="overflow-hidden rounded-2xl bg-slate-200 shadow-lg">
+              <div class="aspect-video flex items-center justify-center text-slate-500">
+                <video class="w-full h-full object-cover" controls autoplay muted loop>
+                  <source src="/public/skills bridge video.mp4" type="video/mp4">
+                  Your browser does not support the video tag.
+                </video>
+              </div>
+              <div class="bg-white p-4">
+                <p class="font-semibold text-slate-900">Publishing your profile</p>
+                <p class="text-sm text-black">Turn visibility on and share your portfolio link</p>
               </div>
             </div>
           </div>
@@ -449,73 +597,7 @@ function handleNewsletterSubmit() {
   </div>
 </section>
 
- <section  class="py-20 bg-white">
-  <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-
-    <!-- Section Header -->
-    <div class="mx-auto max-w-3xl text-center">
-      <h2 class="text-3xl sm:text-4xl font-bold tracking-tight text-black">
-        From Skill to Opportunity
-      </h2>
-      <p class="mt-4 text-lg text-black">
-        SkillsBridge connects what you know with the opportunities that need it.
-        Turn your abilities, projects, and experiences into a profile that helps
-        explorers and organizations discover you.
-      </p>
-    </div>
-
-    <!-- Feature Grid -->
-    <div class="mt-16 grid gap-8 md:grid-cols-2 lg:grid-cols-3">
-
-      <!-- Feature 1 -->
-      <div class="rounded-2xl bg-white p-8 shadow-lg ring-1 ring-slate-200/80 transition hover:-translate-y-1 hover:shadow-xl">
-        <div class="flex h-12 w-12 items-center justify-center rounded-xl bg-blue-100 font-bold text-blue-600">
-          1
-        </div>
-        <h3 class="mt-5 text-lg font-semibold text-slate-900">
-          Showcase your skills
-        </h3>
-        <p class="mt-3 text-sm leading-relaxed text-slate-600">
-          Build a structured portfolio that highlights your skills,
-          technologies, and projects. Show what you can actually build
-          instead of relying only on a traditional resume.
-        </p>
-      </div>
-
-      <!-- Feature 2 -->
-      <div class="rounded-2xl bg-white p-8 shadow-lg ring-1 ring-slate-200/80 transition hover:-translate-y-1 hover:shadow-xl">
-        <div class="flex h-12 w-12 items-center justify-center rounded-xl bg-blue-100 font-bold text-blue-600">
-          2
-        </div>
-        <h3 class="mt-5 text-lg font-semibold text-slate-900">
-          Be discovered
-        </h3>
-        <p class="mt-3 text-sm leading-relaxed text-slate-600">
-          Recruiters and explorers search by university, skills, and
-          technology stacks. When your profile matches their needs,
-          you appear instantly in their results.
-        </p>
-      </div>
-
-      <!-- Feature 3 -->
-      <div class="rounded-2xl bg-white p-8 shadow-lg ring-1 ring-slate-200/80 transition hover:-translate-y-1 hover:shadow-xl">
-        <div class="flex h-12 w-12 items-center justify-center rounded-xl bg-blue-100 font-bold text-blue-600">
-          3
-        </div>
-        <h3 class="mt-5 text-lg font-semibold text-slate-900">
-          Unlock opportunities
-        </h3>
-        <p class="mt-3 text-sm leading-relaxed text-slate-600">
-          From internships to full-time roles, your profile becomes a
-          bridge between your skills and organizations searching for
-          talented students and graduates.
-        </p>
-      </div>
-
-    </div>
-
-  </div>
-</section>
+      <!-- (removed "From Skill to Opportunity" per request) -->
       <!-- Newsletter signup -->
       <section class="border-t border-slate-200 bg-white py-10 sm:py-12">
         <div class="mx-auto max-w-2xl px-4 text-center sm:px-6 lg:px-8">
@@ -530,8 +612,10 @@ function handleNewsletterSubmit() {
               placeholder="you@university.edu"
               class="min-w-0 flex-1 rounded-lg border border-slate-300 px-4 py-2.5 text-slate-900 placeholder:text-slate-400 focus:border-primary-500 focus:outline-none focus:ring-1 focus:ring-primary-500 sm:max-w-xs"
             />
-            <BaseButton type="submit">Subscribe</BaseButton>
+            <BaseButton type="submit" :loading="newsletterLoading">Subscribe</BaseButton>
           </form>
+          <p v-if="newsletterError" class="mt-3 text-sm text-red-600">{{ newsletterError }}</p>
+          <p v-else-if="newsletterSuccess" class="mt-3 text-sm text-green-700">Thanks — you’re subscribed.</p>
         </div>
       </section>
 
