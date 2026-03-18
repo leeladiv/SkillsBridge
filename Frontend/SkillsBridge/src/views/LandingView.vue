@@ -429,8 +429,8 @@ async function handleNewsletterSubmit() {
           <div class="mt-12 grid gap-6 lg:grid-cols-3">
             <div class="overflow-hidden rounded-2xl bg-slate-200 shadow-lg">
               <div class="aspect-video flex items-center justify-center text-black">
-               <video class="w-full h-full object-cover" controls  muted loop>
-              <source src="/public/skills brisge video 1.mp4" type="video/mp4">
+               <video class="w-full h-full object-cover" controls autoplay muted loop>
+              <source src="/public/skills bridge video.mp4" type="video/mp4">
               Your browser does not support the video tag.</video>
               </div>
               <div class="bg-white p-4">
@@ -440,8 +440,8 @@ async function handleNewsletterSubmit() {
             </div>
             <div class="overflow-hidden rounded-2xl bg-slate-200 shadow-lg">
               <div class="aspect-video flex items-center justify-center text-slate-500">
-                <video class="w-full h-full object-cover" controls muted loop>
-              <source src="/public/leela video.mp4" type="video/mp4">
+                <video class="w-full h-full object-cover" controls autoplay muted loop>
+              <source src="/public/skills bridge video.mp4" type="video/mp4">
               Your browser does not support the video tag.</video>
               </div>
               <div class="bg-white p-4">
@@ -451,8 +451,8 @@ async function handleNewsletterSubmit() {
             </div>
             <div class="overflow-hidden rounded-2xl bg-slate-200 shadow-lg">
               <div class="aspect-video flex items-center justify-center text-slate-500">
-                <video class="w-full h-full object-cover" controls muted loop>
-                  <source src="/public/pato.mp4" type="video/mp4">
+                <video class="w-full h-full object-cover" controls autoplay muted loop>
+                  <source src="/public/skills bridge video.mp4" type="video/mp4">
                   Your browser does not support the video tag.
                 </video>
               </div>
