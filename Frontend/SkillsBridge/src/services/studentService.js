@@ -49,3 +49,8 @@ export async function uploadProjectFile(projectId, file) {
   })
   return data
 }
+
+export async function deleteAccount() {
+  const { data } = await api.delete(`${STUDENT_PREFIX}/me`)
+  return data
+}

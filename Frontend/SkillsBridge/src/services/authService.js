@@ -22,6 +22,16 @@ export async function resendVerification(email) {
   return data
 }
 
+export async function forgotPassword(email) {
+  const { data } = await api.post(`${AUTH_PREFIX}/forgot-password`, { email })
+  return data
+}
+
+export async function resetPassword(payload) {
+  const { data } = await api.post(`${AUTH_PREFIX}/reset-password`, payload)
+  return data
+}
+
 export async function logout() {
   try {
     await api.post(`${AUTH_PREFIX}/logout`)

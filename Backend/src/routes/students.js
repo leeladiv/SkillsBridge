@@ -17,6 +17,7 @@ router.put('/me/skills', authenticate, authorizeRole('student', 'admin'), valida
 router.patch('/me/visibility', authenticate, authorizeRole('student', 'admin'), ctrl.patchMeVisibility)
 router.get('/:userId/profile', authenticate, authorizeRole('student', 'admin'), ctrl.getMeProfileByUserId)
 router.patch('/:userId/visibility', authenticate, authorizeRole('student', 'admin'), ctrl.patchVisibilityByUserId)
+router.delete('/me', authenticate, authorizeRole('student', 'admin'), ctrl.deleteMe)
 
 function ensureOwnUser(req, res, next) {
   const uid = req.params.userId === 'me' ? req.user.id : req.params.userId

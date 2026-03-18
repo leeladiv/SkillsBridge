@@ -21,6 +21,8 @@ CREATE TABLE IF NOT EXISTS User (
   emailVerified INTEGER NOT NULL DEFAULT 0,
   verificationToken TEXT,
   verificationTokenExpires TEXT,
+  passwordResetToken TEXT,
+  passwordResetTokenExpires TEXT,
   universityId TEXT,
   createdAt TEXT NOT NULL DEFAULT (datetime('now')),
   updatedAt TEXT NOT NULL DEFAULT (datetime('now')),
@@ -68,3 +70,24 @@ CREATE TABLE IF NOT EXISTS UserSkill (
 );
 CREATE INDEX IF NOT EXISTS idx_userSkill_userId ON UserSkill(userId);
 CREATE INDEX IF NOT EXISTS idx_userSkill_skillId ON UserSkill(skillId);
+
+CREATE TABLE IF NOT EXISTS Message (
+  id TEXT PRIMARY KEY,
+  toUserId TEXT NOT NULL,
+  fromName TEXT NOT NULL,
+  fromEmail TEXT NOT NULL,
+  subject TEXT,
+  body TEXT NOT NULL,
+  createdAt TEXT NOT NULL DEFAULT (datetime('now')),
+  readAt TEXT,
+  FOREIGN KEY (toUserId) REFERENCES User(id) ON DELETE CASCADE
+);
+CREATE INDEX IF NOT EXISTS idx_message_toUserId ON Message(toUserId);
+CREATE INDEX IF NOT EXISTS idx_message_createdAt ON Message(createdAt);
+
+CREATE TABLE IF NOT EXISTS NewsletterSubscriber (
+  id TEXT PRIMARY KEY,
+  email TEXT NOT NULL UNIQUE,
+  createdAt TEXT NOT NULL DEFAULT (datetime('now'))
+);
+CREATE INDEX IF NOT EXISTS idx_newsletter_email ON NewsletterSubscriber(email);

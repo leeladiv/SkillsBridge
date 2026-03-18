@@ -107,10 +107,10 @@ async function submitUniversityRequest() {
     >
       <!-- Left marketing panel -->
       <section
-        class="relative flex w-full flex-col justify-between bg-blue-600 px-8 py-10 text-white sm:w-[40%] sm:min-w-[320px] sm:px-12 md:max-w-md"
+        class="relative flex w-full flex-col justify-between bg-blue-600 px-8 py-10 text-white sm:w-1/2 sm:min-w-[320px] sm:px-12"
       >
         <div>
-          <!-- Logo placeholder (replace with your logo image) -->
+          <!-- Logo  -->
           <div class="flex items-center gap-3">
             <img src="/public/SkillsBridge Logo1.png" alt="skillsbridgelogo" class="h-10 w-auto object-contain" />
           </div>

@@ -13,7 +13,8 @@ export async function getStudents(req, res, next) {
     const offset = (page - 1) * limit
     const university = req.query.university || null
     const skill = req.query.skill || null
-    const { students, total } = await db.getPublicStudents({ universityId: university, skill, limit, offset })
+    const sort = req.query.sort || 'newest'
+    const { students, total } = await db.getPublicStudents({ universityId: university, skill, sort, limit, offset })
     const totalPages = Math.ceil(total / limit) || 1
     const items = students.map((u) => ({
       id: u.id,

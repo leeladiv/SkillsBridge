@@ -1,6 +1,7 @@
 import { defineStore } from 'pinia'
 import { ref } from 'vue'
 import * as studentService from '../services/studentService'
+import * as messageService from '../services/messageService'
 
 export const useStudentStore = defineStore('student', () => {
   const profile = ref(null)
@@ -9,6 +10,8 @@ export const useStudentStore = defineStore('student', () => {
   const visibility = ref(true)
   const loading = ref(false)
   const error = ref(null)
+  const inbox = ref([])
+  const inboxLoading = ref(false)
 
   async function fetchProfile() {
     loading.value = true
@@ -107,6 +110,25 @@ export const useStudentStore = defineStore('student', () => {
     return data
   }
 
+  async function fetchInbox(params = {}) {
+    inboxLoading.value = true
+    try {
+      const data = await messageService.fetchInbox(params)
+      inbox.value = data.messages || []
+      return inbox.value
+    } finally {
+      inboxLoading.value = false
+    }
+  }
+
+  async function markMessageRead(messageId) {
+    const data = await messageService.markRead(messageId)
+    const updated = data.message
+    const idx = inbox.value.findIndex((m) => m.id === updated.id)
+    if (idx !== -1) inbox.value[idx] = updated
+    return updated
+  }
+
   function $reset() {
     profile.value = null
     projects.value = []
@@ -114,6 +136,8 @@ export const useStudentStore = defineStore('student', () => {
     visibility.value = true
     loading.value = false
     error.value = null
+    inbox.value = []
+    inboxLoading.value = false
   }
 
   return {
@@ -123,6 +147,8 @@ export const useStudentStore = defineStore('student', () => {
     visibility,
     loading,
     error,
+    inbox,
+    inboxLoading,
     fetchProfile,
     updateProfile,
     fetchProjects,
@@ -131,6 +157,8 @@ export const useStudentStore = defineStore('student', () => {
     removeProject,
     setVisibility,
     uploadProjectFile,
+    fetchInbox,
+    markMessageRead,
     $reset,
   }
 })

@@ -3,6 +3,7 @@ import jwt from 'jsonwebtoken'
 import { config } from '../config/index.js'
 import * as db from '../db/index.js'
 import { success, error } from '../utils/response.js'
+import { sendPasswordResetEmail } from '../utils/email.js'
 import {
   sendVerificationEmail,
   isEmailConfigured,
@@ -10,6 +11,7 @@ import {
   verificationExpiresAt,
   buildVerifyUrl,
 } from '../modules/emailVerification/index.js'
+import crypto from 'crypto'
 
 function signToken(userId, role) {
   return jwt.sign(
@@ -143,6 +145,70 @@ export async function resendVerification(req, res, next) {
       verifyUrl,
       message: isEmailConfigured() ? 'Verification email sent.' : 'Verification link generated. Use the link below.',
     })
+  } catch (e) {
+    next(e)
+  }
+}
+
+function passwordResetExpiresAt() {
+  const d = new Date()
+  d.setHours(d.getHours() + 1)
+  return d.toISOString()
+}
+
+function buildResetUrl(token) {
+  const baseUrl = process.env.FRONTEND_URL || 'http://localhost:5173'
+  return `${baseUrl}/reset-password?token=${token}`
+}
+
+export async function forgotPassword(req, res, next) {
+  try {
+    const { email } = req.body
+    const user = await db.getUserByEmail(email)
+
+    // Always return success (avoid account enumeration)
+    if (!user) {
+      return success(res, { message: 'If an account exists for that email, a reset link has been sent.' })
+    }
+
+    const token = crypto.randomBytes(16).toString('hex')
+    const expires = passwordResetExpiresAt()
+    await db.updateUser(user.id, { passwordResetToken: token, passwordResetTokenExpires: expires })
+
+    const resetUrl = buildResetUrl(token)
+
+    if (isEmailConfigured()) {
+      sendPasswordResetEmail(user.email, user.fullName, resetUrl)
+        .then((info) => console.log('Password reset email sent:', info?.messageId || '(no messageId)'))
+        .catch((err) => console.error('Failed to send password reset email:', err.message))
+    }
+
+    return success(res, {
+      resetToken: isEmailConfigured() ? undefined : token,
+      resetUrl,
+      message: isEmailConfigured()
+        ? 'If an account exists for that email, a reset link has been sent.'
+        : 'Reset link generated. Use the link below (configure email to send it automatically).',
+    })
+  } catch (e) {
+    next(e)
+  }
+}
+
+export async function resetPassword(req, res, next) {
+  try {
+    const { token, password } = req.body
+    const user = await db.getUserByPasswordResetToken(token)
+    if (!user) return error(res, 'Invalid or expired reset link. Please request a new one.', 400)
+
+    const hash = await bcrypt.hash(password, config.bcryptRounds)
+    await db.updateUser(user.id, {
+      password: hash,
+      passwordResetToken: null,
+      passwordResetTokenExpires: null,
+    })
+
+    return success(res, { message: 'Password updated. You can now log in.' })
   } catch (e) {
     next(e)
   }

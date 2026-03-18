@@ -2,6 +2,7 @@
 import { useRouter } from 'vue-router'
 import BaseCard from '../base/BaseCard.vue'
 import BaseTag from '../base/BaseTag.vue'
+import BaseButton from '../base/BaseButton.vue'
 
 const props = defineProps({
   student: { type: Object, required: true },
@@ -14,12 +15,17 @@ const skills = (props.student.skills || []).slice(0, 4)
 function goProfile() {
   router.push({ name: 'PublicProfile', params: { id: props.student.id } })
 }
+
+function messageStudent(e) {
+  e?.stopPropagation?.()
+  router.push({ name: 'PublicProfile', params: { id: props.student.id }, hash: '#message' })
+}
 </script>
 
 <template>
   <BaseCard padding="default" class="cursor-pointer hover:shadow-md transition-shadow h-full flex flex-col" @click="goProfile">
     <div class="flex gap-4">
-      <div class="flex-shrink-0 h-14 w-14 rounded-full bg-slate-200 flex items-center justify-center text-xl text-slate-600 overflow-hidden">
+      <div class="shrink-0 h-14 w-14 rounded-full bg-slate-200 flex items-center justify-center text-xl text-slate-600 overflow-hidden">
         <img v-if="student.image" :src="student.image" :alt="student.fullName" class="h-full w-full object-cover" />
         <span v-else>{{ (student.fullName || '?')[0] }}</span>
       </div>
@@ -31,6 +37,11 @@ function goProfile() {
           <BaseTag v-for="s in skills" :key="s" size="sm">{{ s }}</BaseTag>
         </div>
       </div>
+    </div>
+
+    <div class="mt-4 flex gap-2">
+      <BaseButton size="sm" variant="secondary" class="flex-1" @click.stop="goProfile">View</BaseButton>
+      <BaseButton size="sm" class="flex-1" @click="messageStudent">Message</BaseButton>
     </div>
   </BaseCard>
 </template>

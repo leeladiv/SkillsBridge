@@ -26,6 +26,11 @@ const alertError = ref('')
 const showResendLink = ref(false)
 
 const redirectTo = computed(() => route.query.redirect || '/dashboard')
+const prefillEmail = computed(() => String(route.query.email || ''))
+
+if (prefillEmail.value && !form.value.email) {
+  form.value.email = prefillEmail.value
+}
 
 function validate() {
   errors.value = {}
@@ -90,7 +95,7 @@ async function resendVerification() {
     >
       <!-- Left panel (same structure as signup) -->
       <section
-        class="relative flex w-full flex-col justify-between bg-blue-600 px-8 py-10 text-white sm:w-[40%] sm:min-w-[320px] sm:px-12 md:max-w-md"
+        class="relative flex w-full flex-col justify-between bg-blue-600 px-8 py-10 text-white sm:w-1/2 sm:min-w-[320px] sm:px-12"
       >
         <div>
           <!-- Logo placeholder -->
@@ -166,6 +171,15 @@ async function resendVerification() {
                 :error="errors.password"
                 required
               />
+              <div class="flex items-center justify-end">
+                <button
+                  type="button"
+                  class="text-sm font-semibold text-primary-600 hover:underline"
+                  @click="$router.push({ name: 'ForgotPassword', query: { email: form.email } })"
+                >
+                  Forgot password?
+                </button>
+              </div>
               <BaseButton type="submit" class="mt-2 w-full" :loading="loading">
                 Log in
               </BaseButton>
