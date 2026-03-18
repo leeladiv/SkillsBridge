@@ -5,10 +5,11 @@ import AppNavbar from '../components/layout/AppNavbar.vue'
 import AppFooter from '../components/layout/AppFooter.vue'
 
 const team = [
-  { name: 'Ansu Konneh', role: 'Founder / Product', bio: 'Building a platform that turns student skills into real opportunities.' },
-  { name: 'Team Member', role: 'Engineering', bio: 'Focused on performance, reliability, and delightful UX.' },
-  { name: 'Team Member', role: 'Design', bio: 'Designing modern, recruiter-friendly profiles.' },
-  { name: 'Team Member', role: 'Partnerships', bio: 'Connecting universities, students, and employers.' },
+  { name: 'Ansu Konneh', role: 'Member / Engineer', bio: 'Building a platform that turns student skills into real opportunities.' },
+  { name: 'Leela Koenig', role: 'Member / Engineer', bio: 'Focused on performance, reliability, and delightful UX.' },
+  { name: 'HonestPato Youdebo', role: 'Member / Designer', bio: 'I turn ideas into clear, functional visuals.' },
+  { name: 'David D. Samolu', role: 'Member / Colorist', bio: 'From correction to creative grade-commericials, sounds and videos.' },
+  { name: 'Varro Smith', role: 'Member / Engineer', bio: 'Full-stack engineer focused on clean code, solid architecture, and user experience.' }
 ]
 </script>
 
@@ -76,7 +77,7 @@ const team = [
         <h2 class="text-xl font-semibold text-slate-900">Our story</h2>
         <p class="text-slate-700">
           SkillsBridge started as a practical idea: help students turn coursework and projects into a profile that
-          hiring teams can scan quickly—and understand deeply.
+          hiring teams can scan quickly and understand deeply.
         </p>
         <p class="text-slate-700">
           Today, we’re building tools for students, career offices, and partners to collaborate around the same goal:
@@ -88,8 +89,8 @@ const team = [
       <section class="mt-14 border-t border-slate-200 pt-10 space-y-6">
         <h2 class="text-xl font-semibold text-slate-900">Who {{ APP_NAME }} is for</h2>
         <p class="text-slate-700">
-          We focus on two groups: students building their first professional presence, and the people who help
-          them find opportunities.
+          We focus on two groups: students building their first professional presence, and people who need help
+          to find opportunities.
         </p>
         <div class="space-y-4 text-slate-700">
           <p>
@@ -107,11 +108,11 @@ const team = [
 
       <!-- Team -->
       <section class="mt-14 border-t border-slate-200 pt-10">
-        <h2 class="text-xl font-semibold text-slate-900">Team</h2>
-        <p class="mt-2 text-slate-700">
+        <h2 class="text-2xl font-semibold text-slate-900">Team</h2>
+        <p class="m-4 text-lg text-slate-800">
           Meet the people building SkillsBridge.
         </p>
-        <div class="mt-6 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+        <div class="mt-6 grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
           <div
             v-for="m in team"
             :key="m.name + m.role"
@@ -124,19 +125,20 @@ const team = [
               <div class="min-w-0">
                 <p class="truncate font-semibold text-slate-900">{{ m.name }}</p>
                 <p class="truncate text-xs font-semibold text-slate-500">{{ m.role }}</p>
-              </div>
+              </div> 
             </div>
-            <p class="mt-3 text-sm text-slate-600">{{ m.bio }}</p>
+            <br>
+            <p class="mt-3 text-sm text-slate-600">"{{ m.bio }}"</p>
           </div>
         </div>
       </section>
 
       <!-- Final CTA -->
       <section class="mt-14">
-        <div class="rounded-3xl bg-primary-600 px-6 py-10 text-center text-white shadow-sm">
+        <div class="rounded-3xl bg-primary-800 px-6 py-10 text-center text-blue-500 shadow-md">
           <h2 class="text-2xl font-bold sm:text-3xl">Ready to be discovered?</h2>
-          <p class="mx-auto mt-3 max-w-2xl text-primary-100">
-            Create a portfolio that highlights your projects and skills, and let recruiters message you directly.
+          <p class="mx-auto mt-3 text-lg text-primary-100">
+            Create a portfolio that highlights your projects and skills, and let explorers message you directly.
           </p>
           <div class="mt-6 flex flex-wrap justify-center gap-3">
             <BaseButton variant="inverse" @click="$router.push({ name: 'Register' })">Get started</BaseButton>

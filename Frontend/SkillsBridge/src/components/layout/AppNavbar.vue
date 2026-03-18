@@ -148,8 +148,8 @@ onUnmounted(() => {
         aria-label="Main navigation"
       >
         <button
-  type="button"
-  class="text-sm font-medium text-slate-600 rounded px-2 py-1
+         type="button"
+         class="text-sm font-medium text-slate-600 rounded px-2 py-1
          hover:text-white hover:bg-blue-600
          cursor-pointer
          transition-colors duration-300

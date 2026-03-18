@@ -24,16 +24,18 @@ const landingError = ref('')
 const toast = useToast()
 
 const skillChips = [
-  'JavaScript',
-  'Vue.js',
-  'React',
-  'Node.js',
-  'Python',
-  'SQL',
+  'Programming',
+  'Research',
+  'Critical Thinking & Problem Solving',
+  'Communication',
+  'Leadership',
+  'Accounting & Finance',
   'Data Analysis',
   'Machine Learning',
-  'UI/UX',
+  'Art & Design',
   'Cybersecurity',
+  'Project Management',
+  'Public Speaking',
 ]
 
 // Note: navigation happens in template via $router.push.
@@ -188,7 +190,7 @@ async function handleNewsletterSubmit() {
             <p class="text-md font-semibold uppercase text-blue-500 tracking-wider text-primary-600 mt-0">
               Student Skills & Portfolio Platform
             </p>
-            <h1 class="mt-4 text-4xl font-bold tracking-tight text-black sm:text-5xl lg:text-6xl ">
+            <h1 class="mt-4 text-4xl font-bold tracking-tight text-black sm:text-4xl lg:text-5xl ">
               Turn your Skills & Degree into   opportunities
               <span class="bg-linear-to-r from-primary-600 text-blue-700 to-academic-navy bg-clip-text text-3xl">
                
@@ -252,14 +254,14 @@ async function handleNewsletterSubmit() {
   <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
     
     <!-- Header -->
-    <div class="mb-6">
-      <h2 class="text-3xl items-center justify-center font-bold tracking-tight text-slate-900 sm:text-4xl">
+    <div class="mb-8">
+      <h2 class="text-3xl flex justify-center font-bold tracking-tight text-slate-900 sm:text-4xl">
         Explore Top Students
       </h2>
     </div>
 
     <!-- Skill Buttons -->
-    <div class="flex flex-wrap gap-3 mb-8">
+    <div class="flex flex-wrap justify-center gap-3 mb-8">
       <button
         v-for="skill in skillChips"
         :key="skill"
@@ -376,21 +378,14 @@ async function handleNewsletterSubmit() {
                         class="rounded-2xl bg-white shadow-sm ring-1 ring-slate-200/70"
                       >
                         <div class="p-6">
-                          <div class="text-2xl font-bold text-orange-500 leading-none">“</div>
+                          <div class="text-2xl font-bold text-blue-600 leading-none">“</div>
                           <p
                             class="mt-3 text-sm leading-relaxed text-slate-700"
                             :class="expandedTestimonials[t.id] ? '' : 'line-clamp-4'"
                           >
                             {{ t.quote }}
                           </p>
-                          <button
-                            type="button"
-                            class="mt-4 text-sm font-semibold text-slate-700 underline underline-offset-4 hover:text-slate-900"
-                            @click="toggleTestimonial(t.id)"
-                          >
-                            <span v-if="expandedTestimonials[t.id]">Show Less</span>
-                            <span v-else>Show More</span>
-                          </button>
+
                         </div>
                         <div class="border-t border-slate-100 px-6 py-4">
                           <div class="flex items-center gap-3">
@@ -411,8 +406,8 @@ async function handleNewsletterSubmit() {
                 v-for="(s, index) in testimonialSlides"
                 :key="index"
                 type="button"
-                class="h-2.5 rounded-full transition-all"
-                :class="index === activeTestimonialIndex ? 'w-6 bg-orange-500' : 'w-2.5 bg-slate-300'"
+                class="h-2.5 rounded-full transition-all gap-2"
+                :class="index === activeTestimonialIndex ? 'w-3 bg-blue-500' : 'w-4 bg-slate-400'"
                 @click="activeTestimonialIndex = index"
                 :aria-label="`Go to slide ${index + 1}`"
               />
@@ -434,7 +429,7 @@ async function handleNewsletterSubmit() {
             <div class="overflow-hidden rounded-2xl bg-slate-200 shadow-lg">
               <div class="aspect-video flex items-center justify-center text-black">
                <video class="w-full h-full object-cover" controls autoplay muted loop>
-              <source src="/public/skills bridge video.mp4" type="video/mp4">
+              <source src="/public/Ansu.mp4" type="video/mp4">
               Your browser does not support the video tag.</video>
               </div>
               <div class="bg-white p-4">
@@ -445,7 +440,7 @@ async function handleNewsletterSubmit() {
             <div class="overflow-hidden rounded-2xl bg-slate-200 shadow-lg">
               <div class="aspect-video flex items-center justify-center text-slate-500">
                 <video class="w-full h-full object-cover" controls autoplay muted loop>
-              <source src="/public/skills bridge video.mp4" type="video/mp4">
+              <source src="/public/Pato.mp4" type="video/mp4">
               Your browser does not support the video tag.</video>
               </div>
               <div class="bg-white p-4">
@@ -456,7 +451,7 @@ async function handleNewsletterSubmit() {
             <div class="overflow-hidden rounded-2xl bg-slate-200 shadow-lg">
               <div class="aspect-video flex items-center justify-center text-slate-500">
                 <video class="w-full h-full object-cover" controls autoplay muted loop>
-                  <source src="/public/skills bridge video.mp4" type="video/mp4">
+                  <source src="/public/Leela.mp4" type="video/mp4">
                   Your browser does not support the video tag.
                 </video>
               </div>
