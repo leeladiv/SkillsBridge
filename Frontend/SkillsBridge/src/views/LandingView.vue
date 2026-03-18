@@ -43,41 +43,41 @@ const testimonialCards = [
     id: 1,
     quote:
       "SkillsBridge made my projects look professional. Recruiters didn’t just see my degree — they saw what I can build.",
-    name: 'Kathleen B.',
-    meta: 'Computer Science Student',
-    location: 'New Hampshire',
+    name: 'Kathleen B. Robert',
+    meta: 'University of Liberia',
+    location: 'Monrovia',
   },
   {
     id: 2,
     quote:
       "I can filter by skills and university, then review real projects. It’s the fastest way I’ve found strong student talent.",
     name: 'Kyung B.',
-    meta: 'Technical Recruiter',
-    location: 'Maryland',
+    meta: 'African Methodist Episcopal University',
+    location: 'Monrovia',
   },
   {
     id: 3,
     quote:
       "Students finally have one place to organize coursework, capstones, and projects — and it’s easy for employers to review.",
     name: 'Francisco R.',
-    meta: 'Career Partner',
-    location: 'Spain',
+    meta: 'African Methodist Episcopal University',
+    location: 'Monrovia',
   },
   {
     id: 4,
     quote:
       'Publishing my profile helped me get inbound messages after I added two projects and updated my skills.',
     name: 'Amina K.',
-    meta: 'Data Science Student',
-    location: 'Monrovia',
+    meta: 'Cuttington University',
+    location: 'Bong County',
   },
   {
     id: 5,
     quote:
       'The portfolio format is clean. I can evaluate impact and tech stack without opening five different links.',
     name: 'Jordan P.',
-    meta: 'Hiring Manager',
-    location: 'Remote',
+    meta: 'Notre Dame University',
+    location: 'Monrovia',
   },
 ]
 
@@ -194,12 +194,12 @@ async function handleNewsletterSubmit() {
                
               </span>
             </h1>
-            <p class="mt-6 sm:text-1xl lg:text-2xl leading-8  font-sans text-black">
+            <p class="mt-6 sm:text-2xl lg:text-2xl leading-8  font-sans text-black">
               {{ APP_NAME }} connects talented students with recruiters. Build a professional portfolio,
               showcase your projects and skills, and get discovered by companies looking for your exact profile all
               within your Schools community.
             </p>
-            <p class="mt-3 italic text-lg font-serif text-black">
+            <p class="mt-3 italic text-lg text-black">
               One profile. One place. Your next opportunity starts here.
             </p>
             <div class="mt-10 flex flex-wrap items-center justify-center text-black gap-4">
@@ -215,7 +215,7 @@ async function handleNewsletterSubmit() {
         </section>
 
       <!-- Partner logos grid -->
-      <section class="border-y border-slate-200/80 bg-white py-8 sm:py-10">
+      <section class="border-y border-slate-200/80 bg-white py-10 sm:py-12">
         <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <h2 class="text-center text-2xl font-bold tracking-tight text-slate-900 sm:text-3xl">
             Trusted by leading institutions
@@ -247,24 +247,26 @@ async function handleNewsletterSubmit() {
         </div>
       </section>
 
-      <!-- Explore top courses -->
-      <section class="bg-slate-50 py-12 sm:py-16">
-  <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-    
+      <!-- Explore top students -->
+      <section class="bg-slate-50 py-14 sm:py-18">
+  <div class="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
     <!-- Header -->
-    <div class="mb-6">
-      <h2 class="text-3xl items-center justify-center font-bold tracking-tight text-slate-900 sm:text-4xl">
+    <div class="mb-8 flex flex-col items-center text-center">
+      <h2 class="text-3xl font-bold tracking-tight text-slate-900 sm:text-4xl">
         Explore Top Students
       </h2>
+      <p class="mt-2 max-w-2xl text-sm text-slate-600 sm:text-base">
+        Pick a skill to instantly discover students who are strong in that area.
+      </p>
     </div>
 
     <!-- Skill Buttons -->
-    <div class="flex flex-wrap gap-3 mb-8">
+    <div class="flex flex-wrap justify-center gap-3 mb-10">
       <button
         v-for="skill in skillChips"
         :key="skill"
         type="button"
-        class="rounded-full px-4 py-2 text-xs font-semibold transition-all duration-300 transform hover:scale-105 cursor-pointer shadow-sm"
+        class="rounded-full px-4 py-2 text-xs font-semibold transition-all duration-200 transform hover:-translate-y-0.5 hover:shadow-sm cursor-pointer"
         :class="activeSkill === skill 
           ? 'border-blue-600 bg-blue-600 text-white hover:bg-blue-700' 
           : 'border-slate-200 bg-white text-slate-700 hover:bg-slate-100'"
@@ -281,11 +283,11 @@ async function handleNewsletterSubmit() {
     <p v-else-if="landingError" class="text-center text-sm text-slate-600">
       {{ landingError }}
     </p>
-    <div v-else class="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
+    <div v-else class="grid gap-6 justify-items-center sm:grid-cols-2 lg:grid-cols-4">
       <article
         v-for="s in landingProfiles"
         :key="s.id"
-        class="overflow-hidden rounded-2xl bg-white shadow-md ring-1 ring-slate-200/70 hover:shadow-lg transition-shadow duration-300"
+        class="w-full max-w-xs overflow-hidden rounded-2xl bg-white shadow-md ring-1 ring-slate-200/70 hover:shadow-lg transition-shadow duration-300"
       >
         <div class="p-4">
           <div class="flex items-center gap-3">
@@ -346,10 +348,10 @@ async function handleNewsletterSubmit() {
         <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <div class="text-center">
             <h2 class="text-3xl font-bold tracking-tight text-slate-900 sm:text-4xl">
-              Hear what other learners have to say
+              Student Voices, Real Stories
             </h2>
             <p class="mx-auto mt-4 max-w-2xl text-lg text-slate-700">
-              Real feedback from students, recruiters, and university partners using SkillsBridge.
+              Real feedback from students using SkillsBridge.
             </p>
           </div>
 
@@ -358,7 +360,7 @@ async function handleNewsletterSubmit() {
             @touchstart="onTouchStart"
             @touchend="onTouchEnd"
           >
-            <div class="relative">
+              <div class="relative">
               <div class="overflow-hidden">
                 <div
                   class="flex transition-transform duration-500 ease-out"
@@ -383,14 +385,6 @@ async function handleNewsletterSubmit() {
                           >
                             {{ t.quote }}
                           </p>
-                          <button
-                            type="button"
-                            class="mt-4 text-sm font-semibold text-slate-700 underline underline-offset-4 hover:text-slate-900"
-                            @click="toggleTestimonial(t.id)"
-                          >
-                            <span v-if="expandedTestimonials[t.id]">Show Less</span>
-                            <span v-else>Show More</span>
-                          </button>
                         </div>
                         <div class="border-t border-slate-100 px-6 py-4">
                           <div class="flex items-center gap-3">
@@ -407,22 +401,24 @@ async function handleNewsletterSubmit() {
                 </div>
               </div>
 
-              <button
-                v-for="(s, index) in testimonialSlides"
-                :key="index"
-                type="button"
-                class="h-2.5 rounded-full transition-all"
-                :class="index === activeTestimonialIndex ? 'w-6 bg-orange-500' : 'w-2.5 bg-slate-300'"
-                @click="activeTestimonialIndex = index"
-                :aria-label="`Go to slide ${index + 1}`"
-              />
+              <div class="mt-6 flex items-center justify-center gap-2">
+                <button
+                  v-for="(s, index) in testimonialSlides"
+                  :key="index"
+                  type="button"
+                  class="h-2.5 rounded-full transition-all"
+                  :class="index === activeTestimonialIndex ? 'w-6 bg-orange-500' : 'w-2.5 bg-slate-300'"
+                  @click="activeTestimonialIndex = index"
+                  :aria-label="`Go to slide ${index + 1}`"
+                />
+              </div>
             </div>
           </div>
         </div>
       </section>
 
       <!-- Video showcase -->
-      <section class="border-t border-slate-200 bg-white py-16 sm:py-20">
+      <section class="border-t border-slate-200 bg-white py-14 sm:py-18">
         <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <div class="text-center">
             <h2 class="text-3xl font-bold tracking-tight text-slate-900 sm:text-4xl">See SkillsBridge in action</h2>
@@ -433,8 +429,8 @@ async function handleNewsletterSubmit() {
           <div class="mt-12 grid gap-6 lg:grid-cols-3">
             <div class="overflow-hidden rounded-2xl bg-slate-200 shadow-lg">
               <div class="aspect-video flex items-center justify-center text-black">
-               <video class="w-full h-full object-cover" controls autoplay muted loop>
-              <source src="/public/skills bridge video.mp4" type="video/mp4">
+               <video class="w-full h-full object-cover" controls  muted loop>
+              <source src="/public/skills brisge video 1.mp4" type="video/mp4">
               Your browser does not support the video tag.</video>
               </div>
               <div class="bg-white p-4">
@@ -444,24 +440,24 @@ async function handleNewsletterSubmit() {
             </div>
             <div class="overflow-hidden rounded-2xl bg-slate-200 shadow-lg">
               <div class="aspect-video flex items-center justify-center text-slate-500">
-                <video class="w-full h-full object-cover" controls autoplay muted loop>
-              <source src="/public/skills bridge video.mp4" type="video/mp4">
+                <video class="w-full h-full object-cover" controls muted loop>
+              <source src="/public/leela video.mp4" type="video/mp4">
               Your browser does not support the video tag.</video>
               </div>
               <div class="bg-white p-4">
-                <p class="font-semibold text-slate-900">Student success stories</p>
-                <p class="text-sm text-black">Hear from students who landed roles through SkillsBridge</p>
+                <p class="font-semibold text-slate-900">Visibilities You can Control</p>
+                <p class="text-sm text-black">Listen from Expert on Our Visibility Features</p>
               </div>
             </div>
             <div class="overflow-hidden rounded-2xl bg-slate-200 shadow-lg">
               <div class="aspect-video flex items-center justify-center text-slate-500">
-                <video class="w-full h-full object-cover" controls autoplay muted loop>
-                  <source src="/public/skills bridge video.mp4" type="video/mp4">
+                <video class="w-full h-full object-cover" controls muted loop>
+                  <source src="/public/pato.mp4" type="video/mp4">
                   Your browser does not support the video tag.
                 </video>
               </div>
               <div class="bg-white p-4">
-                <p class="font-semibold text-slate-900">Publishing your profile</p>
+                <p class="font-semibold text-slate-900">Be Discoverable When it Matter</p>
                 <p class="text-sm text-black">Turn visibility on and share your portfolio link</p>
               </div>
             </div>
@@ -502,7 +498,7 @@ async function handleNewsletterSubmit() {
       </section> 
 
       <!-- How it works -->
-    <section id="how-it-works" class="py-20 bg-blue-500">
+    <section id="how-it-works" class="py-16 sm:py-20 bg-blue-500">
      <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
 
     <!-- Section Header -->
@@ -512,7 +508,7 @@ async function handleNewsletterSubmit() {
       </h2>
       <p class="mt-4 text-lg text-blue-100">
         Go from signup to being discovered in three simple steps. No scattered
-        links or bulky resumes — just one powerful profile that showcases your
+        links or bulky resumes just one powerful profile that showcases your
         skills and projects.
       </p>
     </div>
