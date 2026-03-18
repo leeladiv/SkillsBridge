@@ -67,7 +67,7 @@ onMounted(() => {
         </button>
       </div>
 
-      <div class="flex gap-6 pb-10">
+      <div class="flex flex-col sm:flex-row gap-6 pb-10">
         <DashboardSidebar />
         <main class="min-w-0 flex-1 pt-2">
           <slot />

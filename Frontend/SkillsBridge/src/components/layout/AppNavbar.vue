@@ -244,16 +244,17 @@ onUnmounted(() => {
       </button>
     </div>
 
-    <!-- Mobile menu: simple dropdown under header on small screens -->
+      <!-- Mobile menu: simple dropdown under header on small screens -->
     <div
       id="mobile-menu"
       ref="menuPanelRef"
-      class="md:hidden border-b border-slate-200 bg-white"
+        class="md:hidden border-b border-slate-200 bg-white shadow-lg rounded-b-2xl"
       v-if="menuOpen"
       aria-label="Mobile navigation"
     >
-      <nav class="flex flex-col px-4 pb-4 pt-2 gap-1" aria-label="Main navigation">
-        <button
+        <nav class="flex flex-col px-4 pb-4 pt-2 gap-1" aria-label="Main navigation">
+          <!-- Primary links -->
+          <button
             type="button"
             class="text-left text-base font-medium text-slate-700 hover:bg-slate-100 rounded-lg px-4 py-3 focus:outline-none focus:ring-2 focus:ring-primary-500 focus:ring-inset"
             @click="goHome"
@@ -275,36 +276,39 @@ onUnmounted(() => {
             About
           </button>
 
+          <!-- Account area -->
           <template v-if="isAuthenticated">
-            <button
-              v-if="isAdmin"
-              type="button"
-              class="text-left text-base font-medium text-slate-700 hover:bg-slate-100 rounded-lg px-4 py-3 focus:outline-none focus:ring-2 focus:ring-primary-500 focus:ring-inset"
-              @click="goAdmin"
-            >
-              Admin
-            </button>
-            <button
-              v-else
-              type="button"
-              class="text-left text-base font-medium text-slate-700 hover:bg-slate-100 rounded-lg px-4 py-3 focus:outline-none focus:ring-2 focus:ring-primary-500 focus:ring-inset"
-              @click="goDashboard"
-            >
-              Dashboard
-            </button>
-            <p class="px-4 py-2 text-sm text-slate-500 border-t border-slate-200 mt-2 pt-3">
-              {{ user?.fullName || user?.email }}
-            </p>
-            <BaseButton
-              variant="ghost"
-              class="w-full justify-center mt-2"
-              @click="handleLogout"
-            >
-              Logout
-            </BaseButton>
+            <div class="mt-2 border-t border-slate-200 pt-3">
+              <button
+                v-if="isAdmin"
+                type="button"
+                class="w-full text-left text-base font-medium text-slate-700 hover:bg-slate-100 rounded-lg px-4 py-3 focus:outline-none focus:ring-2 focus:ring-primary-500 focus:ring-inset"
+                @click="goAdmin"
+              >
+                Admin
+              </button>
+              <button
+                v-else
+                type="button"
+                class="w-full text-left text-base font-medium text-slate-700 hover:bg-slate-100 rounded-lg px-4 py-3 focus:outline-none focus:ring-2 focus:ring-primary-500 focus:ring-inset"
+                @click="goDashboard"
+              >
+                Dashboard
+              </button>
+              <p class="px-4 py-2 text-sm text-slate-500">
+                {{ user?.fullName || user?.email }}
+              </p>
+              <BaseButton
+                variant="ghost"
+                class="w-full justify-center mt-1"
+                @click="handleLogout"
+              >
+                Logout
+              </BaseButton>
+            </div>
           </template>
           <template v-else>
-            <div class="border-t border-slate-200 mt-2 pt-3 flex flex-col gap-2">
+            <div class="mt-2 border-t border-slate-200 pt-3 flex flex-col gap-2">
               <BaseButton variant="ghost" class="w-full justify-center" @click="goLogin">
                 Log in
               </BaseButton>

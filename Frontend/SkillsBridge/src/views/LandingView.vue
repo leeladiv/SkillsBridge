@@ -3,6 +3,7 @@ import { ref, computed, onMounted } from 'vue'
 import { APP_NAME } from '../utils/constants'
 import BaseButton from '../components/base/BaseButton.vue'
 import BaseSpinner from '../components/base/BaseSpinner.vue'
+import StudentCard from '../components/explore/StudentCard.vue'
 import AppNavbar from '../components/layout/AppNavbar.vue'
 import AppFooter from '../components/layout/AppFooter.vue'
 import * as exploreService from '../services/exploreService'
@@ -188,21 +189,21 @@ async function handleNewsletterSubmit() {
             <p class="text-md font-semibold uppercase text-blue-500 tracking-wider text-primary-600 mt-0">
               Student Skills & Portfolio Platform
             </p>
-            <h1 class="mt-4 text-4xl font-bold tracking-tight text-black sm:text-5xl lg:text-6xl ">
+            <h1 class="mt-4 text-4xl font-bold tracking-tight text-slate-900 sm:text-5xl lg:text-6xl ">
               Turn your Skills & Degree into   opportunities
               <span class="bg-linear-to-r from-primary-600 text-blue-700 to-academic-navy bg-clip-text text-3xl">
                
               </span>
             </h1>
-            <p class="mt-6 sm:text-1xl lg:text-2xl leading-8  font-sans text-black">
+            <p class="mt-6 sm:text-1xl lg:text-2xl leading-8  font-sans text-slate-800">
               {{ APP_NAME }} connects talented students with recruiters. Build a professional portfolio,
               showcase your projects and skills, and get discovered by companies looking for your exact profile all
               within your Schools community.
             </p>
-            <p class="mt-3 italic text-lg font-serif text-black">
+            <p class="mt-3 italic text-lg font-serif text-slate-800">
               One profile. One place. Your next opportunity starts here.
             </p>
-            <div class="mt-10 flex flex-wrap items-center justify-center text-black gap-4">
+            <div class="mt-10 flex flex-wrap items-center justify-center text-slate-900 gap-4">
               <BaseButton size="lg" @click="$router.push({ name: 'Register' })">
                 Create your portfolio  It's free
               </BaseButton>
@@ -281,68 +282,13 @@ async function handleNewsletterSubmit() {
             <p v-else-if="landingError" class="text-center text-sm text-slate-600">
               {{ landingError }}
             </p>
-            <div
-              v-else
-              class="grid gap-5 pt-2 sm:grid-cols-2 lg:grid-cols-4"
-            >
-              <article
+            <div v-else class="grid gap-5 pt-2 sm:grid-cols-2 lg:grid-cols-4">
+              <StudentCard
                 v-for="s in landingProfiles"
                 :key="s.id"
-                class="group overflow-hidden rounded-2xl bg-white shadow-sm ring-1 ring-slate-200/70 transition hover:-translate-y-1 hover:shadow-md"
-              >
-                <div class="p-4">
-                  <div class="flex items-center gap-3">
-                    <div class="h-12 w-12 shrink-0 rounded-full bg-slate-200 overflow-hidden flex items-center justify-center text-slate-600 font-bold">
-                      <img v-if="s.image" :src="s.image" :alt="s.fullName" class="h-full w-full object-cover" />
-                      <span v-else>{{ (s.fullName || '?')[0] }}</span>
-                    </div>
-                    <div class="min-w-0">
-                      <p class="truncate font-semibold text-slate-900">{{ s.fullName }}</p>
-                      <p class="truncate text-xs text-slate-600">
-                        {{ s.university?.name || 'Student' }}
-                      </p>
-                    </div>
-                  </div>
-
-                  <p v-if="s.bio" class="mt-3 line-clamp-2 text-xs text-slate-600">
-                    {{ s.bio }}
-                  </p>
-
-                  <div v-if="s.skills?.length" class="mt-3 flex flex-wrap gap-1">
-                    <span
-                      v-for="sk in (s.skills || []).slice(0, 3)"
-                      :key="sk"
-                      class="rounded-full bg-slate-100 px-2 py-0.5 text-[11px] font-semibold text-slate-700"
-                    >
-                      {{ sk }}
-                    </span>
-                    <span
-                      v-if="(s.skills || []).length > 3"
-                      class="rounded-full bg-slate-100 px-2 py-0.5 text-[11px] font-semibold text-slate-500"
-                    >
-                      +{{ (s.skills || []).length - 3 }} more
-                    </span>
-                  </div>
-
-                  <div class="mt-4 flex gap-2">
-                    <button
-                      type="button"
-                      class="flex-1 rounded-lg border border-slate-200 bg-white px-3 py-1.5 text-xs font-semibold text-slate-700 hover:bg-slate-50"
-                      @click="$router.push({ name: 'PublicProfile', params: { id: s.id } })"
-                    >
-                      View
-                    </button>
-                    <button
-                      type="button"
-                      class="flex-1 rounded-lg bg-blue-600 px-3 py-1.5 text-xs font-semibold text-white hover:bg-blue-700"
-                      @click="$router.push({ name: 'PublicProfile', params: { id: s.id }, hash: '#message' })"
-                    >
-                      Message
-                    </button>
-                  </div>
-                </div>
-              </article>
-
+                :student="s"
+                :university-name="s.university?.name || 'Student'"
+              />
               <div v-if="!landingProfiles.length" class="lg:col-span-4">
                 <p class="text-center text-sm text-slate-600">
                   No public students found for this skill yet.
@@ -460,20 +406,20 @@ async function handleNewsletterSubmit() {
         <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <div class="text-center">
             <h2 class="text-3xl font-bold tracking-tight text-slate-900 sm:text-4xl">See SkillsBridge in action</h2>
-            <p class="mx-auto mt-4 max-w-2xl text-lg text-black">
+            <p class="mx-auto mt-4 max-w-2xl text-lg text-slate-800">
               Learn how students build portfolios and get discovered by recruiters.
             </p>
           </div>
           <div class="mt-12 grid gap-6 lg:grid-cols-3">
             <div class="overflow-hidden rounded-2xl bg-slate-200 shadow-lg">
-              <div class="aspect-video flex items-center justify-center text-black">
+              <div class="aspect-video flex items-center justify-center text-slate-900">
                <video class="w-full h-full object-cover" controls autoplay muted loop>
               <source src="/public/skills bridge video.mp4" type="video/mp4">
               Your browser does not support the video tag.</video>
               </div>
               <div class="bg-white p-4">
-                <p class="font-semibold text-black">How SkillsBridge works</p>
-                <p class="text-sm text-black">A quick tour of the platform for students and recruiters</p>
+                <p class="font-semibold text-slate-900">How SkillsBridge works</p>
+                <p class="text-sm text-slate-700">A quick tour of the platform for students and recruiters</p>
               </div>
             </div>
             <div class="overflow-hidden rounded-2xl bg-slate-200 shadow-lg">
@@ -484,7 +430,7 @@ async function handleNewsletterSubmit() {
               </div>
               <div class="bg-white p-4">
                 <p class="font-semibold text-slate-900">Student success stories</p>
-                <p class="text-sm text-black">Hear from students who landed roles through SkillsBridge</p>
+                <p class="text-sm text-slate-700">Hear from students who landed roles through SkillsBridge</p>
               </div>
             </div>
             <div class="overflow-hidden rounded-2xl bg-slate-200 shadow-lg">
@@ -496,7 +442,7 @@ async function handleNewsletterSubmit() {
               </div>
               <div class="bg-white p-4">
                 <p class="font-semibold text-slate-900">Publishing your profile</p>
-                <p class="text-sm text-black">Turn visibility on and share your portfolio link</p>
+                <p class="text-sm text-slate-700">Turn visibility on and share your portfolio link</p>
               </div>
             </div>
           </div>

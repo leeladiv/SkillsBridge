@@ -24,7 +24,7 @@ function isActive(item) {
 </script>
 
 <template>
-  <aside class="flex w-64 flex-col">
+  <aside class="flex w-full sm:w-64 flex-col">
     <div class="rounded-2xl bg-white p-4 shadow-sm ring-1 ring-slate-200">
       <button
         type="button"
