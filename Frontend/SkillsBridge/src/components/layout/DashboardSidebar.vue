@@ -35,9 +35,9 @@ function isActive(item) {
           +
         </span>
       </button>
-      </div>
+    </div>
 
-      <div class="mt-4 flex flex-col gap-1">
+    <div class="mt-4 flex flex-col gap-1">
       <button
         v-for="item in navItems"
         :key="item.name"
@@ -50,13 +50,5 @@ function isActive(item) {
         {{ item.name }}
       </button>
     </div>
-    </div>
   </aside>
 </template>
-
-<script setup>
-function logout() {
-  localStorage.removeItem('token')
-  window.location.href = '/login'
-}
-</script>

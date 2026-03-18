@@ -244,46 +244,16 @@ onUnmounted(() => {
       </button>
     </div>
 
-    <!-- Mobile menu: only rendered / visible below md -->
+    <!-- Mobile menu: simple dropdown under header on small screens -->
     <div
       id="mobile-menu"
       ref="menuPanelRef"
-      class="md:hidden fixed inset-0 top-16 z-30"
-      :class="menuOpen ? 'visible' : 'invisible'"
+      class="md:hidden border-b border-slate-200 bg-white"
+      v-if="menuOpen"
       aria-label="Mobile navigation"
-      :aria-hidden="!menuOpen"
-      role="dialog"
-      aria-modal="true"
     >
-      <!-- Overlay -->
-      <button
-        type="button"
-        class="absolute inset-0 bg-slate-900/50 transition-opacity duration-300 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-primary-500"
-        :class="menuOpen ? 'opacity-100' : 'opacity-0'"
-        aria-label="Close menu"
-        tabindex="-1"
-        @click="closeMenu"
-      />
-
-      <!-- Slide-in panel -->
-      <div
-        class="absolute right-0 top-0 bottom-0 w-full max-w-sm bg-white shadow-xl flex flex-col transition-transform duration-300 ease-out"
-        :class="menuOpen ? 'translate-x-0' : 'translate-x-full'"
-      >
-        <div class="flex items-center justify-between p-4 border-b border-slate-200 shrink-0">
-          <span class="text-sm font-medium text-slate-500">Menu</span>
-          <button
-            type="button"
-            class="rounded-lg p-2 text-slate-600 hover:bg-slate-100 hover:text-slate-900 focus:outline-none focus:ring-2 focus:ring-primary-500"
-            aria-label="Close menu"
-            @click="closeMenu"
-          >
-            <span class="sr-only">Close</span>
-            <span aria-hidden="true" class="text-xl leading-none">&times;</span>
-          </button>
-        </div>
-        <nav class="flex flex-col p-4 gap-1 overflow-y-auto min-h-0" aria-label="Main navigation">
-          <button
+      <nav class="flex flex-col px-4 pb-4 pt-2 gap-1" aria-label="Main navigation">
+        <button
             type="button"
             class="text-left text-base font-medium text-slate-700 hover:bg-slate-100 rounded-lg px-4 py-3 focus:outline-none focus:ring-2 focus:ring-primary-500 focus:ring-inset"
             @click="goHome"
@@ -345,6 +315,5 @@ onUnmounted(() => {
           </template>
         </nav>
       </div>
-    </div>
   </header>
 </template>
