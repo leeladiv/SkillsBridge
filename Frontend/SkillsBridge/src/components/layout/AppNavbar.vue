@@ -121,7 +121,9 @@ onUnmounted(() => {
   window.removeEventListener('resize', onResize)
   document.body.style.overflow = ''
 })
-</script>
+
+  
+  </script>
 
 <template>
   <header
