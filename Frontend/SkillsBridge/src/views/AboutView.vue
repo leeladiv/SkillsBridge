@@ -5,8 +5,8 @@ import AppNavbar from '../components/layout/AppNavbar.vue'
 import AppFooter from '../components/layout/AppFooter.vue'
 
 const team = [
-  { name: 'Ansu Konneh', role: 'Founder / Product', bio: 'Building a platform that turns student skills into real opportunities.' },
-  { name: 'Team Member', role: 'Engineering', bio: 'Focused on performance, reliability, and delightful UX.' },
+  { name: 'Leela Koeing', role: 'Founder / Product', bio: 'Building a platform that turns student skills into real opportunities.' },
+  { name: 'Leela Koeing', role: 'Engineering', bio: 'Focused on performance, reliability, and delightful UX.' },
   { name: 'Team Member', role: 'Design', bio: 'Designing modern, recruiter-friendly profiles.' },
   { name: 'Team Member', role: 'Partnerships', bio: 'Connecting universities, students, and employers.' },
 ]
