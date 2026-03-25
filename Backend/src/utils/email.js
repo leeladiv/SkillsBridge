@@ -67,3 +67,27 @@ export async function sendPasswordResetEmail(to, fullName, resetUrl) {
   })
   return { sent: true, messageId: info?.messageId }
 }
+
+export async function sendNewsletterEmail(to) {
+  if (!isEmailConfigured() || !transporter) return { sent: false }
+
+  const frontendUrl = process.env.FRONTEND_URL || process.env.FRONTEND_PUBLIC_URL || 'http://localhost:5173'
+
+  const info = await transporter.sendMail({
+    from: process.env.SMTP_FROM || process.env.SMTP_USER,
+    to,
+    subject: 'Welcome to SkillsBridge newsletter',
+    html: `
+      <p>Hi there,</p>
+      <p>Thanks for subscribing to SkillsBridge.</p>
+      <p>We’ll send you updates on new features and opportunities.</p>
+      <p style="margin-top:16px;">
+        <a href="${frontendUrl}" style="color:#6d28d9;">Visit SkillsBridge</a>
+      </p>
+      <p>— SkillsBridge</p>
+    `,
+    text: `Thanks for subscribing to SkillsBridge. We'll send you updates on new features and opportunities.`,
+  })
+
+  return { sent: true, messageId: info?.messageId }
+}

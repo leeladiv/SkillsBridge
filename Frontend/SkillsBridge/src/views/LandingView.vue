@@ -21,6 +21,9 @@ const activeSkill = ref('JavaScript')
 const landingProfiles = ref([])
 const landingLoading = ref(false)
 const landingError = ref('')
+const landingPage = ref(1)
+const landingTotalPages = ref(1)
+const landingPerPage = 4
 const toast = useToast()
 
 const skillChips = [
@@ -133,10 +136,17 @@ async function loadLandingProfiles() {
   landingError.value = ''
   landingLoading.value = true
   try {
-    const data = await exploreService.fetchPublicProfiles({ skill: activeSkill.value, limit: 4, page: 1, sort: 'newest' })
+    const data = await exploreService.fetchPublicProfiles({
+      skill: activeSkill.value,
+      limit: landingPerPage,
+      page: landingPage.value,
+      sort: 'newest',
+    })
     landingProfiles.value = data.students || []
+    landingTotalPages.value = data.pagination?.totalPages || 1
   } catch {
     landingProfiles.value = []
+    landingTotalPages.value = 1
     landingError.value = 'Failed to load students'
   } finally {
     landingLoading.value = false
@@ -144,8 +154,21 @@ async function loadLandingProfiles() {
 }
 
 async function selectSkill(skill) {
+  landingPage.value = 1
   activeSkill.value = skill
   await loadLandingProfiles()
+}
+
+function prevLandingPage() {
+  if (landingPage.value <= 1) return
+  landingPage.value -= 1
+  loadLandingProfiles()
+}
+
+function nextLandingPage() {
+  if (landingPage.value >= landingTotalPages.value) return
+  landingPage.value += 1
+  loadLandingProfiles()
 }
 
 function isValidEmail(v) {
@@ -176,7 +199,7 @@ async function handleNewsletterSubmit() {
 
 
 <template>
-  <div class="min-h-screen bg-linear-to-b from-slate-50 via-white to-slate-50">
+  <div class="min-h-screen bg-slate-100">
     <AppNavbar />
 
     <main>
@@ -185,21 +208,18 @@ async function handleNewsletterSubmit() {
         <div class="absolute inset-0 bg-linear-to-br from-primary-50/80 via-white to-academic-navy/5" aria-hidden="true" />
         <div class="relative mx-auto max-w-7xl px-4 py-12 sm:px-6 sm:py-16 lg:px-8 lg:py-20">
           <div class="mx-auto max-w-3xl text-center">
-            <p class="text-md font-semibold uppercase text-blue-500 tracking-wider text-primary-600 mt-0">
+            <p class="text-sm font-semibold uppercase tracking-wider text-primary-600 mt-0">
               Student Skills & Portfolio Platform
             </p>
-            <h1 class="mt-4 text-4xl font-bold tracking-tight text-black sm:text-5xl lg:text-6xl ">
-              Turn your Skills & Degree into   opportunities
-              <span class="bg-linear-to-r from-primary-600 text-blue-700 to-academic-navy bg-clip-text text-3xl">
-               
-              </span>
+            <h1 class="mt-4 text-4xl font-bold tracking-tight text-slate-900 sm:text-5xl lg:text-6xl">
+              Turn your Skills & Degree into opportunities
             </h1>
-            <p class="mt-6 sm:text-2xl lg:text-2xl leading-8  font-sans text-black">
+            <p class="mt-6 text-lg leading-8 text-slate-700 sm:text-xl lg:text-2xl">
               {{ APP_NAME }} connects talented students with recruiters. Build a professional portfolio,
-              showcase your projects and skills, and get discovered by companies looking for your exact profile all
-              within your Schools community.
+              showcase your projects and skills, and get discovered by companies looking for your profile within your
+              school community.
             </p>
-            <p class="mt-3 italic text-lg text-black">
+            <p class="mt-3 italic text-lg text-slate-700">
               One profile. One place. Your next opportunity starts here.
             </p>
             <div class="mt-10 flex flex-wrap items-center justify-center text-black gap-4">
@@ -335,6 +355,31 @@ async function handleNewsletterSubmit() {
       <div v-if="!landingProfiles.length" class="lg:col-span-4">
         <p class="text-center text-sm text-slate-600">No public students found for this skill yet.</p>
       </div>
+    </div>
+
+    <div
+      v-if="landingTotalPages > 1"
+      class="mt-8 flex items-center justify-center gap-2"
+    >
+      <button
+        type="button"
+        class="rounded-lg border border-slate-300 px-4 py-2 text-sm disabled:opacity-50"
+        :disabled="landingLoading || landingPage <= 1"
+        @click="prevLandingPage"
+      >
+        Previous
+      </button>
+      <span class="flex items-center px-4 text-sm text-slate-600">
+        Page {{ landingPage }} of {{ landingTotalPages }}
+      </span>
+      <button
+        type="button"
+        class="rounded-lg border border-slate-300 px-4 py-2 text-sm disabled:opacity-50"
+        :disabled="landingLoading || landingPage >= landingTotalPages"
+        @click="nextLandingPage"
+      >
+        Next
+      </button>
     </div>
 
   </div>

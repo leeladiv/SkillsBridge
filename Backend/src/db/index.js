@@ -561,3 +561,9 @@ export async function createNewsletterSubscriber(email) {
   const row = await dbGet('SELECT * FROM NewsletterSubscriber WHERE email = ?', [email])
   return row || null
 }
+
+export async function getNewsletterSubscriberByEmail(email) {
+  if (!email) return null
+  const row = await dbGet('SELECT * FROM NewsletterSubscriber WHERE email = ?', [email])
+  return row || null
+}

@@ -2,6 +2,7 @@ import { defineStore } from 'pinia'
 import { ref } from 'vue'
 import * as studentService from '../services/studentService'
 import * as messageService from '../services/messageService'
+import { useAuthStore } from './authStore'
 
 export const useStudentStore = defineStore('student', () => {
   const profile = ref(null)
@@ -47,6 +48,21 @@ export const useStudentStore = defineStore('student', () => {
       const data = await studentService.updateProfile(profilePayload)
       profile.value = data
       visibility.value = data.isPublic ?? true
+
+      // Keep the dashboard header (auth store) in sync with the latest avatar/name.
+      // authStore persists to localStorage, so updating it makes the change visible immediately.
+      const authStore = useAuthStore()
+      if (authStore.user) {
+        authStore.setAuth({
+          token: authStore.token,
+          role: authStore.role,
+          user: {
+            ...(authStore.user || {}),
+            fullName: data.fullName,
+            image: data.image,
+          },
+        })
+      }
 
       if (payload.skills !== undefined) {
         await studentService.updateSkills(payload.skills)
