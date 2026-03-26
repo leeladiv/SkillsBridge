@@ -97,39 +97,68 @@ onMounted(async () => {
   await loadLandingProfiles()
 })
 
-function toggleTestimonial(id) {
-  expandedTestimonials.value = {
-    ...expandedTestimonials.value,
-    [id]: !expandedTestimonials.value[id],
-  }
-}
+ //function toggleTestimonial(id) {
+  //expandedTestimonials.value = {
+   // ...expandedTestimonials.value,
+ //   [id]: !expandedTestimonials.value[id],
+  //}
+ //}
 
-function nextTestimonial() {
-  activeTestimonialIndex.value =
-    (activeTestimonialIndex.value + 1) % testimonialSlides.value.length
-}
+ //function nextTestimonial() {
+ // activeTestimonialIndex.value =
+   // (activeTestimonialIndex.value + 1) % testimonialSlides.value.length
+ //}
 
-function prevTestimonial() {
-  activeTestimonialIndex.value =
-    (activeTestimonialIndex.value - 1 + testimonialSlides.value.length) %
-    testimonialSlides.value.length
-}
+ //function prevTestimonial() {
+  //activeTestimonialIndex.value =
+    //(activeTestimonialIndex.value - 1 + testimonialSlides.value.length) %
+    //testimonialSlides.value.length
+ //}
 
-function onTouchStart(e) {
-  if (e.changedTouches?.length) {
-    touchStartX.value = e.changedTouches[0].clientX
-  }
-}
+ //function onTouchStart(e) {
+  //if (e.changedTouches?.length) {
+    //touchStartX.value = e.changedTouches[0].clientX
+  //}
+ //}
 
-function onTouchEnd(e) {
-  if (!e.changedTouches?.length) return
-  const deltaX = e.changedTouches[0].clientX - touchStartX.value
-  if (Math.abs(deltaX) < 40) return
-  if (deltaX < 0) {
-    nextTestimonial()
-  } else {
-    prevTestimonial()
-  }
+//function onTouchEnd(e) {
+  //if (!e.changedTouches?.length) return
+  //const deltaX = e.changedTouches[0].clientX - touchStartX.value
+ // if (Math.abs(deltaX) < 40) return
+ // if (deltaX < 0) {
+  //  nextTestimonial()
+  //} else {
+   // prevTestimonial()
+  // }
+ //}
+  
+const currentVideo = ref(0)
+ const videos = [
+  {
+    src: '/Skills Brisge Video 1.mp4',
+    title: 'How SkillsBridge works',
+    description: 'A quick tour of the platform for students and recruiters',
+  },
+
+  {
+    src: '/leela video.mp4',
+    title: 'Visibilities You can Control',
+    description: 'Listen from Expert on Our Visibility Features',
+  },
+
+  {
+
+    src: '/Pato.mp4',
+    title: 'Be Discoverable When it Matter',
+    description: 'Turn visibility on and share your portfolio link',
+  },
+]
+const nextVideo = () => {
+
+  currentVideo.value = (currentVideo.value + 1) % videos.length
+}
+const prevVideo = () => {
+  currentVideo.value = (currentVideo.value - 1 + videos.length) % videos.length
 }
 
 async function loadLandingProfiles() {
@@ -247,20 +276,30 @@ async function handleNewsletterSubmit() {
         <div class="overflow-hidden mt-10 logo-marquee">
           <div class="logo-track flex gap-8 items-center">
 
-           <img src="/public/AMEU copy.png" class="h-16" />
+           <!--<img src="/public/AMEU copy.png" class="h-16" />
            <img src="/public/BlueCrestLogo.PNG" class="h-16" />
            <img src="/public/SMPU1 copy.PNG" class="h-16" />
            <img src="/public/StarzLogo.PNG" class="h-16" />
            <img src="/public/UL_Logo.PNG" class="h-16" />
-           <img src="/public/UMU copy.PNG" class="h-16" />
+           <img src="/public/UMU copy.PNG" class="h-16" />-->
+            <img src="/public/nphil.png" class="h-20" />
+           <img src="/public/yocel.png" class="h-40" />
+           <img src="/public/undp.png" class="h-14" />
+           <img src="/public/giz.png" class="h-20" />
+           <img src="/public/jfk.png" class="h-14" />
 
           <!-- duplicate logos for infinite loop -->
-           <img src="/public/AMEU copy.png" class="h-16" />
+          <!-- <img src="/public/AMEU copy.png" class="h-16" />
            <img src="/public/BlueCrestLogo.PNG" class="h-16" />
            <img src="/public/SMPU1 copy.PNG" class="h-16" />
            <img src="/public/StarzLogo.PNG" class="h-16" />
            <img src="/public/UL_Logo.PNG" class="h-16" />
-           <img src="/public/UMU copy.PNG" class="h-16" />
+           <img src="/public/UMU copy.PNG" class="h-16" />-->
+           <img src="/public/nphil.png" class="h-20" />
+           <img src="/public/yocel.png" class="h-40" />
+           <img src="/public/undp.png" class="h-14" />
+           <img src="/public/giz.png" class="h-20" />
+           <img src="/public/jfk.png" class="h-14" />
 
      </div>
         </div>
@@ -423,7 +462,7 @@ async function handleNewsletterSubmit() {
                         class="rounded-2xl bg-white shadow-sm ring-1 ring-slate-200/70"
                       >
                         <div class="p-6">
-                          <div class="text-2xl font-bold text-orange-500 leading-none">“</div>
+                          <div class="text-2xl font-bold text-blue-500 leading-none">“</div>
                           <p
                             class="mt-3 text-sm leading-relaxed text-slate-700"
                             :class="expandedTestimonials[t.id] ? '' : 'line-clamp-4'"
@@ -452,7 +491,7 @@ async function handleNewsletterSubmit() {
                   :key="index"
                   type="button"
                   class="h-2.5 rounded-full transition-all"
-                  :class="index === activeTestimonialIndex ? 'w-6 bg-orange-500' : 'w-2.5 bg-slate-300'"
+                  :class="index === activeTestimonialIndex ? 'w-6 bg-blue-500' : 'w-2.5 bg-slate-300'"
                   @click="activeTestimonialIndex = index"
                   :aria-label="`Go to slide ${index + 1}`"
                 />
@@ -463,52 +502,110 @@ async function handleNewsletterSubmit() {
       </section>
 
       <!-- Video showcase -->
-      <section class="border-t border-slate-200 bg-white py-14 sm:py-18">
-        <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-          <div class="text-center">
-            <h2 class="text-3xl font-bold tracking-tight text-slate-900 sm:text-4xl">See SkillsBridge in action</h2>
-            <p class="mx-auto mt-4 max-w-2xl text-lg text-black">
-              Learn how students build portfolios and get discovered by recruiters.
-            </p>
+ <section class="border-t border-slate-200 bg-white py-14 sm:py-18">
+    <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+      <div class="text-center">
+        <h2 class="text-3xl font-bold tracking-tight text-slate-900 sm:text-4xl">
+          See SkillsBridge in action
+        </h2>
+
+        <p class="mx-auto mt-4 max-w-2xl text-lg text-black">
+          Learn how students build portfolios and get discovered by recruiters.
+        </p>
+      </div>
+
+
+      <div class="mt-12 flex items-center justify-center">
+        <div class="relative w-full max-w-4xl">
+          <!-- Previous Button -->
+
+          <button
+
+            @click="prevVideo"
+            class="absolute left-3 top-1/2 z-10 flex h-12 w-12 -translate-y-1/2 items-center justify-center rounded-full bg-white/90 text-slate-900 shadow-lg transition hover:scale-105 hover:bg-white"
+            aria-label="Previous video"
+          >
+
+            &#10094;
+          </button>
+
+          <!-- Single Card -->
+
+          <div class="overflow-hidden rounded-2xl bg-slate-200 shadow-lg">
+            <div class="aspect-video bg-black">
+              <video
+                :key="currentVideo"
+                class="h-full w-full object-cover"
+                controls
+                muted
+              >
+                <source :src="videos[currentVideo].src" type="video/mp4" />
+
+                Your browser does not support the video tag.
+
+              </video>
+
+            </div>
+
+             <div class="bg-white p-5">
+              <div class="mb-2 flex items-center justify-between">
+                <p class="font-semibold text-slate-900">
+                  {{ videos[currentVideo].title }}
+                </p>
+                <span class="text-sm text-slate-500">
+                  {{ currentVideo + 1 }} / {{ videos.length }}
+                </span>
+              </div>
+
+              <p class="text-sm text-black">
+                {{ videos[currentVideo].description }}
+
+              </p>
+            </div>
           </div>
-          <div class="mt-12 grid gap-6 lg:grid-cols-3">
-            <div class="overflow-hidden rounded-2xl bg-slate-200 shadow-lg">
-              <div class="aspect-video flex items-center justify-center text-black">
-               <video class="w-full h-full object-cover" controls muted loop>
-              <source src="/public/Skills Brisge Video 1.mp4" type="video/mp4">
-              Your browser does not support the video tag.</video>
-              </div>
-              <div class="bg-white p-4">
-                <p class="font-semibold text-black">How SkillsBridge works</p>
-                <p class="text-sm text-black">A quick tour of the platform for students and recruiters</p>
-              </div>
-            </div>
-            <div class="overflow-hidden rounded-2xl bg-slate-200 shadow-lg">
-              <div class="aspect-video flex items-center justify-center text-slate-500">
-                <video class="w-full h-full object-cover" controls muted loop>
-              <source src="/public/leela video.mp4" type="video/mp4">
-              Your browser does not support the video tag.</video>
-              </div>
-              <div class="bg-white p-4">
-                <p class="font-semibold text-slate-900">Visibilities You can Control</p>
-                <p class="text-sm text-black">Listen from Expert on Our Visibility Features</p>
-              </div>
-            </div>
-            <div class="overflow-hidden rounded-2xl bg-slate-200 shadow-lg">
-              <div class="aspect-video flex items-center justify-center text-slate-500">
-                <video class="w-full h-full object-cover" controls muted loop>
-                  <source src="/public/pato.mp4" type="video/mp4">
-                  Your browser does not support the video tag.
-                </video>
-              </div>
-              <div class="bg-white p-4">
-                <p class="font-semibold text-slate-900">Be Discoverable When it Matter</p>
-                <p class="text-sm text-black">Turn visibility on and share your portfolio link</p>
-              </div>
-            </div>
-          </div>
+          <!-- Next Button -->
+
+          <button
+            @click="nextVideo"
+            class="absolute right-3 top-1/2 z-10 flex h-12 w-12 -translate-y-1/2 items-center justify-center rounded-full bg-white/90 text-slate-900 shadow-lg transition hover:scale-105 hover:bg-white"
+            aria-label="Next video"
+          >
+        
+          </button>
+
         </div>
-      </section>
+
+      </div>
+
+ 
+
+      <!-- Dots -->
+
+      <div class="mt-6 flex justify-center gap-2">
+
+        <button
+
+          v-for="(video, index) in videos"
+
+          :key="index"
+
+          @click="currentVideo = index"
+
+          class="h-3 w-3 rounded-full transition"
+
+          :class="currentVideo === index ? 'bg-blue-600' : 'bg-slate-300'"
+
+          :aria-label="`Go to video ${index + 1}`"
+
+        />
+
+      </div>
+
+    </div>
+
+  </section>
+
+
 
       <!-- Hiring companies logos -->
       <section class="border-y border-slate-200/80 bg-slate-50 py-14 sm:py-18">
@@ -520,22 +617,32 @@ async function handleNewsletterSubmit() {
         <div class="overflow-hidden mt-10 logo-marquee">
           <div class="logo-track flex gap-8 items-center">
 
-           <img src="/public/Orange.png" class="h-16" />
+           <!--<img src="/public/Orange.png" class="h-16" />
            <img src="/public/Lonestar.png" class="h-16" />
            <img src="/public/lprc.png" class="h-20" />
            <img src="/public/Nocal.png" class="h-16" />
            <img src="/public/lta.png" class="h-16" />
            <img src="/public/mfdp logo.jpg" class="h-16" />
-           <img src="/public/fire stone.jpg" class="h-16" />
+           <img src="/public/fire stone.jpg" class="h-16" />-->
+           <img src="/public/nphil.png" class="h-20" />
+           <img src="/public/yocel.png" class="h-40" />
+           <img src="/public/undp.png" class="h-14" />
+           <img src="/public/giz.png" class="h-20" />
+           <img src="/public/jfk.png" class="h-14" />
 
           <!-- duplicate logos for infinite loop -->
-          <img src="/public/Orange.png" class="h-16" />
+          <!--<img src="/public/Orange.png" class="h-16" />
           <img src="/public/Lonestar.png" class="h-16"/>
           <img src="/public/lprc.png" class="h-20" />
           <img src="/public/Nocal.png" class="h-16" />
           <img src="/public/lta.png" class="h-16" />
           <img src="/public/mfdp logo.jpg" class="h-16" />
-          <img src="/public/fire stone.jpg" class="h-16" />
+          <img src="/public/fire stone.jpg" class="h-16" />-->
+          <img src="/public/nphil.png" class="h-20" />
+           <img src="/public/yocel.png" class="h-40" />
+           <img src="/public/undp.png" class="h-14" />
+           <img src="/public/giz.png" class="h-20" />
+           <img src="/public/jfk.png" class="h-14" />
 
      </div>
         </div>
@@ -543,15 +650,15 @@ async function handleNewsletterSubmit() {
       </section> 
 
       <!-- How it works -->
-    <section id="how-it-works" class="py-16 sm:py-20 bg-blue-500">
+    <section id="how-it-works" class="py-16 sm:py-20 bg-[#f3efe7]">
      <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
 
     <!-- Section Header -->
     <div class="text-center max-w-3xl mx-auto">
-      <h2 class="text-3xl sm:text-4xl font-bold text-white tracking-tight">
+      <h2 class="text-3xl sm:text-4xl font-bold text-slate-900 tracking-tight">
         How it works
       </h2>
-      <p class="mt-4 text-lg text-blue-100">
+      <p class="mt-4 text-lg text-slate-700">
         Go from signup to being discovered in three simple steps. No scattered
         links or bulky resumes just one powerful profile that showcases your
         skills and projects.
