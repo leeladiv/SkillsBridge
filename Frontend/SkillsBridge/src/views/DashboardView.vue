@@ -10,6 +10,8 @@ import BaseToggle from '../components/base/BaseToggle.vue'
 import BaseEmpty from '../components/base/BaseEmpty.vue'
 import BaseSpinner from '../components/base/BaseSpinner.vue'
 import BaseCard from '../components/base/BaseCard.vue'
+import BaseTag from '../components/base/BaseTag.vue'
+import BaseInput from '../components/base/BaseInput.vue'
 import { useStudentStore } from '../stores/studentStore'
 import { useToast } from '../composables/useToast'
 
@@ -21,6 +23,42 @@ const showProjectModal = ref(false)
 const editingProject = ref(null)
 const selectedMessageId = ref('')
 const projectFileInputs = ref({})
+const skillInput = ref('')
+const savingSkills = ref(false)
+
+const mySkills = computed(() => studentStore.profile?.skills || [])
+
+async function addSkillQuick() {
+  const s = String(skillInput.value || '').trim()
+  if (!s) return
+  if (mySkills.value.includes(s)) {
+    skillInput.value = ''
+    return
+  }
+  savingSkills.value = true
+  try {
+    await studentStore.updateProfile({ skills: [...mySkills.value, s] })
+    toast.success('Skill added')
+    skillInput.value = ''
+  } catch (err) {
+    toast.error(err.response?.data?.message || 'Failed to add skill')
+  } finally {
+    savingSkills.value = false
+  }
+}
+
+async function removeSkillQuick(skill) {
+  const next = mySkills.value.filter((x) => x !== skill)
+  savingSkills.value = true
+  try {
+    await studentStore.updateProfile({ skills: next })
+    toast.success('Skill removed')
+  } catch (err) {
+    toast.error(err.response?.data?.message || 'Failed to remove skill')
+  } finally {
+    savingSkills.value = false
+  }
+}
 
 const selectedMessage = computed(() => {
   return studentStore.inbox.find((m) => m.id === selectedMessageId.value) || null
@@ -307,6 +345,56 @@ async function openMessage(message) {
 
       <div class="grid gap-6 lg:grid-cols-3">
         <div class="lg:col-span-2 space-y-6">
+          <div id="skills" class="overflow-hidden rounded-2xl border border-slate-200 bg-white shadow-sm">
+            <div class="flex items-start justify-between gap-4 border-b border-slate-100 p-4 sm:p-5">
+              <div>
+                <h2 class="text-lg font-semibold text-slate-900">Skills</h2>
+                <p class="mt-1 text-sm text-slate-600">
+                  Add skills recruiters can search for. Keep it focused on what you can demonstrate.
+                </p>
+              </div>
+              <div class="rounded-xl bg-blue-50 px-3 py-2 text-xs font-semibold text-blue-700 ring-1 ring-blue-100">
+                {{ mySkills.length }} skills
+              </div>
+            </div>
+
+            <div class="p-4 sm:p-5">
+              <div class="flex flex-col gap-3 sm:flex-row sm:items-end">
+                <div class="flex-1">
+                  <BaseInput
+                    v-model="skillInput"
+                    name="skill"
+                    label="Add a skill"
+                    placeholder="e.g. Vue.js, SQL, Node.js"
+                    @keydown.enter.prevent="addSkillQuick"
+                  />
+                </div>
+                <BaseButton
+                  size="sm"
+                  class="sm:mb-1"
+                  :loading="savingSkills"
+                  @click="addSkillQuick"
+                >
+                  Add skill
+                </BaseButton>
+              </div>
+
+              <div v-if="!mySkills.length" class="mt-4 text-sm text-slate-600">
+                No skills yet. Add your first skill to improve discoverability in Explore.
+              </div>
+              <div v-else class="mt-4 flex flex-wrap gap-2">
+                <BaseTag
+                  v-for="s in mySkills"
+                  :key="s"
+                  removable
+                  @remove="removeSkillQuick(s)"
+                >
+                  {{ s }}
+                </BaseTag>
+              </div>
+            </div>
+          </div>
+
           <div id="projects">
             <div class="flex items-center justify-between mb-3">
               <div>

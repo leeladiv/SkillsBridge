@@ -19,6 +19,7 @@ import adminRoutes from './src/routes/admin.js'
 import messagesRoutes from './src/routes/messages.js'
 import newsletterRoutes from './src/routes/newsletter.js'
 import { isEmailConfigured, verifyEmailTransport } from './src/utils/email.js'
+import { optionalAuth } from './src/middleware/optionalAuth.js'
 
 const app = express()
 const __dirname = dirname(fileURLToPath(import.meta.url))
@@ -36,7 +37,7 @@ app.use('/api/auth/register', authLimiter)
 app.use('/api/auth', authRoutes)
 app.use('/api/students', studentsRoutes)
 app.use('/api/projects', projectsRoutes)
-app.get('/api/explore', exploreCtrl.getStudents)
+app.get('/api/explore', optionalAuth, exploreCtrl.getStudents)
 app.use('/api/explore', exploreRoutes)
 app.use('/api/universities', universitiesRoutes)
 app.use('/api/admin', adminRoutes)

@@ -26,6 +26,12 @@ const routes = [
     meta: { public: true },
   },
   {
+    path: '/admin-login',
+    name: 'AdminLogin',
+    component: () => import('../views/AdminLoginView.vue'),
+    meta: { public: true },
+  },
+  {
     path: '/forgot-password',
     name: 'ForgotPassword',
     component: () => import('../views/ForgotPasswordView.vue'),
@@ -111,6 +117,24 @@ const routes = [
     meta: { role: ROLES.ADMIN },
   },
   {
+    path: '/admin/users',
+    name: 'AdminUsers',
+    component: () => import('../views/AdminUsersView.vue'),
+    meta: { role: ROLES.ADMIN },
+  },
+  {
+    path: '/admin/reports',
+    name: 'AdminReports',
+    component: () => import('../views/AdminReportsView.vue'),
+    meta: { role: ROLES.ADMIN },
+  },
+  {
+    path: '/admin/settings',
+    name: 'AdminSettings',
+    component: () => import('../views/AdminSettingsView.vue'),
+    meta: { role: ROLES.ADMIN },
+  },
+  {
     path: '/:pathMatch(.*)*',
     name: 'NotFound',
     component: () => import('../views/NotFoundView.vue'),
@@ -140,6 +164,9 @@ router.beforeEach(async (to, _from, next) => {
   }
 
   if (!authStore.isAuthenticated) {
+    if (requiredRole === ROLES.ADMIN) {
+      return next({ name: 'AdminLogin', query: { redirect: to.fullPath } })
+    }
     return next({ name: 'Login', query: { redirect: to.fullPath } })
   }
 

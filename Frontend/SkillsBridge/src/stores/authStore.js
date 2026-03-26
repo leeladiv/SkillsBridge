@@ -5,6 +5,7 @@
 import { defineStore } from 'pinia'
 import { ref, computed } from 'vue'
 import * as authService from '../services/authService'
+import * as studentService from '../services/studentService'
 import { ROLES } from '../types'
 
 const TOKEN_KEY = 'skillsbridge_token'
@@ -37,13 +38,35 @@ export const useAuthStore = defineStore('auth', () => {
   const isStudent = computed(() => role.value === ROLES.STUDENT)
   const isAdmin = computed(() => role.value === ROLES.ADMIN)
 
+  function toPersistedUser(u) {
+    if (!u) return null
+    const safe = { ...u }
+    // Avoid localStorage quota errors from large base64 images or big blobs.
+    // Keep these in-memory only.
+    delete safe.image
+    delete safe.contactInfo
+    delete safe.bio
+    return safe
+  }
+
   function setAuth(payload) {
     token.value = payload.token
     user.value = payload.user
     role.value = payload.role || ROLES.STUDENT
-    if (payload.token) localStorage.setItem(TOKEN_KEY, payload.token)
-    if (payload.user) localStorage.setItem(USER_KEY, JSON.stringify(payload.user))
-    if (payload.role) localStorage.setItem(ROLE_KEY, payload.role)
+    try {
+      if (payload.token) localStorage.setItem(TOKEN_KEY, payload.token)
+      if (payload.user) localStorage.setItem(USER_KEY, JSON.stringify(toPersistedUser(payload.user)))
+      if (payload.role) localStorage.setItem(ROLE_KEY, payload.role)
+    } catch {
+      // If storage quota is exceeded, keep session in-memory and persist only token/role.
+      try {
+        if (payload.token) localStorage.setItem(TOKEN_KEY, payload.token)
+        if (payload.role) localStorage.setItem(ROLE_KEY, payload.role)
+        localStorage.removeItem(USER_KEY)
+      } catch {
+        // ignore
+      }
+    }
   }
 
   function clearAuth() {
@@ -62,6 +85,17 @@ export const useAuthStore = defineStore('auth', () => {
       return { success: true }
     } catch (err) {
       const message = err.response?.data?.message || err.message || 'Login failed'
+      return { success: false, error: message }
+    }
+  }
+
+  async function loginAdmin(credentials) {
+    try {
+      const data = await authService.adminLogin(credentials)
+      setAuth(data)
+      return { success: true }
+    } catch (err) {
+      const message = err.response?.data?.message || err.message || 'Admin login failed'
       return { success: false, error: message }
     }
   }
@@ -91,6 +125,24 @@ export const useAuthStore = defineStore('auth', () => {
     role.value = getStoredRole()
   }
 
+  // Fetch latest user details (e.g. avatar image) without persisting large fields.
+  async function refreshUser() {
+    if (!token.value || !role.value) return null
+    if (role.value === ROLES.STUDENT) {
+      const profile = await studentService.fetchProfile()
+      user.value = {
+        ...(user.value || {}),
+        id: profile.id,
+        fullName: profile.fullName,
+        email: profile.email,
+        role: role.value,
+        image: profile.image,
+      }
+      return user.value
+    }
+    return user.value
+  }
+
   return {
     token,
     user,
@@ -99,10 +151,12 @@ export const useAuthStore = defineStore('auth', () => {
     isStudent,
     isAdmin,
     login,
+    loginAdmin,
     register,
     logout,
     setAuth,
     clearAuth,
     hydrate,
+    refreshUser,
   }
 })

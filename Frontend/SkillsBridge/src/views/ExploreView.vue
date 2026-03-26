@@ -19,7 +19,7 @@ const authStore = useAuthStore()
 const route = useRoute()
 const toast = useToast()
 const loading = ref(true)
-const searchSkill = ref('')
+const searchQuery = ref('')
 const selectedUniversityId = ref('')
 const selectedSort = ref('newest')
 const profiles = ref([])
@@ -44,14 +44,18 @@ async function loadProfiles() {
   try {
     const params = { page: page.value, limit: perPage }
     if (selectedUniversityId.value) params.university = selectedUniversityId.value
-    if (searchSkill.value.trim()) params.skill = searchSkill.value.trim()
+    if (searchQuery.value.trim()) params.q = searchQuery.value.trim()
     if (selectedSort.value) params.sort = selectedSort.value
     const data = await exploreService.fetchPublicProfiles(params)
     if (data.students) {
-      profiles.value = data.students
+      const items = data.students || []
+      const myId = authStore.user?.id
+      profiles.value = myId ? items.filter((s) => s.id !== myId) : items
       totalPages.value = data.pagination?.totalPages || 1
     } else {
-      profiles.value = Array.isArray(data) ? data : []
+      const items = Array.isArray(data) ? data : []
+      const myId = authStore.user?.id
+      profiles.value = myId ? items.filter((s) => s.id !== myId) : items
       totalPages.value = 1
     }
   } catch {
@@ -71,7 +75,7 @@ watch(selectedSort, () => {
   page.value = 1
   loadProfiles()
 })
-watch(searchSkill, () => {
+watch(searchQuery, () => {
   clearTimeout(searchTimer)
   searchTimer = setTimeout(() => {
     page.value = 1
@@ -86,7 +90,7 @@ watch(page, () => {
 onMounted(async () => {
   await universityStore.fetchUniversities()
   if (typeof route.query.skill === 'string' && route.query.skill.trim()) {
-    searchSkill.value = route.query.skill.trim()
+    searchQuery.value = route.query.skill.trim()
   }
   await loadProfiles()
 })
@@ -96,8 +100,8 @@ watch(
   (val) => {
     if (typeof val === 'string') {
       const next = val.trim()
-      if (next && next !== searchSkill.value) {
-        searchSkill.value = next
+      if (next && next !== searchQuery.value) {
+        searchQuery.value = next
       }
     }
   }
@@ -123,9 +127,9 @@ function getUniversityName(student) {
       <div class="mt-6 flex flex-col gap-4 sm:flex-row sm:items-center">
         <div class="flex-1 max-w-xs">
           <BaseInput
-            v-model="searchSkill"
-            placeholder="Search by skill..."
-            name="skill"
+            v-model="searchQuery"
+            placeholder="Search students or skills..."
+            name="q"
           />
         </div>
         <div class="w-full sm:w-48">

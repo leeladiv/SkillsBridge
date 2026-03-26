@@ -65,8 +65,12 @@ export const useStudentStore = defineStore('student', () => {
       }
 
       if (payload.skills !== undefined) {
-        await studentService.updateSkills(payload.skills)
-        skills.value = payload.skills
+        const updated = await studentService.updateSkills(payload.skills)
+        const nextSkills = Array.isArray(updated?.skills) ? updated.skills : payload.skills
+        skills.value = nextSkills
+        if (profile.value) {
+          profile.value.skills = nextSkills
+        }
       } else {
         skills.value = Array.isArray(data.skills) ? data.skills : []
       }

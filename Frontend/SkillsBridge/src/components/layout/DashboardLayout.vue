@@ -21,6 +21,10 @@ function goHome() {
 
 onMounted(() => {
   themeStore.hydrate()
+  // Refresh profile image after reload (not stored in localStorage).
+  if (authStore.isAuthenticated && authStore.isStudent) {
+    authStore.refreshUser().catch(() => {})
+  }
 })
 </script>
 

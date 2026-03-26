@@ -14,6 +14,8 @@ const hamburgerRef = ref(null)
 const isAuthenticated = computed(() => authStore.isAuthenticated)
 const isAdmin = computed(() => authStore.isAdmin)
 const user = computed(() => authStore.user)
+const avatarUrl = computed(() => user.value?.image || '')
+const avatarInitial = computed(() => String(user.value?.fullName || user.value?.email || 'U').trim()[0]?.toUpperCase())
 
 const MOBILE_BREAKPOINT = 768
 
@@ -115,6 +117,10 @@ function onResize() {
 onMounted(() => {
   document.addEventListener('keydown', onKeydown)
   window.addEventListener('resize', onResize)
+  // Ensure avatar/name are fresh after reload (image is not persisted to localStorage).
+  if (authStore.isAuthenticated && authStore.isStudent) {
+    authStore.refreshUser().catch(() => {})
+  }
 })
 onUnmounted(() => {
   document.removeEventListener('keydown', onKeydown)
@@ -201,9 +207,17 @@ onUnmounted(() => {
           >
             Dashboard
           </button>
-          <span class="text-sm text-slate-500 px-1">
-            {{ user?.fullName || user?.email }}
-          </span>
+          <div class="flex items-center gap-2">
+            <div class="h-8 w-8 overflow-hidden rounded-full bg-slate-200 ring-1 ring-slate-300">
+              <img v-if="avatarUrl" :src="avatarUrl" alt="" class="h-full w-full object-cover" />
+              <div v-else class="flex h-full w-full items-center justify-center text-xs font-bold text-slate-600">
+                {{ avatarInitial }}
+              </div>
+            </div>
+            <span class="text-sm text-slate-600 px-1">
+              {{ user?.fullName || user?.email }}
+            </span>
+          </div>
           <BaseButton variant="ghost" size="sm" @click="handleLogout">
             Logout
           </BaseButton>
@@ -295,9 +309,17 @@ onUnmounted(() => {
               >
                 Dashboard
               </button>
-              <p class="px-4 py-2 text-sm text-slate-500">
-                {{ user?.fullName || user?.email }}
-              </p>
+              <div class="px-4 py-2 flex items-center gap-3">
+                <div class="h-9 w-9 overflow-hidden rounded-full bg-slate-200 ring-1 ring-slate-300">
+                  <img v-if="avatarUrl" :src="avatarUrl" alt="" class="h-full w-full object-cover" />
+                  <div v-else class="flex h-full w-full items-center justify-center text-xs font-bold text-slate-600">
+                    {{ avatarInitial }}
+                  </div>
+                </div>
+                <p class="min-w-0 truncate text-sm text-slate-600">
+                  {{ user?.fullName || user?.email }}
+                </p>
+              </div>
               <BaseButton
                 variant="ghost"
                 class="w-full justify-center mt-1"
