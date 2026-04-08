@@ -4,7 +4,7 @@
  */
 import axios from 'axios'
 
-const baseURL = import.meta.env.VITE_API_BASE_URL || '/api'
+const baseURL = import.meta.env.VITE_API_BASE_URL || 'https://skillsbridge.onrender.com'
 
 export const api = axios.create({
   baseURL,
