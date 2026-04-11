@@ -25,7 +25,7 @@ const app = express()
 const __dirname = dirname(fileURLToPath(import.meta.url))
 
 app.use(helmet())
-app.use(cors({ origin: ['https://skills-bridge-navy.vercel.app/'], credentials: true }))
+app.use(cors({ origin: 'https://skills-bridge-navy.vercel.app/', credentials: true }))
 app.use(express.json({ limit: '25mb' }))
 app.use(express.urlencoded({ extended: true, limit: '25mb' }))
 app.use('/uploads', express.static(join(__dirname, '..', 'uploads')))
