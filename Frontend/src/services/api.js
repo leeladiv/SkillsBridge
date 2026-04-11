@@ -4,14 +4,18 @@
  */
 import axios from 'axios'
 
-const baseURL = import.meta.env.VITE_API_BASE_URL || 'https://skillsbridge.onrender.com'
+const baseURL = import.meta.env.VITE_API_BASE_URL || 'https://skillsbridge-backend.onrender.com'
 export const fetchData = () => fetch(`${API_URL}/api/users`)
-export const api = axios.create({
+
+export const login = (data) =>
+ fetch(`${API_URL}/api/auth/login`, {
+  method: 'POST',
   baseURL,
   timeout: 15000,
   headers: {
     'Content-Type': 'application/json',
   },
+  body: JSON.stringify(data)
 })
 
 // Request interceptor: attach auth token

@@ -99,3 +99,11 @@ if (isRunDirect) {
     process.exit(1)
   })
 }
+
+const allowedOrigins = [
+  'https://skills-bridge-navy.vercel.app', 'http://localhost:5173'
+]
+app.use(cors({
+  origin: allowedOrigins,
+  credentials: true,
+}))
