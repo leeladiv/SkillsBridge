@@ -1,4 +1,6 @@
-import { api } from './api'
+import  api from './api.js'
+
+export default api
 
 const STUDENT_PREFIX = '/students'
 

@@ -2,7 +2,7 @@
  * Public explore / recruiter API service.
  * Fetches public student profiles with filters.
  */
-import { api } from './api'
+import api from './api.js'
 
 const EXPLORE_PREFIX = '/explore'
 

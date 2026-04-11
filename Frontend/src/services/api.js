@@ -4,7 +4,11 @@
  */
 import axios from 'axios'
 
-const baseURL = import.meta.env.VITE_API_BASE_URL || 'https://skillsbridge-backend.onrender.com'
+
+const api = axios.create({
+  baseURL: import.meta.env.VITE_API_BASE_URL || 'https://skillsbridge-backend.onrender.com',
+  timeout: 15000,
+})
 export const fetchData = () => fetch(`${API_URL}/api/users`)
 
 export const login = (data) =>

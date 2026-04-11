@@ -1,4 +1,4 @@
-import { api } from './api'
+import api  from '../services/api.js'
 
 const AUTH_PREFIX = '/auth'
 
@@ -45,3 +45,5 @@ export async function logout() {
     // Server may not support logout endpoint; client clears token
   }
 }
+
+export default api
